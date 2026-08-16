@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "menu_open": "Open menu",
+    "menu_close": "Close menu",
+    "skip_to_content": "Skip to content"
+  },
+  "hero": {
+    "role": "Fullstack Developer",
+    "tagline": "I design the database, build the API and refine the interface. Complete systems, clean architecture.",
+    "cta_projects": "View projects",
+    "cta_resume": "Download CV",
+    "resume_pending": "CV in progress"
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "I build systems, not screens"
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "title": "Background",
+    "present": "Present",
+    "empty": "No experience loaded here yet — full background coming soon."
+  },
+  "projects": {
+    "eyebrow": "Projects",
+    "title": "Systems in production",
+    "updated": "Updated {time} ago",
+    "view_repo": "View repository",
+    "view_demo": "Live demo",
+    "expand": "View details",
+    "collapse": "Close details",
+    "status_production": "In production",
+    "status_active": "Actively developed",
+    "status_archived": "Archived",
+    "status_wip": "Work in progress"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's talk",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Message sent. I'll get back to you shortly.",
+    "error": "Could not send. Please try again in a few minutes.",
+    "errors": {
+      "name_short": "Name needs at least 2 characters.",
+      "email_invalid": "Enter a valid email address.",
+      "subject_short": "Subject needs at least 3 characters.",
+      "message_short": "Tell me a bit more: at least 20 characters."
+    }
+  },
+  "footer": {
+    "built_with": "Built with Next.js, Tailwind and Motion.",
+    "rights": "All rights reserved."
+  }
+}

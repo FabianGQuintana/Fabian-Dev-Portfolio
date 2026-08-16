@@ -1,0 +1,12 @@
+# Normaliza finales de linea: LF en el repositorio, nativo en el working tree.
+# Evita diffs fantasma al trabajar desde Windows.
+* text=auto eol=lf
+
+*.png  binary
+*.jpg  binary
+*.webp binary
+*.avif binary
+*.ico  binary
+*.woff  binary
+*.woff2 binary
+*.pdf  binary
