@@ -54,6 +54,29 @@ export type Project = ProjectEntry & {
   statsStatus: ProjectStatsStatus;
 };
 
+/**
+ * Modelo de tarjeta/panel: Project + label calculado en el servidor.
+ * `updatedLabel` es el texto completo ("Actualizado hace 3 días") porque el
+ * tiempo relativo se resuelve una sola vez en el build, no en cada render.
+ */
+export type ProjectCardModel = Project & { updatedLabel?: string };
+
+/** Etiquetas de UI que la seccion resuelve del lado servidor. */
+export interface ProjectUiLabels {
+  expand: string;
+  collapse: string;
+  close: string;
+  viewRepo: string;
+  viewApi: string;
+  viewFrontend: string;
+  viewDemo: string;
+  architecture: string;
+  problem: string;
+  solution: string;
+  languages: string;
+  status: Record<ProjectEntry["status"], string>;
+}
+
 /** Estado de degradacion de un proyecto frente a la API. */
 export type ProjectStatsStatus =
   | "live" // stats en vivo disponibles

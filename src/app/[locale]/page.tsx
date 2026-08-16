@@ -5,14 +5,15 @@ import { Eyebrow } from "@/components/ui";
 import { AboutSection } from "@/features/about";
 import { ExperienceSection } from "@/features/experience";
 import { HeroSection } from "@/features/hero";
+import { ProjectsSection } from "@/features/projects";
 import type { Locale } from "@/i18n/routing";
 
 /**
  * Composicion de la pagina.
  *
- * One-page con anclas: Hero, About y Experience ya son features reales.
- * Projects (Fases 5-6) y Contact (Fase 7) mantienen su placeholder hasta que
- * su feature exista — esta estructura no cambia.
+ * One-page con anclas: Hero, About, Experience y Projects ya son features
+ * reales. Contact (Fase 7) mantiene su placeholder hasta que su feature
+ * exista — esta estructura no cambia.
  */
 
 function SectionPlaceholder({
@@ -51,8 +52,7 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [tProjects, tContact] = await Promise.all([
-    getTranslations({ locale, namespace: "projects" }),
+  const [tContact] = await Promise.all([
     getTranslations({ locale, namespace: "contact" }),
   ]);
 
@@ -64,12 +64,7 @@ export default async function HomePage({
 
       <ExperienceSection locale={locale} />
 
-      <SectionPlaceholder
-        id="projects"
-        eyebrow={tProjects("eyebrow")}
-        title={tProjects("title")}
-        phase="Fases 5 y 6 — integración con GitHub y tarjetas expandibles"
-      />
+      <ProjectsSection locale={locale} />
 
       <SectionPlaceholder
         id="contact"
