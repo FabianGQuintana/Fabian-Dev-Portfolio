@@ -1,0 +1,286 @@
+@import "tailwindcss";
+
+/* ===========================================================================
+   SISTEMA DE DISEÑO — Dark-Tech / Acento violeta
+   ---------------------------------------------------------------------------
+   Fuente unica de verdad del lenguaje visual. Ningun componente define un
+   color, una duracion o un radio a mano: todo sale de aqui.
+
+   El oscuro NO es un "modo": es el estado base del sistema.
+
+   Todos los ratios de contraste anotados estan calculados contra
+   --color-base (#0b0a0f) segun WCAG 2.1 y verificados numericamente.
+   =========================================================================== */
+
+@theme {
+  /* -------------------------------------------------------------------------
+     SUPERFICIES
+     Negro con tinte violeta, no negro puro: en OLED el #000 produce halos
+     duros en los desenfoques y desintegra el acento del resto del sistema.
+     ------------------------------------------------------------------------- */
+  --color-base: #0b0a0f; /* fondo del documento                         */
+  --color-surface: #121118; /* tarjetas y contenedores en reposo          */
+  --color-raised: #1a1823; /* hover de tarjeta, panel expandido          */
+
+  /* -------------------------------------------------------------------------
+     TEXTO
+     ------------------------------------------------------------------------- */
+  --color-fg: #ededf2; /* 16.91:1  AAA  — titulares y cuerpo         */
+  --color-fg-muted: #a1a0ae; /*  7.66:1  AAA  — descripciones              */
+  --color-fg-subtle: #6e6d7a; /*  3.88:1  AA-large — SOLO >=18.66px o bold  */
+
+  /* -------------------------------------------------------------------------
+     ACENTO VIOLETA
+     Regla de proporcion 90/7/3: el acento manda porque es escaso.
+     ------------------------------------------------------------------------- */
+  --color-accent-300: #c4b5fd; /* 10.69:1 — focus ring, hover de enlace   */
+  --color-accent-400: #a78bfa; /*  7.25:1  AAA — TEXTO de acento          */
+  --color-accent-500: #8b5cf6; /*  4.66:1  AA  — iconos, bordes activos   */
+  --color-accent-600: #7c3aed; /* fondo de boton primario (blanco: 5.70:1)*/
+  --color-accent-700: #6d28d9; /* boton primario :active                  */
+
+  /* -------------------------------------------------------------------------
+     LINEAS Y BORDES
+     Dos tokens distintos por una razon concreta: WCAG 1.4.11 exige 3:1 para
+     los bordes de componentes INTERACTIVOS. Un input con --color-line se ve
+     elegante y es inutilizable para alguien con baja vision.
+     ------------------------------------------------------------------------- */
+  --color-line: #24222e; /* separadores decorativos                    */
+  --color-line-strong: #322f40; /* borde de tarjeta en reposo                 */
+  --color-line-interactive: #6e6b82; /* 3.84:1 — inputs y controles enfocables */
+
+  /* -------------------------------------------------------------------------
+     ESTADOS
+     Nunca se comunican solo por color: siempre con icono y texto.
+     ------------------------------------------------------------------------- */
+  --color-success: #34d399; /* 10.26:1 */
+  --color-error: #f87171; /*  7.13:1 */
+  --color-warning: #fbbf24; /* 11.82:1 */
+  --color-info: #38bdf8; /*  9.21:1 */
+
+  /* -------------------------------------------------------------------------
+     TIPOGRAFIA
+     Geist Sans para todo el texto; Geist Mono para datos, metadatos y labels.
+     Las variables --font-geist-* las inyecta next/font en <html>.
+     ------------------------------------------------------------------------- */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+
+  /* Escala fluida: un solo valor cubre movil y desktop, sin breakpoints.
+     El tracking negativo en tamaños grandes es lo que separa un titular
+     "diseñado" de uno simplemente agrandado. */
+  --text-display: clamp(2.75rem, 7vw, 5rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.03em;
+  --text-display--font-weight: 600;
+
+  --text-h2: clamp(2rem, 4.5vw, 3rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 600;
+
+  --text-h3: clamp(1.25rem, 2vw, 1.5rem);
+  --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 600;
+
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.7;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
+
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.5;
+  --text-label--letter-spacing: 0.02em;
+  --text-label--font-weight: 500;
+
+  /* Eyebrow: el `// SECCION` en mono que encabeza cada bloque. */
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.4;
+  --text-eyebrow--letter-spacing: 0.15em;
+  --text-eyebrow--font-weight: 500;
+
+  /* -------------------------------------------------------------------------
+     MOVIMIENTO
+     Las curvas viven aqui; las duraciones para JS viven en
+     src/lib/motion-tokens.ts. Una sola definicion por concepto.
+     ------------------------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* -------------------------------------------------------------------------
+     RADIOS
+     ------------------------------------------------------------------------- */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+/* ===========================================================================
+   VARIABLES NO-TAILWIND
+   Tailwind v4 no expone un namespace para duraciones. Estas se usan en
+   transiciones CSS puras y estan espejadas en src/lib/motion-tokens.ts.
+   =========================================================================== */
+:root {
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+
+  --accent-glow: rgb(139 92 246 / 0.35);
+  --header-height: 4rem;
+}
+
+/* ===========================================================================
+   CAPA BASE
+   =========================================================================== */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Evita que el header sticky tape el titulo al navegar por anclas. */
+    scroll-padding-top: calc(var(--header-height) + 1.5rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-base);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-600);
+    color: #ffffff;
+  }
+
+  /* Focus visible unificado. Nunca `outline: none` sin reemplazo. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-300);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* La scrollbar tambien es parte del sistema visual. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line-strong) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-line-strong);
+    border-radius: 9999px;
+    border: 2px solid var(--color-base);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-line-interactive);
+  }
+}
+
+/* ===========================================================================
+   MOVIMIENTO REDUCIDO
+   Red de seguridad global. Los componentes tambien lo respetan via
+   useReducedMotion(), pero esto cubre cualquier animacion puramente CSS.
+   =========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===========================================================================
+   UTILIDADES PROPIAS
+   =========================================================================== */
+
+/* Grid sutil de fondo con mascara radial: profundidad sin ruido. */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    #000 40%,
+    transparent 100%
+  );
+}
+
+/* Puntos en vez de lineas, para bloques mas densos. */
+@utility bg-dots {
+  background-image: radial-gradient(
+    var(--color-line-strong) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  mask-image: radial-gradient(
+    ellipse 70% 70% at 50% 50%,
+    #000 30%,
+    transparent 100%
+  );
+}
+
+/* Sombra de color. En dark UI las sombras negras no se ven; el glow si. */
+@utility shadow-glow {
+  box-shadow: 0 0 40px -10px var(--accent-glow);
+}
+
+@utility shadow-glow-sm {
+  box-shadow: 0 0 24px -8px var(--accent-glow);
+}
+
+/* Gradiente violeta -> fucsia para titulares. Uso MUY puntual: como maximo
+   una aparicion por pantalla, si no deja de ser un acento. */
+@utility text-gradient-accent {
+  background-image: linear-gradient(
+    110deg,
+    var(--color-accent-400) 0%,
+    #d946ef 100%
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+/* Contenedor de seccion: ancho maximo y gutter, en un solo lugar. */
+@utility container-section {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-section {
+    padding-inline: 2rem;
+  }
+}

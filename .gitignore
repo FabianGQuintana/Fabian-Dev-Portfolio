@@ -1,0 +1,46 @@
+# dependencias
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+
+# build de next
+/.next/
+/out/
+/build
+next-env.d.ts
+
+# produccion
+/dist
+
+# entorno — NUNCA versionar secretos
+.env
+.env*.local
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# testing
+/coverage
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# editores
+.idea/
+*.swp
+
+# cache del linter
+.eslintcache

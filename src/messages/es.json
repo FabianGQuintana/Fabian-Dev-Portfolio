@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "menu_open": "Abrir menú",
+    "menu_close": "Cerrar menú",
+    "skip_to_content": "Saltar al contenido"
+  },
+  "hero": {
+    "role": "Fullstack Developer",
+    "tagline": "Diseño la base de datos, construyo la API y pulo la interfaz. Sistemas completos, con arquitectura limpia.",
+    "cta_projects": "Ver proyectos",
+    "cta_resume": "Descargar CV",
+    "resume_pending": "CV en preparación"
+  },
+  "about": {
+    "eyebrow": "Sobre mí",
+    "title": "Construyo sistemas, no pantallas"
+  },
+  "experience": {
+    "eyebrow": "Experiencia",
+    "title": "Trayectoria",
+    "present": "Actualidad",
+    "empty": "Todavía no hay experiencia cargada acá — vuelvo pronto con la trayectoria completa."
+  },
+  "projects": {
+    "eyebrow": "Proyectos",
+    "title": "Sistemas en producción",
+    "updated": "Actualizado {time}",
+    "view_repo": "Ver repositorio",
+    "view_api": "Ver API",
+    "view_frontend": "Ver frontend",
+    "view_demo": "Demo en vivo",
+    "expand": "Ver detalle",
+    "collapse": "Cerrar detalle",
+    "close": "Cerrar",
+    "architecture": "Decisiones de arquitectura",
+    "problem": "El problema",
+    "solution": "La solución",
+    "languages": "Lenguajes",
+    "status_production": "En producción",
+    "status_active": "En desarrollo activo",
+    "status_archived": "Archivado",
+    "status_wip": "En construcción"
+  },
+  "contact": {
+    "eyebrow": "Contacto",
+    "title": "Hablemos",
+    "name": "Nombre",
+    "email": "Email",
+    "subject": "Asunto",
+    "message": "Mensaje",
+    "send": "Enviar mensaje",
+    "sending": "Enviando…",
+    "success": "Mensaje enviado. Te respondo a la brevedad.",
+    "error": "No se pudo enviar. Probá de nuevo en unos minutos.",
+    "error_rate_limited": "Demasiados intentos. Esperá una hora y volvé a intentar.",
+    "errors": {
+      "name_short": "El nombre necesita al menos 2 caracteres.",
+      "email_invalid": "Ingresá un email válido.",
+      "subject_short": "El asunto necesita al menos 3 caracteres.",
+      "message_short": "Contame un poco más: al menos 20 caracteres.",
+      "website": "El mensaje no se pudo enviar."
+    }
+  },
+  "footer": {
+    "built_with": "Construido con Next.js, Tailwind y Motion.",
+    "rights": "Todos los derechos reservados."
+  }
+}
