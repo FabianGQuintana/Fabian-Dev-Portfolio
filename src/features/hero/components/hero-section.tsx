@@ -7,6 +7,7 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 import { AnimatedHeadline } from "./animated-headline";
+import { HeroScene } from "./hero-scene";
 import { ResumeButton } from "./resume-button";
 
 /**
@@ -20,36 +21,48 @@ export async function HeroSection() {
   const t = await getTranslations("hero");
 
   return (
-    <Spotlight className="bg-grid">
-      <section
-        aria-labelledby="hero-heading"
-        className="container-section flex min-h-dvh flex-col justify-center py-32"
-      >
-        <Eyebrow>{t("role")}</Eyebrow>
+    <div className="relative overflow-hidden">
+      {/* Capa de fondo con el grid aislado: no enmascara el contenido */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-grid opacity-60"
+      />
 
-        <AnimatedHeadline id="hero-heading" text={siteConfig.name} />
+      <Spotlight>
+        <HeroScene />
 
-        <p className="mt-8 max-w-[62ch] text-body-lg text-balance text-fg-muted">
-          {t("tagline")}
-        </p>
+        <section
+          aria-labelledby="hero-heading"
+          className="relative z-10 container-section flex min-h-dvh flex-col justify-center py-32"
+        >
+          <Eyebrow>{t("role")}</Eyebrow>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Magnetic>
-            <a
-              href="#projects"
-              className={cn(buttonVariants({ variant: "primary", size: "lg" }))}
-            >
-              {t("cta_projects")}
-              <ArrowRight />
-            </a>
-          </Magnetic>
+          <AnimatedHeadline id="hero-heading" text={siteConfig.name} />
 
-          <ResumeButton
-            label={t("cta_resume")}
-            pendingLabel={t("resume_pending")}
-          />
-        </div>
-      </section>
-    </Spotlight>
+          <p className="mt-8 max-w-[62ch] text-body-lg text-balance text-text-secondary">
+            {t("tagline")}
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Magnetic>
+              <a
+                href="#projects"
+                className={cn(
+                  buttonVariants({ variant: "primary", size: "lg" }),
+                )}
+              >
+                {t("cta_projects")}
+                <ArrowRight />
+              </a>
+            </Magnetic>
+
+            <ResumeButton
+              label={t("cta_resume")}
+              pendingLabel={t("resume_pending")}
+            />
+          </div>
+        </section>
+      </Spotlight>
+    </div>
   );
 }

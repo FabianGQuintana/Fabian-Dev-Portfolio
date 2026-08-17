@@ -54,7 +54,9 @@ export function NavLinks({
               className={cn(
                 "relative block rounded-md px-3 py-2 text-sm transition-colors duration-150",
                 orientation === "vertical" && "px-4 py-3 text-base",
-                isActive ? "text-fg" : "text-fg-muted hover:text-fg",
+                isActive
+                  ? "text-text-primary"
+                  : "text-text-secondary hover:text-text-primary",
               )}
             >
               {item.label}

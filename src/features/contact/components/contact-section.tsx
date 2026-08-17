@@ -40,7 +40,7 @@ export async function ContactSection() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="container-section py-[clamp(80px,12vh,160px)]"
+      className="relative z-10 container-section py-[clamp(80px,12vh,160px)]"
     >
       <RevealOnScroll>
         <Eyebrow>{t("eyebrow")}</Eyebrow>

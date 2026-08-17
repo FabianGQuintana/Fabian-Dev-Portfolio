@@ -25,7 +25,7 @@ export async function ExperienceSection({ locale }: ExperienceSectionProps) {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="container-section py-[clamp(80px,12vh,160px)]"
+      className="relative z-10 container-section py-[clamp(80px,12vh,160px)]"
     >
       <RevealOnScroll>
         <Eyebrow>{t("eyebrow")}</Eyebrow>
@@ -44,7 +44,7 @@ export async function ExperienceSection({ locale }: ExperienceSectionProps) {
           presentLabel={t("present")}
         />
       ) : (
-        <p className="mt-8 max-w-[65ch] text-body-lg text-fg-muted">
+        <p className="mt-8 max-w-[65ch] text-body-lg text-text-secondary">
           {t("empty")}
         </p>
       )}

@@ -15,7 +15,7 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "font-mono text-eyebrow text-fg-subtle uppercase",
+        "font-mono text-eyebrow text-text-muted uppercase",
         className,
       )}
       {...props}

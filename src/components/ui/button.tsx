@@ -28,13 +28,13 @@ const buttonVariants = cva(
           "active:bg-accent-700",
         ],
         secondary: [
-          "border border-line-interactive bg-surface text-fg",
-          "hover:border-accent-500 hover:bg-raised hover:text-accent-400",
-          "active:bg-surface",
+          "border border-border-interactive bg-bg-surface text-text-primary",
+          "hover:border-accent-500 hover:bg-bg-surface-raised hover:text-accent-400",
+          "active:bg-bg-surface",
         ],
         ghost: [
-          "bg-transparent text-fg-muted",
-          "hover:bg-surface hover:text-fg",
+          "bg-transparent text-text-secondary",
+          "hover:bg-bg-surface hover:text-text-primary",
         ],
         link: [
           "bg-transparent text-accent-400 underline-offset-4",

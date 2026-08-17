@@ -71,7 +71,7 @@ export function Spotlight({
 
   return (
     <div
-      className={cn("group relative", className)}
+      className={cn("group relative isolate", className)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       {...props}

@@ -31,7 +31,7 @@ export function LanguageBar({ languages, label }: LanguageBarProps) {
       <div
         role="img"
         aria-label={label}
-        className="flex h-2 w-full overflow-hidden rounded-full bg-raised"
+        className="flex h-2 w-full overflow-hidden rounded-full bg-bg-surface-raised"
       >
         {languages.map((language, index) => (
           <motion.span
@@ -59,9 +59,12 @@ export function LanguageBar({ languages, label }: LanguageBarProps) {
               className="size-2 rounded-full"
               style={{ backgroundColor: language.color }}
             />
-            <span className="font-mono text-xs text-fg-subtle">
+            <span className="font-mono text-xs text-text-muted">
               {language.name}
-              <span className="text-fg-muted"> · {language.percentage}%</span>
+              <span className="text-text-secondary">
+                {" "}
+                · {language.percentage}%
+              </span>
             </span>
           </li>
         ))}

@@ -15,48 +15,50 @@
 @theme {
   /* -------------------------------------------------------------------------
      SUPERFICIES
-     Negro con tinte violeta, no negro puro: en OLED el #000 produce halos
-     duros en los desenfoques y desintegra el acento del resto del sistema.
      ------------------------------------------------------------------------- */
-  --color-base: #0b0a0f; /* fondo del documento                         */
-  --color-surface: #121118; /* tarjetas y contenedores en reposo          */
-  --color-raised: #1a1823; /* hover de tarjeta, panel expandido          */
+  --color-bg-base: #0b0a0f;
+  --color-bg-surface: #121118;
+  --color-bg-surface-raised: #1a1823;
+  --color-base: #0b0a0f;
+  --color-surface: #121118;
+  --color-raised: #1a1823;
 
   /* -------------------------------------------------------------------------
      TEXTO
      ------------------------------------------------------------------------- */
-  --color-fg: #ededf2; /* 16.91:1  AAA  — titulares y cuerpo         */
-  --color-fg-muted: #a1a0ae; /*  7.66:1  AAA  — descripciones              */
-  --color-fg-subtle: #6e6d7a; /*  3.88:1  AA-large — SOLO >=18.66px o bold  */
+  --color-text-primary: #ededf2;
+  --color-text-secondary: #a1a0ae;
+  --color-text-muted: #6e6d7a;
+  --color-fg: #ededf2;
+  --color-fg-muted: #a1a0ae;
+  --color-fg-subtle: #6e6d7a;
 
   /* -------------------------------------------------------------------------
      ACENTO VIOLETA
-     Regla de proporcion 90/7/3: el acento manda porque es escaso.
      ------------------------------------------------------------------------- */
-  --color-accent-300: #c4b5fd; /* 10.69:1 — focus ring, hover de enlace   */
-  --color-accent-400: #a78bfa; /*  7.25:1  AAA — TEXTO de acento          */
-  --color-accent-500: #8b5cf6; /*  4.66:1  AA  — iconos, bordes activos   */
-  --color-accent-600: #7c3aed; /* fondo de boton primario (blanco: 5.70:1)*/
-  --color-accent-700: #6d28d9; /* boton primario :active                  */
+  --color-accent-300: #c4b5fd;
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+  --color-accent-700: #6d28d9;
 
   /* -------------------------------------------------------------------------
      LINEAS Y BORDES
-     Dos tokens distintos por una razon concreta: WCAG 1.4.11 exige 3:1 para
-     los bordes de componentes INTERACTIVOS. Un input con --color-line se ve
-     elegante y es inutilizable para alguien con baja vision.
      ------------------------------------------------------------------------- */
-  --color-line: #24222e; /* separadores decorativos                    */
-  --color-line-strong: #322f40; /* borde de tarjeta en reposo                 */
-  --color-line-interactive: #6e6b82; /* 3.84:1 — inputs y controles enfocables */
+  --color-border-subtle: #24222e;
+  --color-border-default: #322f40;
+  --color-border-interactive: #6e6b82;
+  --color-line: #24222e;
+  --color-line-strong: #322f40;
+  --color-line-interactive: #6e6b82;
 
   /* -------------------------------------------------------------------------
      ESTADOS
-     Nunca se comunican solo por color: siempre con icono y texto.
      ------------------------------------------------------------------------- */
-  --color-success: #34d399; /* 10.26:1 */
-  --color-error: #f87171; /*  7.13:1 */
-  --color-warning: #fbbf24; /* 11.82:1 */
-  --color-info: #38bdf8; /*  9.21:1 */
+  --color-success: #34d399;
+  --color-error: #f87171;
+  --color-warning: #fbbf24;
+  --color-info: #38bdf8;
 
   /* -------------------------------------------------------------------------
      TIPOGRAFIA
@@ -144,6 +146,13 @@
   }
 
   html {
+    /* color-scheme dark: evita que el navegador "aclare" controles y
+       texto heredado, y fija el color base del documento. */
+    color-scheme: dark;
+    /* Jerarquia de color global: el documento entero hereda el texto
+       claro a menos que un componente lo sobreescriba. El fallback literal
+       protege contra cualquier fallo de resolucion de la variable. */
+    color: var(--color-fg, #ededf2);
     scroll-behavior: smooth;
     /* Evita que el header sticky tape el titulo al navegar por anclas. */
     scroll-padding-top: calc(var(--header-height) + 1.5rem);
@@ -152,7 +161,7 @@
 
   body {
     background-color: var(--color-base);
-    color: var(--color-fg);
+    color: var(--color-fg, #ededf2);
     font-family: var(--font-sans);
     font-size: var(--text-body);
     line-height: 1.7;
@@ -226,9 +235,14 @@
 /* Grid sutil de fondo con mascara radial: profundidad sin ruido. */
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+    linear-gradient(to right, var(--color-border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-border-subtle) 1px, transparent 1px);
   background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    #000 40%,
+    transparent 100%
+  );
   mask-image: radial-gradient(
     ellipse 80% 60% at 50% 0%,
     #000 40%,
@@ -239,10 +253,15 @@
 /* Puntos en vez de lineas, para bloques mas densos. */
 @utility bg-dots {
   background-image: radial-gradient(
-    var(--color-line-strong) 1px,
+    var(--color-border-default) 1px,
     transparent 1px
   );
   background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 70% at 50% 50%,
+    #000 30%,
+    transparent 100%
+  );
   mask-image: radial-gradient(
     ellipse 70% 70% at 50% 50%,
     #000 30%,

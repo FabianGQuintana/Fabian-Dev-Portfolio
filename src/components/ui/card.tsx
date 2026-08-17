@@ -14,10 +14,10 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-lg border border-line-strong bg-surface",
+        "rounded-lg border border-border-default bg-bg-surface",
         interactive && [
           "transition-colors duration-300 ease-out-quart",
-          "hover:border-accent-500/50 hover:bg-raised",
+          "hover:border-accent-500/50 hover:bg-bg-surface-raised",
         ],
         className,
       )}
@@ -36,7 +36,9 @@ export function CardHeader({
 }
 
 export function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
-  return <h3 className={cn("text-h3 text-fg", className)} {...props} />;
+  return (
+    <h3 className={cn("text-h3 text-text-primary", className)} {...props} />
+  );
 }
 
 export function CardDescription({
@@ -45,7 +47,7 @@ export function CardDescription({
 }: React.ComponentProps<"p">) {
   return (
     <p
-      className={cn("text-sm leading-relaxed text-fg-muted", className)}
+      className={cn("text-sm leading-relaxed text-text-secondary", className)}
       {...props}
     />
   );
@@ -65,7 +67,7 @@ export function CardFooter({
   return (
     <div
       className={cn(
-        "flex items-center gap-3 border-t border-line px-6 py-4",
+        "flex items-center gap-3 border-t border-border-subtle px-6 py-4",
         className,
       )}
       {...props}

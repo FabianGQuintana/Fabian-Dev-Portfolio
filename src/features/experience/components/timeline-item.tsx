@@ -33,17 +33,17 @@ export function TimelineItem({
       />
 
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <h3 className="text-h3 text-fg">{entry.role[locale]}</h3>
+        <h3 className="text-h3 text-text-primary">{entry.role[locale]}</h3>
         <span className="font-mono text-sm font-medium text-accent-400">
           {entry.company}
         </span>
       </div>
 
-      <p className="mt-1 font-mono text-xs tracking-wide text-fg-subtle">
+      <p className="mt-1 font-mono text-xs tracking-wide text-text-muted">
         {start} — {end}
       </p>
 
-      <p className="mt-4 max-w-[68ch] text-fg-muted">
+      <p className="mt-4 max-w-[68ch] text-text-secondary">
         {entry.description[locale]}
       </p>
 

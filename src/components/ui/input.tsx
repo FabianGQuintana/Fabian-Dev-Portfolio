@@ -15,10 +15,10 @@ export function Input({
     <input
       aria-invalid={ariaInvalid}
       className={cn(
-        "h-11 w-full rounded-md border border-line-interactive bg-surface px-3.5 text-sm text-fg",
-        "placeholder:text-fg-subtle",
+        "h-11 w-full rounded-md border border-border-interactive bg-bg-surface px-3.5 text-sm text-text-primary",
+        "placeholder:text-text-muted",
         "transition-colors duration-150",
-        "hover:border-fg-subtle",
+        "hover:border-text-muted",
         "focus-visible:border-accent-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-300",
         "disabled:cursor-not-allowed disabled:opacity-50",
         "aria-[invalid=true]:border-error aria-[invalid=true]:focus-visible:outline-error",

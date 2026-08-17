@@ -14,7 +14,7 @@ const badgeVariants = cva(
     variants: {
       variant: {
         /** Tecnologias, topics. El caso por defecto. */
-        default: "border-line-strong bg-surface text-fg-muted",
+        default: "border-border-default bg-bg-surface text-text-secondary",
         /** Destacado. Uso escaso: si todo es acento, nada lo es. */
         accent: "border-accent-500/40 bg-accent-500/10 text-accent-400",
         /** Estados. Siempre acompañados de icono y texto, nunca solo color. */

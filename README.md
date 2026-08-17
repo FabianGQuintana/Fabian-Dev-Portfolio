@@ -17,6 +17,7 @@ El plan de arquitectura completo está en [`docs/`](./docs).
 | i18n | next-intl 4 (ES / EN) — Fase 3 |
 | Validación | Zod 4 |
 | Email | Resend — Fase 7 |
+| Métricas | Vercel Analytics + Speed Insights — Fase 8 |
 | Deploy | Vercel |
 
 ## Puesta en marcha
@@ -67,6 +68,28 @@ git commit -am "feat(projects): agregar Mi Sistema" && git push
 ```
 
 Un archivo, un commit. Vercel despliega solo.
+
+## SEO y compartir (Fase 8)
+
+- **Datos estructurados**: JSON-LD `Person` (schema.org) con `knowsAbout` y
+  `sameAs`, inyectado en el layout de cada locale.
+- **OG image dinámica** por idioma (`opengraph-image.tsx`), tipografía Geist
+  embebida, 1200×630.
+- **Sitemap y robots** bilingües: `/sitemap.xml` con alternates hreflang
+  (`/es` ↔ `/en`) y `/robots.txt` que bloquea `/dev` y `/api`.
+- **Manifest** de PWA y favicon SVG en `app/icon.svg`.
+
+## Métricas (Fase 8)
+
+Vercel Web Analytics y Speed Insights se cargan desde `[locale]/layout.tsx`.
+Actúan en solitario: no requieren configuración previa, solo el deploy en
+Vercel.
+
+## UI de contingencia (Fase 8)
+
+`error.tsx`, `not-found.tsx` y `loading.tsx` bajo `[locale]/` siguen el mismo
+sistema Dark-Tech que el resto del sitio, con textos localizados y un botón de
+reintento que no pierde el estado del cliente.
 
 ## Convención de commits
 
