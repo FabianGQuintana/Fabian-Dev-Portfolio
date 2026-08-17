@@ -56,11 +56,13 @@
     "sending": "Enviando…",
     "success": "Mensaje enviado. Te respondo a la brevedad.",
     "error": "No se pudo enviar. Probá de nuevo en unos minutos.",
+    "error_rate_limited": "Demasiados intentos. Esperá una hora y volvé a intentar.",
     "errors": {
       "name_short": "El nombre necesita al menos 2 caracteres.",
       "email_invalid": "Ingresá un email válido.",
       "subject_short": "El asunto necesita al menos 3 caracteres.",
-      "message_short": "Contame un poco más: al menos 20 caracteres."
+      "message_short": "Contame un poco más: al menos 20 caracteres.",
+      "website": "El mensaje no se pudo enviar."
     }
   },
   "footer": {

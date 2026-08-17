@@ -56,11 +56,13 @@
     "sending": "Sending…",
     "success": "Message sent. I'll get back to you shortly.",
     "error": "Could not send. Please try again in a few minutes.",
+    "error_rate_limited": "Too many attempts. Please try again in an hour.",
     "errors": {
       "name_short": "Name needs at least 2 characters.",
       "email_invalid": "Enter a valid email address.",
       "subject_short": "Subject needs at least 3 characters.",
-      "message_short": "Tell me a bit more: at least 20 characters."
+      "message_short": "Tell me a bit more: at least 20 characters.",
+      "website": "The message could not be sent."
     }
   },
   "footer": {
