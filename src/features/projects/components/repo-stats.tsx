@@ -67,7 +67,7 @@ export function RepoStats({
       {chips.map((chip) => (
         <span
           key={chip.key}
-          className="flex items-center gap-1.5 font-mono text-xs text-fg-muted"
+          className="flex items-center gap-1.5 font-mono text-xs text-text-secondary"
         >
           {chip.icon}
           {chip.label}

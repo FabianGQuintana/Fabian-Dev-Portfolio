@@ -68,5 +68,16 @@
   "footer": {
     "built_with": "Built with Next.js, Tailwind and Motion.",
     "rights": "All rights reserved."
+  },
+  "status": {
+    "error_eyebrow": "Error",
+    "error_title": "Something went wrong",
+    "error_message": "An unexpected error occurred. Refresh the page or try again.",
+    "retry": "Try again",
+    "not_found_eyebrow": "404",
+    "not_found_title": "Page not found",
+    "not_found_message": "The page you're looking for doesn't exist or was moved.",
+    "back_home": "Back to home",
+    "loading": "Loading…"
   }
 }

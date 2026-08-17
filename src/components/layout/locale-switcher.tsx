@@ -25,7 +25,7 @@ export function LocaleSwitcher() {
     <div
       role="group"
       aria-label="Idioma"
-      className="flex items-center gap-0.5 rounded-md border border-line-strong bg-surface p-1 font-mono text-xs"
+      className="flex items-center gap-0.5 rounded-md border border-border-default bg-bg-surface p-1 font-mono text-xs"
     >
       {routing.locales.map((locale) => {
         const isActive = locale === currentLocale;
@@ -41,7 +41,7 @@ export function LocaleSwitcher() {
               "rounded px-2 py-1 transition-colors duration-150",
               isActive
                 ? "bg-accent-600 text-white"
-                : "text-fg-muted hover:bg-raised hover:text-fg",
+                : "text-text-secondary hover:bg-bg-surface-raised hover:text-text-primary",
             )}
           >
             {LOCALE_LABEL[locale]}

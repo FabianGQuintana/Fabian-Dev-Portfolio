@@ -247,7 +247,7 @@ export function ContactForm({ labels }: ContactFormProps) {
               "rounded-md border px-4 py-3 text-sm sm:col-span-2",
               isError
                 ? "border-error/40 bg-error/10 text-error"
-                : "border-accent-500/40 bg-accent-500/10 text-fg",
+                : "border-accent-500/40 bg-accent-500/10 text-text-primary",
             )}
           >
             {bannerMessage}

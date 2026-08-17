@@ -51,7 +51,7 @@ export function MobileMenu({ items, openLabel, closeLabel }: MobileMenuProps) {
         aria-label={openLabel}
         aria-expanded={isOpen}
         aria-controls="mobile-menu-panel"
-        className="grid size-11 place-items-center rounded-md text-fg-muted transition-colors duration-150 hover:bg-surface hover:text-fg md:hidden"
+        className="grid size-11 place-items-center rounded-md text-text-secondary transition-colors duration-150 hover:bg-bg-surface hover:text-text-primary md:hidden"
       >
         <Menu className="size-5" aria-hidden="true" />
       </button>
@@ -70,7 +70,7 @@ export function MobileMenu({ items, openLabel, closeLabel }: MobileMenuProps) {
             <div
               aria-hidden="true"
               onClick={() => setIsOpen(false)}
-              className="absolute inset-0 bg-base/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-bg-base/80 backdrop-blur-sm"
             />
 
             <motion.div
@@ -89,14 +89,14 @@ export function MobileMenu({ items, openLabel, closeLabel }: MobileMenuProps) {
                 opacity: shouldReduceMotion ? 0 : 1,
               }}
               transition={{ duration: duration.base, ease: ease.out }}
-              className="absolute inset-y-0 right-0 flex w-full max-w-xs flex-col border-l border-line-strong bg-surface p-6"
+              className="absolute inset-y-0 right-0 flex w-full max-w-xs flex-col border-l border-border-default bg-bg-surface p-6"
             >
               <div className="flex justify-end">
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
                   aria-label={closeLabel}
-                  className="grid size-11 place-items-center rounded-md text-fg-muted transition-colors duration-150 hover:bg-raised hover:text-fg"
+                  className="grid size-11 place-items-center rounded-md text-text-secondary transition-colors duration-150 hover:bg-bg-surface-raised hover:text-text-primary"
                 >
                   <X className="size-5" aria-hidden="true" />
                 </button>

@@ -20,14 +20,14 @@ export async function AboutSection({ locale }: AboutSectionProps) {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="container-section py-[clamp(80px,12vh,160px)]"
+      className="relative z-10 container-section py-[clamp(80px,12vh,160px)]"
     >
       <RevealOnScroll>
         <Eyebrow>{t("eyebrow")}</Eyebrow>
         <h2 id="about-heading" className="mt-3 max-w-2xl text-h2 text-balance">
           {t("title")}
         </h2>
-        <p className="mt-6 max-w-[65ch] text-body-lg text-fg-muted">
+        <p className="mt-6 max-w-[65ch] text-body-lg text-text-secondary">
           {aboutContent.bio[locale]}
         </p>
       </RevealOnScroll>

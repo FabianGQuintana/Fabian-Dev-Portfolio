@@ -26,7 +26,7 @@ export function HtmlShell({
         className={cn(
           GeistSans.variable,
           GeistMono.variable,
-          "bg-base font-sans text-fg antialiased",
+          "bg-bg-base font-sans text-text-primary antialiased",
         )}
       >
         {children}

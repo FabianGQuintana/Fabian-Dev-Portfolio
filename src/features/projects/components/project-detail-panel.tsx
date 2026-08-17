@@ -116,13 +116,13 @@ export function ProjectDetailPanel({
         aria-labelledby={`project-title-${project.slug}`}
         layoutId={`project-${project.slug}`}
         transition={shouldReduceMotion ? { duration: 0 } : spring.soft}
-        className="relative flex max-h-[85vh] w-full max-w-3xl flex-col overflow-hidden rounded-xl border border-line-strong bg-raised shadow-glow"
+        className="relative flex max-h-[85vh] w-full max-w-3xl flex-col overflow-hidden rounded-xl border border-border-default bg-bg-surface-raised shadow-glow"
         tabIndex={-1}
       >
-        <div className="flex items-center justify-between gap-4 border-b border-line px-6 py-4 sm:px-8">
+        <div className="flex items-center justify-between gap-4 border-b border-border-subtle px-6 py-4 sm:px-8">
           <span
             id={`project-title-${project.slug}`}
-            className="font-mono text-eyebrow text-fg-subtle"
+            className="font-mono text-eyebrow text-text-muted"
           >
             {content.title}
           </span>
@@ -154,7 +154,7 @@ export function ProjectDetailPanel({
             </ul>
           ) : null}
 
-          <p className="mt-4 max-w-[65ch] text-body-lg text-fg-muted">
+          <p className="mt-4 max-w-[65ch] text-body-lg text-text-secondary">
             {content.tagline}
           </p>
 
@@ -163,7 +163,7 @@ export function ProjectDetailPanel({
               <h4 className="text-label font-medium text-accent-400">
                 {labels.problem}
               </h4>
-              <p className="mt-2 max-w-[65ch] text-fg-muted">
+              <p className="mt-2 max-w-[65ch] text-text-secondary">
                 {content.problem}
               </p>
             </section>
@@ -172,7 +172,7 @@ export function ProjectDetailPanel({
               <h4 className="text-label font-medium text-accent-400">
                 {labels.solution}
               </h4>
-              <p className="mt-2 max-w-[65ch] text-fg-muted">
+              <p className="mt-2 max-w-[65ch] text-text-secondary">
                 {content.solution}
               </p>
             </section>
@@ -186,7 +186,7 @@ export function ProjectDetailPanel({
                   {content.architecture.map((decision) => (
                     <li
                       key={decision}
-                      className="flex max-w-[65ch] items-start gap-2 text-fg-muted"
+                      className="flex max-w-[65ch] items-start gap-2 text-text-secondary"
                     >
                       <span
                         aria-hidden="true"

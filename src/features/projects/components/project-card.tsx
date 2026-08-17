@@ -54,8 +54,8 @@ export function ProjectCard({
       transition={spring.soft}
       whileHover={shouldReduceMotion ? undefined : { y: -4 }}
       className={cn(
-        "group relative flex h-full flex-col rounded-lg border border-line-strong bg-surface",
-        "transition-colors duration-300 ease-out-quart hover:border-accent-500/50 hover:bg-raised",
+        "group relative flex h-full flex-col rounded-lg border border-border-default bg-bg-surface",
+        "transition-colors duration-300 ease-out-quart hover:border-accent-500/50 hover:bg-bg-surface-raised",
         isExpanded && "pointer-events-none opacity-0",
       )}
       aria-hidden={isExpanded}
@@ -67,14 +67,14 @@ export function ProjectCard({
         className="flex w-full flex-1 flex-col p-6 text-left"
       >
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-h3 text-fg">{content.title}</h3>
+          <h3 className="text-h3 text-text-primary">{content.title}</h3>
           <ArrowUpRight
             aria-hidden="true"
-            className="mt-1 size-4 shrink-0 text-fg-subtle transition-colors group-hover:text-accent-400"
+            className="mt-1 size-4 shrink-0 text-text-muted transition-colors group-hover:text-accent-400"
           />
         </div>
 
-        <p className="mt-2 max-w-[48ch] text-sm leading-relaxed text-fg-muted">
+        <p className="mt-2 max-w-[48ch] text-sm leading-relaxed text-text-secondary">
           {content.tagline}
         </p>
 

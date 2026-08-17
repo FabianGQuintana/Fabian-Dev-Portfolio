@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { NextIntlClientProvider } from "next-intl";
@@ -11,6 +13,7 @@ import { Footer, Header, HtmlShell, ScrollProgress } from "@/components/layout";
 import { navItems } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { routing, type Locale } from "@/i18n/routing";
+import { buildPersonJsonLd } from "@/lib/seo/person-jsonld";
 
 import type { Metadata, Viewport } from "next";
 
@@ -45,6 +48,19 @@ export async function generateMetadata({
     authors: [{ name: siteConfig.name, url: siteConfig.github.url }],
     creator: siteConfig.name,
     robots: { index: true, follow: true },
+    openGraph: {
+      title: `${siteConfig.name} — ${t("role")}`,
+      description: siteConfig.tagline[locale],
+      type: "website",
+      locale,
+      siteName: siteConfig.name,
+      url: `${siteConfig.url}/${locale}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${siteConfig.name} — ${t("role")}`,
+      description: siteConfig.tagline[locale],
+    },
     alternates: {
       canonical: `/${locale}`,
       languages: Object.fromEntries(routing.locales.map((l) => [l, `/${l}`])),
@@ -81,6 +97,12 @@ export default async function LocaleLayout({
 
   return (
     <HtmlShell lang={locale}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildPersonJsonLd()),
+        }}
+      />
       <NextIntlClientProvider messages={messages}>
         {/* Primer elemento enfocable del documento: requisito de a11y. */}
         <a
@@ -103,6 +125,9 @@ export default async function LocaleLayout({
 
         <Footer builtWith={tFooter("built_with")} rights={tFooter("rights")} />
       </NextIntlClientProvider>
+
+      <Analytics />
+      <SpeedInsights />
     </HtmlShell>
   );
 }

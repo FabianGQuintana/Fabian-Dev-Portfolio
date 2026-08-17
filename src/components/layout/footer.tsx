@@ -32,9 +32,9 @@ export function Footer({ builtWith, rights }: FooterProps) {
   ].filter((link) => link.href !== "");
 
   return (
-    <footer className="mt-32 border-t border-line">
+    <footer className="mt-32 border-t border-border-subtle">
       <div className="container-section flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
-        <div className="space-y-1 text-sm text-fg-subtle">
+        <div className="space-y-1 text-sm text-text-muted">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. {rights}
           </p>
@@ -49,7 +49,7 @@ export function Footer({ builtWith, rights }: FooterProps) {
                 target={href.startsWith("mailto:") ? undefined : "_blank"}
                 rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
                 aria-label={label}
-                className="grid size-11 place-items-center rounded-md text-fg-muted transition-colors duration-150 hover:bg-surface hover:text-accent-400"
+                className="grid size-11 place-items-center rounded-md text-text-secondary transition-colors duration-150 hover:bg-bg-surface hover:text-accent-400"
               >
                 <Icon className="size-5" />
               </a>

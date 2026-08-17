@@ -41,14 +41,14 @@ export function Header({
         "fixed inset-x-0 top-0 z-40 h-(--header-height)",
         "transition-colors duration-300",
         isScrolled
-          ? "border-b border-line bg-base/70 backdrop-blur-md"
+          ? "border-b border-border-subtle bg-bg-base/70 backdrop-blur-md"
           : "border-b border-transparent bg-transparent",
       )}
     >
       <div className="container-section flex h-full items-center justify-between">
         <a
           href="#main"
-          className="font-mono text-sm font-medium text-fg transition-colors duration-150 hover:text-accent-400"
+          className="font-mono text-sm font-medium text-text-primary transition-colors duration-150 hover:text-accent-400"
         >
           {brand}
         </a>

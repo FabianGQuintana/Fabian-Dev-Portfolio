@@ -63,7 +63,7 @@ export async function ProjectsSection({ locale }: ProjectsSectionProps) {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="container-section py-[clamp(80px,12vh,160px)]"
+      className="relative z-10 container-section py-[clamp(80px,12vh,160px)]"
     >
       <RevealOnScroll>
         <Eyebrow>{t("eyebrow")}</Eyebrow>
