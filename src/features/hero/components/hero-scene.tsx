@@ -216,7 +216,7 @@ function SceneContent() {
       <PresentationControls
         global
         config={{ mass: 2, tension: 500 }}
-        snap={{ mass: 4, tension: 1500 }}
+        snap={true}
         rotation={[0, 0.3, 0]}
         polar={[-0.1, 0.1]}
         azimuth={[-0.3, 0.3]}
