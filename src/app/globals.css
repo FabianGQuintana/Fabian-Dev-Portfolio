@@ -34,13 +34,15 @@
   --color-fg-subtle: #6e6d7a;
 
   /* -------------------------------------------------------------------------
-     ACENTO VIOLETA
+     ACENTO MORADO
      ------------------------------------------------------------------------- */
-  --color-accent-300: #c4b5fd;
-  --color-accent-400: #a78bfa;
-  --color-accent-500: #8b5cf6;
-  --color-accent-600: #7c3aed;
-  --color-accent-700: #6d28d9;
+  --color-accent-300: #9e46f8;
+  --color-accent-400: #7d1ce4;
+  --color-accent-500: #6100a5;
+  /*  morado principal */
+  --color-accent-600: #46057a;
+  --color-accent-700: #310f5a;
+  /* morado oscuro */
 
   /* -------------------------------------------------------------------------
      LINEAS Y BORDES
@@ -131,7 +133,7 @@
   --duration-base: 300ms;
   --duration-slow: 600ms;
 
-  --accent-glow: rgb(139 92 246 / 0.35);
+  --accent-glow: rgba(97, 0, 165, 0.35);
   --header-height: 4rem;
 }
 

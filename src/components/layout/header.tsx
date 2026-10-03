@@ -48,7 +48,7 @@ export function Header({
       <div className="container-section flex h-full items-center justify-between">
         <a
           href="#main"
-          className="font-mono text-sm font-medium text-text-primary transition-colors duration-150 hover:text-accent-400"
+          className="font-mono font-medium text-base text-text-primary transition-colors duration-150 hover:text-accent-400"
         >
           {brand}
         </a>

@@ -52,11 +52,11 @@ export function NavLinks({
               // pantalla. El indicador visual solo no alcanza.
               aria-current={isActive ? "location" : undefined}
               className={cn(
-                "relative block rounded-md px-3 py-2 text-sm transition-colors duration-150",
-                orientation === "vertical" && "px-4 py-3 text-base",
+                "relative block rounded-md px-4 py-2 text-base transition-colors duration-150",
+                orientation === "vertical" && "px-6 py-4 text-lg",
                 isActive
                   ? "text-text-primary"
-                  : "text-text-secondary hover:text-text-primary",
+                  : "text-text-secondary hover:bg-bg-surface-raised hover:text-accent-400",
               )}
             >
               {item.label}
