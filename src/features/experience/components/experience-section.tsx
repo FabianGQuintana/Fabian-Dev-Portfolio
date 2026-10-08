@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
-import { RevealOnScroll } from "@/components/motion";
-import { Eyebrow } from "@/components/ui";
+import { ScrollRevealHeading } from "@/components/motion";
 import { experience } from "@/config/experience";
 import type { Locale } from "@/i18n/routing";
 
@@ -27,15 +26,7 @@ export async function ExperienceSection({ locale }: ExperienceSectionProps) {
       aria-labelledby="experience-heading"
       className="relative z-10 container-section py-[clamp(80px,12vh,160px)]"
     >
-      <RevealOnScroll>
-        <Eyebrow>{t("eyebrow")}</Eyebrow>
-        <h2
-          id="experience-heading"
-          className="mt-3 max-w-2xl text-h2 text-balance"
-        >
-          {t("title")}
-        </h2>
-      </RevealOnScroll>
+      <ScrollRevealHeading id="experience-heading" text={t("title")} />
 
       {experience.length > 0 ? (
         <Timeline

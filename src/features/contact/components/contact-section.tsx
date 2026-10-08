@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
-import { RevealOnScroll } from "@/components/motion";
-import { Eyebrow } from "@/components/ui";
+import { ScrollRevealHeading } from "@/components/motion";
 
 import { ContactForm } from "./contact-form";
 
@@ -42,15 +41,7 @@ export async function ContactSection() {
       aria-labelledby="contact-heading"
       className="relative z-10 container-section py-[clamp(80px,12vh,160px)]"
     >
-      <RevealOnScroll>
-        <Eyebrow>{t("eyebrow")}</Eyebrow>
-        <h2
-          id="contact-heading"
-          className="mt-3 max-w-2xl text-h2 text-balance"
-        >
-          {t("title")}
-        </h2>
-      </RevealOnScroll>
+      <ScrollRevealHeading id="contact-heading" text={t("title")} />
 
       <div className="mt-12 max-w-2xl">
         <ContactForm labels={labels} />

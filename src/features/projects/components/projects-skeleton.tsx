@@ -1,5 +1,3 @@
-import { Eyebrow } from "@/components/ui";
-
 /**
  * Placeholder de la seccion de proyectos mientras se resuelve el fetch a
  * GitHub (cacheado con ISR). Vive dentro de un <Suspense> local en page.tsx,
@@ -14,8 +12,7 @@ export function ProjectsSkeleton() {
       aria-hidden="true"
       className="container-section py-[clamp(80px,12vh,160px)]"
     >
-      <Eyebrow>Projects</Eyebrow>
-      <div className="mt-3 h-9 w-72 max-w-full animate-pulse rounded-md bg-line-strong/60" />
+      <div className="h-9 w-72 max-w-full animate-pulse rounded-md bg-line-strong/60" />
 
       <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {[0, 1, 2].map((i) => (

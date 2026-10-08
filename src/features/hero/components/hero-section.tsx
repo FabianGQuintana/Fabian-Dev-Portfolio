@@ -1,10 +1,9 @@
 import { ArrowRight, Mail } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
-import { Magnetic } from "@/components/motion";
+import { Magnetic, ScrollParallax } from "@/components/motion";
 import {
   buttonVariants,
-  Eyebrow,
   GithubIcon,
   LinkedinIcon,
   Spotlight,
@@ -51,8 +50,18 @@ export async function HeroSection() {
           className="relative flex min-h-dvh items-center pt-(--header-height)"
         >
           <div className="container-section grid w-full items-center gap-6 py-12 lg:grid-cols-[1fr_1.1fr] lg:gap-4 lg:py-24">
-            <div className="flex flex-col items-start text-left">
-              <Eyebrow>{t("role")}</Eyebrow>
+            <ScrollParallax
+              distance={-160}
+              fade
+              className="flex flex-col items-start text-left"
+            >
+              <p className="inline-flex items-center gap-2 rounded-full border border-border-default bg-bg-surface/70 px-3 py-1 text-label text-text-secondary backdrop-blur-sm">
+                <span
+                  aria-hidden="true"
+                  className="size-1.5 rounded-full bg-accent-400"
+                />
+                {t("role")}
+              </p>
 
               <AnimatedHeadline id="hero-heading" text={siteConfig.name} />
 
@@ -94,11 +103,16 @@ export async function HeroSection() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </ScrollParallax>
 
-            <div className="h-[320px] sm:h-[400px] lg:h-[480px]">
+            <ScrollParallax
+              distance={-60}
+              scaleTo={0.88}
+              fade
+              className="h-[320px] sm:h-[400px] lg:h-[480px]"
+            >
               <HeroScene hint={t("keyboard_hint")} />
-            </div>
+            </ScrollParallax>
           </div>
         </section>
       </Spotlight>

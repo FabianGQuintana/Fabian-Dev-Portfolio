@@ -2,10 +2,11 @@ import { getTranslations } from "next-intl/server";
 
 import {
   RevealOnScroll,
+  ScrollRevealHeading,
   StaggerContainer,
   StaggerItem,
 } from "@/components/motion";
-import { Badge, Eyebrow } from "@/components/ui";
+import { Badge } from "@/components/ui";
 import { aboutContent, techStack } from "@/config/about";
 import type { Locale } from "@/i18n/routing";
 
@@ -22,11 +23,8 @@ export async function AboutSection({ locale }: AboutSectionProps) {
       aria-labelledby="about-heading"
       className="relative z-10 container-section py-[clamp(80px,12vh,160px)]"
     >
+      <ScrollRevealHeading id="about-heading" text={t("title")} />
       <RevealOnScroll>
-        <Eyebrow>{t("eyebrow")}</Eyebrow>
-        <h2 id="about-heading" className="mt-3 max-w-2xl text-h2 text-balance">
-          {t("title")}
-        </h2>
         <p className="mt-6 max-w-[65ch] text-body-lg text-text-secondary">
           {aboutContent.bio[locale]}
         </p>
