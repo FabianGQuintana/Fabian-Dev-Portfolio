@@ -1,8 +1,26 @@
 import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
+import { Inter, Sora } from "next/font/google";
 
 import { themeInitScript } from "@/lib/theme";
 import { cn } from "@/lib/utils";
+
+/**
+ * Tipografia: Sora para titulares (geometrica, con caracter tecnico) e Inter
+ * para el texto (la referencia de legibilidad en interfaces). Geist Mono
+ * queda para datos y etiquetas. next/font las descarga en el build y las
+ * sirve desde el propio dominio: cero peticiones a Google en runtime.
+ */
+const display = Sora({
+  subsets: ["latin"],
+  variable: "--font-display-family",
+  display: "swap",
+});
+
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans-family",
+  display: "swap",
+});
 
 /**
  * `<html>`/`<body>` compartidos entre los DOS layouts raiz del sitio.
@@ -31,7 +49,8 @@ export function HtmlShell({
       </head>
       <body
         className={cn(
-          GeistSans.variable,
+          display.variable,
+          sans.variable,
           GeistMono.variable,
           "bg-bg-base font-sans text-text-primary antialiased",
         )}

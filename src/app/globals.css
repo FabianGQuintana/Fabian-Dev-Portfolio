@@ -70,10 +70,13 @@
 
   /* -------------------------------------------------------------------------
      TIPOGRAFIA
-     Geist Sans para todo el texto; Geist Mono para datos, metadatos y labels.
-     Las variables --font-geist-* las inyecta next/font en <html>.
+     Inter para el texto, Sora para titulares, Geist Mono para datos y
+     labels. Las variables las inyecta next/font en <body> (html-shell.tsx).
      ------------------------------------------------------------------------- */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    var(--font-display-family), var(--font-sans-family), ui-sans-serif,
+    system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 
   /* Escala fluida: un solo valor cubre movil y desktop, sin breakpoints.
@@ -212,12 +215,20 @@
     background-color: var(--theme-bg-base);
     color: var(--theme-fg);
     transition: background-color var(--duration-base) ease;
-    font-family: var(--font-sans);
+    font-family: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
     font-size: var(--text-body);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Titulares en la tipografia de display. */
+  h1,
+  h2,
+  h3 {
+    font-family:
+      var(--font-display-family), var(--font-sans-family), sans-serif;
   }
 
   ::selection {
