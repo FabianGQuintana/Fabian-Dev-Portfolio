@@ -20,24 +20,21 @@
     "contact_label": "Contact"
   },
   "about": {
-    "eyebrow": "About",
     "title": "I build systems, not screens"
   },
   "experience": {
-    "eyebrow": "Experience",
     "title": "Background",
     "present": "Present",
     "empty": "No experience loaded here yet — full background coming soon."
   },
   "projects": {
-    "eyebrow": "Projects",
-    "title": "Systems in production",
+    "title": "Projects",
     "updated": "Updated {time}",
     "view_repo": "View repository",
     "view_api": "View API",
     "view_frontend": "View frontend",
     "view_demo": "Live demo",
-    "expand": "View details",
+    "expand": "Explore project",
     "collapse": "Close details",
     "close": "Close",
     "architecture": "Architecture decisions",
@@ -47,10 +44,13 @@
     "status_production": "In production",
     "status_active": "Actively developed",
     "status_archived": "Archived",
-    "status_wip": "Work in progress"
+    "status_wip": "Work in progress",
+    "stack": "Stack",
+    "tools": "Tools",
+    "show_more_tools": "Show more",
+    "show_less_tools": "Show less"
   },
   "contact": {
-    "eyebrow": "Contact",
     "title": "Let's talk",
     "name": "Name",
     "email": "Email",

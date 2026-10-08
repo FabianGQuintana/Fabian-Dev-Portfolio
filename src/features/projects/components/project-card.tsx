@@ -1,9 +1,15 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
+import { useRef } from "react";
 
-import { buttonVariants } from "@/components/ui";
+import { TechIcon } from "@/components/ui";
 import type {
   ProjectCardModel,
   ProjectUiLabels,
@@ -12,50 +18,66 @@ import type { Locale } from "@/i18n/routing";
 import { spring } from "@/lib/motion-tokens";
 import { cn } from "@/lib/utils";
 
-import { RepoStats } from "./repo-stats";
-import { TechBadge } from "./tech-badge";
+import { ProjectCover } from "./project-cover";
 
 interface ProjectCardProps {
   project: ProjectCardModel;
   labels: ProjectUiLabels;
   locale: Locale;
+  /** La tarjeta grande del bento: mas texto y mas iconos. */
+  featured: boolean;
   isExpanded: boolean;
   onOpen: () => void;
 }
 
+/** Iconos visibles en la tarjeta; el resto se ve en el detalle. */
+const MAX_ICONS = { featured: 8, compact: 5 } as const;
+
 /**
- * Tarjeta del grid.
+ * Tarjeta del bento.
  *
- * Es el ORIGEN del `layoutId` compartido: cuando el panel de detalle se monta
- * con el mismo `layoutId`, Motion interpola posicion, tamaño y bordes — la
- * tarjeta se convierte en el panel, no desaparece y aparece otra.
+ * Es el ORIGEN de dos `layoutId` compartidos con el detalle: la tarjeta
+ * entera (`project-*`) y su portada (`cover-*`). Al abrirla, Motion
+ * interpola ambas hasta el detalle a pantalla completa: la sensacion es
+ * entrar en la tarjeta, no abrir un modal encima.
  *
- * El area principal es un <button> (accesible, `aria-expanded`); los enlaces
- * viven en el footer, FUERA del boton, para no anidar interactivos.
- * Mientras esta expandida la tarjeta queda invisible: evita el duplicado
- * visual que se veria debajo del overlay.
+ * Hover: la portada hace zoom y los iconos del stack muestran su nombre.
+ * Scroll: la portada se desplaza un poco mas lento que la tarjeta
+ * (parallax), lo que da profundidad al bajar por la seccion.
  */
 export function ProjectCard({
   project,
   labels,
   locale,
+  featured,
   isExpanded,
   onOpen,
 }: ProjectCardProps) {
+  const ref = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const content = project.content[locale];
-  const { links } = project;
+  const tech = project.highlightedTech ?? [];
+  const visibleTech = tech.slice(
+    0,
+    featured ? MAX_ICONS.featured : MAX_ICONS.compact,
+  );
+  const hiddenCount = tech.length - visibleTech.length;
 
-  const mainRepoLabel = links?.frontendRepo ? labels.viewApi : labels.viewRepo;
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const coverY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
   return (
     <motion.article
+      ref={ref}
       layoutId={`project-${project.slug}`}
       transition={spring.soft}
-      whileHover={shouldReduceMotion ? undefined : { y: -4 }}
       className={cn(
-        "group relative flex h-full flex-col rounded-lg border border-border-default bg-bg-surface",
-        "transition-colors duration-300 ease-out-quart hover:border-accent-500/50 hover:bg-bg-surface-raised",
+        "group relative isolate h-full min-h-[20rem] overflow-hidden rounded-2xl border border-border-default bg-bg-surface",
+        "transition-[border-color,box-shadow] duration-300 hover:border-accent-500/60 hover:shadow-glow",
+        !featured && "lg:min-h-[17rem]",
         isExpanded && "pointer-events-none opacity-0",
       )}
       aria-hidden={isExpanded}
@@ -64,86 +86,92 @@ export function ProjectCard({
         type="button"
         onClick={onOpen}
         aria-expanded={isExpanded}
-        className="flex w-full flex-1 flex-col p-6 text-left"
+        aria-label={`${labels.expand}: ${content.title}`}
+        className="absolute inset-0 flex flex-col justify-end text-left"
       >
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="text-h3 text-text-primary">{content.title}</h3>
-          <ArrowUpRight
-            aria-hidden="true"
-            className="mt-1 size-4 shrink-0 text-text-muted transition-colors group-hover:text-accent-400"
-          />
-        </div>
-
-        <p className="mt-2 max-w-[48ch] text-sm leading-relaxed text-text-secondary">
-          {content.tagline}
-        </p>
-
-        {project.highlightedTech && project.highlightedTech.length > 0 ? (
-          <ul
-            className="mt-4 flex flex-wrap gap-1.5"
-            aria-label={content.title}
+        {/* Portada: parallax con el scroll + zoom en hover. */}
+        <motion.div
+          layoutId={`cover-${project.slug}`}
+          transition={spring.soft}
+          className="absolute inset-0 -z-10"
+        >
+          <motion.div
+            style={shouldReduceMotion ? undefined : { y: coverY }}
+            className="absolute -inset-[8%] transition-transform duration-700 ease-out-expo group-hover:scale-110"
           >
-            {project.highlightedTech.map((tech) => (
-              <li key={tech}>
-                <TechBadge tech={tech} highlighted />
-              </li>
-            ))}
-          </ul>
-        ) : null}
+            <ProjectCover
+              project={project}
+              title={content.title}
+              sizes={
+                featured
+                  ? "(min-width: 1024px) 66vw, 100vw"
+                  : "(min-width: 1024px) 33vw, 100vw"
+              }
+              className="size-full"
+            />
+          </motion.div>
+        </motion.div>
 
-        <div className="mt-auto pt-6">
-          <RepoStats
-            stats={project.stats}
-            updatedLabel={project.updatedLabel}
-            locale={locale}
-          />
+        {/* Degradado para que el texto se lea sobre cualquier portada. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/45 to-transparent"
+        />
+
+        <div className="p-6 sm:p-8">
+          <span className="text-label text-white/70">
+            {labels.status[project.status]}
+          </span>
+          <h3
+            className={cn(
+              "mt-1 text-white",
+              featured
+                ? "text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight font-semibold tracking-tight"
+                : "text-h3",
+            )}
+          >
+            {content.title}
+          </h3>
+          <p
+            className={cn(
+              "mt-2 max-w-[52ch] text-sm leading-relaxed text-white/75",
+              !featured && "line-clamp-2",
+            )}
+          >
+            {content.tagline}
+          </p>
+
+          {visibleTech.length > 0 ? (
+            <ul
+              aria-label={labels.stack}
+              className="mt-5 flex flex-wrap items-center gap-2"
+            >
+              {visibleTech.map((name) => (
+                <li key={name}>
+                  <TechIcon
+                    name={name}
+                    className="border-white/15 bg-black/40 text-white"
+                    revealLabel
+                  />
+                </li>
+              ))}
+              {hiddenCount > 0 ? (
+                <li className="font-mono text-xs text-white/70">
+                  +{hiddenCount}
+                </li>
+              ) : null}
+            </ul>
+          ) : null}
+
+          <span className="mt-6 inline-flex items-center gap-1.5 text-label text-white/90 transition-colors group-hover:text-white">
+            {labels.expand}
+            <ArrowUpRight
+              aria-hidden="true"
+              className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </span>
         </div>
       </button>
-
-      <footer className="flex flex-wrap gap-2 border-t border-line px-6 py-4">
-        <a
-          href={`https://github.com/${project.repo}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(
-            buttonVariants({ variant: "secondary", size: "sm" }),
-            "pointer-events-auto",
-          )}
-        >
-          {mainRepoLabel}
-          <ArrowUpRight aria-hidden="true" />
-        </a>
-
-        {links?.frontendRepo ? (
-          <a
-            href={`https://github.com/${links.frontendRepo}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "sm" }),
-              "pointer-events-auto",
-            )}
-          >
-            {labels.viewFrontend}
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-        ) : null}
-
-        {links?.demo ? (
-          <a
-            href={links.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "sm" }),
-              "pointer-events-auto",
-            )}
-          >
-            {labels.viewDemo}
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-        ) : null}
-      </footer>
     </motion.article>
   );
 }

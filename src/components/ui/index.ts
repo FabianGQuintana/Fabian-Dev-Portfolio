@@ -13,4 +13,5 @@ export { GithubIcon, LinkedinIcon } from "./icons";
 export { Input } from "./input";
 export { Label } from "./label";
 export { Spotlight } from "./spotlight";
+export { TechIcon } from "./tech-icon";
 export { Textarea } from "./textarea";

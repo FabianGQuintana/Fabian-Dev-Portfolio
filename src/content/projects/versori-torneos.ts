@@ -44,7 +44,8 @@ export const versoriTorneos: ProjectEntry = {
     },
   },
 
-  highlightedTech: ["TypeScript"], // TODO: stack real
+  highlightedTech: ["TypeScript"], // TODO: stack real (repos privados)
+  tools: ["Git", "GitHub"], // TODO: herramientas reales
   links: {
     demo: undefined, // TODO: URL de la demo si existe
     frontendRepo: "Versori-Digital/versori-torneos-client",

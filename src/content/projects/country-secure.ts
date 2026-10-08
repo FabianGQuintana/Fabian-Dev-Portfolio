@@ -40,7 +40,18 @@ export const countrySecure: ProjectEntry = {
     },
   },
 
-  highlightedTech: ["TypeScript"], // TODO: stack real
+  highlightedTech: [
+    ".NET",
+    "C#",
+    "PostgreSQL",
+    "JWT",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "React Hook Form",
+    "Zod",
+  ],
+  tools: ["Docker", "Postman", "pgAdmin 4", "Git", "GitHub"],
   links: {
     demo: undefined, // TODO: URL de la demo si existe
     frontendRepo: "FabianGQuintana/CountrySecure-Fronted",

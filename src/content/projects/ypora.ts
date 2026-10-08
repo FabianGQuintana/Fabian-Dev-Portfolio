@@ -36,7 +36,8 @@ export const ypora: ProjectEntry = {
     },
   },
 
-  highlightedTech: ["TypeScript"], // TODO: stack real
+  highlightedTech: ["React", "JavaScript", "Vite", "Tailwind CSS", "Leaflet"],
+  tools: ["Git", "GitHub", "VS Code"],
   links: {
     demo: undefined, // TODO: URL de la demo si existe
   },

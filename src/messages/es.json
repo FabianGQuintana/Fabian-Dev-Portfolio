@@ -20,24 +20,21 @@
     "contact_label": "Contacto"
   },
   "about": {
-    "eyebrow": "Sobre mí",
     "title": "Construyo sistemas, no pantallas"
   },
   "experience": {
-    "eyebrow": "Experiencia",
     "title": "Trayectoria",
     "present": "Actualidad",
     "empty": "Todavía no hay experiencia cargada acá — vuelvo pronto con la trayectoria completa."
   },
   "projects": {
-    "eyebrow": "Proyectos",
-    "title": "Sistemas en producción",
+    "title": "Proyectos",
     "updated": "Actualizado {time}",
     "view_repo": "Ver repositorio",
     "view_api": "Ver API",
     "view_frontend": "Ver frontend",
     "view_demo": "Demo en vivo",
-    "expand": "Ver detalle",
+    "expand": "Explorar proyecto",
     "collapse": "Cerrar detalle",
     "close": "Cerrar",
     "architecture": "Decisiones de arquitectura",
@@ -47,10 +44,13 @@
     "status_production": "En producción",
     "status_active": "En desarrollo activo",
     "status_archived": "Archivado",
-    "status_wip": "En construcción"
+    "status_wip": "En construcción",
+    "stack": "Stack",
+    "tools": "Herramientas",
+    "show_more_tools": "Ver más",
+    "show_less_tools": "Ver menos"
   },
   "contact": {
-    "eyebrow": "Contacto",
     "title": "Hablemos",
     "name": "Nombre",
     "email": "Email",

@@ -14,7 +14,10 @@ export interface ProjectEntry {
   order: number;
   status: "production" | "active" | "archived" | "wip";
   content: Record<Locale, ProjectContent>;
+  /** Stack del proyecto: lenguajes, frameworks y librerias. Se muestran como iconos. */
   highlightedTech?: string[];
+  /** Herramientas usadas en este proyecto (Docker, Postman...). Ver config/toolbox.ts. */
+  tools?: string[];
   media?: ProjectMedia;
   links?: {
     demo?: string;
@@ -74,6 +77,10 @@ export interface ProjectUiLabels {
   problem: string;
   solution: string;
   languages: string;
+  stack: string;
+  tools: string;
+  showMoreTools: string;
+  showLessTools: string;
   status: Record<ProjectEntry["status"], string>;
 }
 
