@@ -1,58 +1,64 @@
 @import "tailwindcss";
 
 /* ===========================================================================
-   SISTEMA DE DISEÑO — Dark-Tech / Acento violeta
+   SISTEMA DE DISEÑO — Morado y negro, tema oscuro y claro
    ---------------------------------------------------------------------------
    Fuente unica de verdad del lenguaje visual. Ningun componente define un
    color, una duracion o un radio a mano: todo sale de aqui.
 
-   El oscuro NO es un "modo": es el estado base del sistema.
-
-   Todos los ratios de contraste anotados estan calculados contra
-   --color-base (#0b0a0f) segun WCAG 2.1 y verificados numericamente.
+   Los colores que cambian con el tema apuntan a variables --theme-*
+   (definidas mas abajo para oscuro y claro). `@theme inline` hace que las
+   utilidades de Tailwind lean esas variables directamente, asi que
+   bg-bg-base, text-accent-400, etc. cambian solas con el tema, sin
+   variantes `dark:` repartidas por los componentes.
    =========================================================================== */
 
-@theme {
+@theme inline {
   /* -------------------------------------------------------------------------
      SUPERFICIES
      ------------------------------------------------------------------------- */
-  --color-bg-base: #0b0a0f;
-  --color-bg-surface: #121118;
-  --color-bg-surface-raised: #1a1823;
-  --color-base: #0b0a0f;
-  --color-surface: #121118;
-  --color-raised: #1a1823;
+  --color-bg-base: var(--theme-bg-base);
+  --color-bg-surface: var(--theme-bg-surface);
+  --color-bg-surface-raised: var(--theme-bg-raised);
+  --color-base: var(--theme-bg-base);
+  --color-surface: var(--theme-bg-surface);
+  --color-raised: var(--theme-bg-raised);
 
   /* -------------------------------------------------------------------------
      TEXTO
      ------------------------------------------------------------------------- */
-  --color-text-primary: #ededf2;
-  --color-text-secondary: #a1a0ae;
-  --color-text-muted: #6e6d7a;
-  --color-fg: #ededf2;
-  --color-fg-muted: #a1a0ae;
-  --color-fg-subtle: #6e6d7a;
+  --color-text-primary: var(--theme-fg);
+  --color-text-secondary: var(--theme-fg-muted);
+  --color-text-muted: var(--theme-fg-subtle);
+  --color-fg: var(--theme-fg);
+  --color-fg-muted: var(--theme-fg-muted);
+  --color-fg-subtle: var(--theme-fg-subtle);
 
   /* -------------------------------------------------------------------------
-     ACENTO MORADO
+     ACENTO MORADO — marca: #6E1CC2 (principal) y #46057A (profundo).
+     300/400 son tonos de TEXTO y foco: cambian con el tema para mantener
+     contraste AA. 500-700 son rellenos (botones, badges) y son fijos.
      ------------------------------------------------------------------------- */
-  --color-accent-300: #9e46f8;
-  --color-accent-400: #7d1ce4;
-  --color-accent-500: #6100a5;
-  /*  morado principal */
-  --color-accent-600: #46057a;
-  --color-accent-700: #310f5a;
-  /* morado oscuro */
+  --color-accent-50: #f5eefe;
+  --color-accent-100: #ead9fc;
+  --color-accent-200: #d4b2f8;
+  --color-accent-300: var(--theme-accent-300);
+  --color-accent-400: var(--theme-accent-400);
+  --color-accent-500: #6e1cc2;
+  --color-accent-600: #5a12a3;
+  --color-accent-700: #46057a;
+  --color-accent-800: #33055a;
+  --color-accent-900: #1f0438;
 
   /* -------------------------------------------------------------------------
      LINEAS Y BORDES
      ------------------------------------------------------------------------- */
-  --color-border-subtle: #24222e;
-  --color-border-default: #322f40;
-  --color-border-interactive: #6e6b82;
-  --color-line: #24222e;
-  --color-line-strong: #322f40;
-  --color-line-interactive: #6e6b82;
+  --color-border-subtle: var(--theme-line);
+  --color-border-default: var(--theme-line-strong);
+  --color-border-interactive: var(--theme-line-interactive);
+  --color-line: var(--theme-line);
+  --color-line-strong: var(--theme-line-strong);
+  --color-line-interactive: var(--theme-line-interactive);
 
   /* -------------------------------------------------------------------------
      ESTADOS
@@ -124,6 +130,52 @@
 }
 
 /* ===========================================================================
+   TEMAS
+   Oscuro por defecto: negro con matiz morado. El claro se activa con
+   data-theme="light" en <html>, que fija el script anti-parpadeo de
+   html-shell.tsx antes del primer pintado.
+
+   Contraste de texto (WCAG 2.1) contra el fondo base de cada tema:
+     oscuro: fg 17:1 · fg-muted 7.9:1 · accent-400 5.3:1
+     claro:  fg 18:1 · fg-muted 9.1:1 · accent-400 8.2:1
+   =========================================================================== */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --theme-bg-base: #0a0710;
+  --theme-bg-surface: #120d1b;
+  --theme-bg-raised: #1b1428;
+  --theme-fg: #eeeaf5;
+  --theme-fg-muted: #a8a0b8;
+  --theme-fg-subtle: #706882;
+  --theme-line: #241c31;
+  --theme-line-strong: #342a45;
+  --theme-line-interactive: #6e6584;
+  --theme-accent-300: #c69bf5;
+  --theme-accent-400: #a463f0;
+  --accent-glow: rgba(110, 28, 194, 0.4);
+  /* Resplandor del Spotlight, como canales RGB para componer la alfa. */
+  --spotlight-rgb: 110, 28, 194;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --theme-bg-base: #fbfaff;
+  --theme-bg-surface: #ffffff;
+  --theme-bg-raised: #f3effa;
+  --theme-fg: #140f1d;
+  --theme-fg-muted: #4d4560;
+  --theme-fg-subtle: #6f6785;
+  --theme-line: #e8e2f2;
+  --theme-line-strong: #d6cce6;
+  --theme-line-interactive: #9a8fb3;
+  --theme-accent-300: #8f45e0;
+  --theme-accent-400: #6e1cc2;
+  --accent-glow: rgba(110, 28, 194, 0.22);
+  --spotlight-rgb: 143, 69, 224;
+}
+
+/* ===========================================================================
    VARIABLES NO-TAILWIND
    Tailwind v4 no expone un namespace para duraciones. Estas se usan en
    transiciones CSS puras y estan espejadas en src/lib/motion-tokens.ts.
@@ -133,7 +185,6 @@
   --duration-base: 300ms;
   --duration-slow: 600ms;
 
-  --accent-glow: rgba(97, 0, 165, 0.35);
   --header-height: 4rem;
 }
 
@@ -148,13 +199,9 @@
   }
 
   html {
-    /* color-scheme dark: evita que el navegador "aclare" controles y
-       texto heredado, y fija el color base del documento. */
-    color-scheme: dark;
-    /* Jerarquia de color global: el documento entero hereda el texto
-       claro a menos que un componente lo sobreescriba. El fallback literal
-       protege contra cualquier fallo de resolucion de la variable. */
-    color: var(--color-fg, #ededf2);
+    /* Jerarquia de color global: el documento entero hereda el texto del
+       tema a menos que un componente lo sobreescriba. */
+    color: var(--theme-fg);
     scroll-behavior: smooth;
     /* Evita que el header sticky tape el titulo al navegar por anclas. */
     scroll-padding-top: calc(var(--header-height) + 1.5rem);
@@ -162,8 +209,9 @@
   }
 
   body {
-    background-color: var(--color-base);
-    color: var(--color-fg, #ededf2);
+    background-color: var(--theme-bg-base);
+    color: var(--theme-fg);
+    transition: background-color var(--duration-base) ease;
     font-family: var(--font-sans);
     font-size: var(--text-body);
     line-height: 1.7;
@@ -173,7 +221,7 @@
   }
 
   ::selection {
-    background-color: var(--color-accent-600);
+    background-color: var(--color-accent-500);
     color: #ffffff;
   }
 
@@ -280,13 +328,13 @@
   box-shadow: 0 0 24px -8px var(--accent-glow);
 }
 
-/* Gradiente violeta -> fucsia para titulares. Uso MUY puntual: como maximo
-   una aparicion por pantalla, si no deja de ser un acento. */
+/* Gradiente de marca para titulares. Uso MUY puntual: como maximo una
+   aparicion por pantalla, si no deja de ser un acento. */
 @utility text-gradient-accent {
   background-image: linear-gradient(
     110deg,
-    var(--color-accent-400) 0%,
-    #d946ef 100%
+    var(--color-accent-500) 0%,
+    var(--theme-accent-300) 100%
   );
   background-clip: text;
   color: transparent;

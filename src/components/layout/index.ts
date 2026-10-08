@@ -4,3 +4,4 @@ export { HtmlShell } from "./html-shell";
 export { LocaleSwitcher } from "./locale-switcher";
 export { NavLinks, type NavLinkItem } from "./nav-links";
 export { ScrollProgress } from "./scroll-progress";
+export { ThemeToggle } from "./theme-toggle";

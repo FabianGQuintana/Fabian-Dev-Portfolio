@@ -6,14 +6,18 @@
     "contact": "Contact",
     "menu_open": "Open menu",
     "menu_close": "Close menu",
-    "skip_to_content": "Skip to content"
+    "skip_to_content": "Skip to content",
+    "theme_to_light": "Switch to light theme",
+    "theme_to_dark": "Switch to dark theme"
   },
   "hero": {
     "role": "Fullstack Developer",
     "tagline": "I design the database, build the API and refine the interface. Complete systems, clean architecture.",
     "cta_projects": "View projects",
     "cta_resume": "Download CV",
-    "resume_pending": "CV in progress"
+    "resume_pending": "CV in progress",
+    "keyboard_hint": "Click the icons to visit them",
+    "contact_label": "Contact"
   },
   "about": {
     "eyebrow": "About",

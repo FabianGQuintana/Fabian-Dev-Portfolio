@@ -24,8 +24,11 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0b0a0f",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0710" },
+    { media: "(prefers-color-scheme: light)", color: "#fbfaff" },
+  ],
+  colorScheme: "dark light",
   width: "device-width",
   initialScale: 1,
 };
@@ -107,7 +110,7 @@ export default async function LocaleLayout({
         {/* Primer elemento enfocable del documento: requisito de a11y. */}
         <a
           href="#main"
-          className="sr-only rounded-md bg-accent-600 px-4 py-2 text-white focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-4 focus-visible:z-[60] focus-visible:ring-2 focus-visible:ring-accent-300"
+          className="sr-only rounded-md bg-accent-500 px-4 py-2 text-white focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-4 focus-visible:z-[60] focus-visible:ring-2 focus-visible:ring-accent-300"
         >
           {tNav("skip_to_content")}
         </a>
@@ -119,6 +122,8 @@ export default async function LocaleLayout({
           brand={siteConfig.name}
           menuOpenLabel={tNav("menu_open")}
           menuCloseLabel={tNav("menu_close")}
+          themeToLightLabel={tNav("theme_to_light")}
+          themeToDarkLabel={tNav("theme_to_dark")}
         />
 
         {children}

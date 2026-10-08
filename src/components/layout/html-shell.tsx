@@ -1,6 +1,7 @@
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
+import { themeInitScript } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
 /**
@@ -21,7 +22,13 @@ export function HtmlShell({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang={lang} data-theme="dark" suppressHydrationWarning>
+      {/* App Router: <head> en el root layout es valido; la regla es de pages/. */}
+      {/* eslint-disable-next-line @next/next/no-head-element */}
+      <head>
+        {/* Fija el tema antes del primer pintado (ver src/lib/theme.ts). */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body
         className={cn(
           GeistSans.variable,

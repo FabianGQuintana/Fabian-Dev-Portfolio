@@ -8,12 +8,15 @@ import { cn } from "@/lib/utils";
 import { LocaleSwitcher } from "./locale-switcher";
 import { MobileMenu } from "./mobile-menu";
 import { NavLinks, type NavLinkItem } from "./nav-links";
+import { ThemeToggle } from "./theme-toggle";
 
 interface HeaderProps {
   items: readonly NavLinkItem[];
   brand: string;
   menuOpenLabel: string;
   menuCloseLabel: string;
+  themeToLightLabel: string;
+  themeToDarkLabel: string;
 }
 
 /** Desplazamiento en px a partir del cual el header pasa a estado "elevado". */
@@ -24,6 +27,8 @@ export function Header({
   brand,
   menuOpenLabel,
   menuCloseLabel,
+  themeToLightLabel,
+  themeToDarkLabel,
 }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
@@ -57,6 +62,11 @@ export function Header({
           <nav aria-label="Principal" className="hidden md:block">
             <NavLinks items={items} />
           </nav>
+
+          <ThemeToggle
+            toLightLabel={themeToLightLabel}
+            toDarkLabel={themeToDarkLabel}
+          />
 
           <LocaleSwitcher />
 

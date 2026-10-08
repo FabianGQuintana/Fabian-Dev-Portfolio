@@ -6,14 +6,18 @@
     "contact": "Contacto",
     "menu_open": "Abrir menú",
     "menu_close": "Cerrar menú",
-    "skip_to_content": "Saltar al contenido"
+    "skip_to_content": "Saltar al contenido",
+    "theme_to_light": "Cambiar a tema claro",
+    "theme_to_dark": "Cambiar a tema oscuro"
   },
   "hero": {
     "role": "Fullstack Developer",
     "tagline": "Diseño la base de datos, construyo la API y pulo la interfaz. Sistemas completos, con arquitectura limpia.",
     "cta_projects": "Ver proyectos",
     "cta_resume": "Descargar CV",
-    "resume_pending": "CV en preparación"
+    "resume_pending": "CV en preparación",
+    "keyboard_hint": "Haz clic en los íconos para visitarlos",
+    "contact_label": "Contacto"
   },
   "about": {
     "eyebrow": "Sobre mí",
