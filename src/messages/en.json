@@ -55,7 +55,9 @@
     "carousel_prev": "Previous projects",
     "carousel_next": "Next projects",
     "carousel_go_to": "Go to group {n} of {total}",
-    "carousel_region": "Projects carousel"
+    "carousel_region": "Projects carousel",
+    "show_more": "Show more",
+    "show_less": "Show less"
   },
   "contact": {
     "title": "Let's talk",

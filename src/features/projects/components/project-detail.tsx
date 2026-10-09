@@ -14,6 +14,7 @@ import type { Locale } from "@/i18n/routing";
 import { duration, ease, spring } from "@/lib/motion-tokens";
 import { cn } from "@/lib/utils";
 
+import { ExpandableText } from "./expandable-text";
 import { LanguageBar } from "./language-bar";
 import { ProjectCover } from "./project-cover";
 import { RepoStats } from "./repo-stats";
@@ -26,6 +27,9 @@ interface ProjectDetailProps {
   tools: readonly string[];
   onClose: () => void;
 }
+
+/** Decisiones de arquitectura visibles antes de "Ver más". */
+const DECISIONS_PREVIEW = 2;
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
@@ -69,6 +73,7 @@ export function ProjectDetail({
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const [showAllTools, setShowAllTools] = useState(false);
+  const [showAllDecisions, setShowAllDecisions] = useState(false);
   const content = project.content[locale];
   const { links } = project;
   const projectTools = project.tools ?? [];
@@ -113,6 +118,7 @@ export function ProjectDetail({
     ? {}
     : { variants: contentVariants, initial: "hidden", animate: "visible" };
   const mainRepoLabel = links?.frontendRepo ? labels.viewApi : labels.viewRepo;
+  const showRepoLinks = !project.private;
 
   // Portal a <body>: las secciones crean su propio contexto de apilamiento
   // (relative z-10) y el detalle quedaria debajo del header fijo.
@@ -204,14 +210,26 @@ export function ProjectDetail({
 
               <motion.section {...reveal} custom={2}>
                 <h4 className="text-label text-accent-400">{labels.problem}</h4>
-                <p className="mt-2 text-text-secondary">{content.problem}</p>
+                <div className="mt-2">
+                  <ExpandableText
+                    text={content.problem}
+                    moreLabel={labels.showMore}
+                    lessLabel={labels.showLess}
+                  />
+                </div>
               </motion.section>
 
               <motion.section {...reveal} custom={3}>
                 <h4 className="text-label text-accent-400">
                   {labels.solution}
                 </h4>
-                <p className="mt-2 text-text-secondary">{content.solution}</p>
+                <div className="mt-2">
+                  <ExpandableText
+                    text={content.solution}
+                    moreLabel={labels.showMore}
+                    lessLabel={labels.showLess}
+                  />
+                </div>
               </motion.section>
 
               {content.architecture.length > 0 ? (
@@ -220,7 +238,10 @@ export function ProjectDetail({
                     {labels.architecture}
                   </h4>
                   <ul className="mt-3 space-y-2">
-                    {content.architecture.map((decision) => (
+                    {(showAllDecisions
+                      ? content.architecture
+                      : content.architecture.slice(0, DECISIONS_PREVIEW)
+                    ).map((decision) => (
                       <li
                         key={decision}
                         className="flex items-start gap-3 text-text-secondary"
@@ -233,6 +254,23 @@ export function ProjectDetail({
                       </li>
                     ))}
                   </ul>
+                  {content.architecture.length > DECISIONS_PREVIEW ? (
+                    <button
+                      type="button"
+                      onClick={() => setShowAllDecisions((value) => !value)}
+                      aria-expanded={showAllDecisions}
+                      className="mt-3 inline-flex items-center gap-1 text-label text-accent-400 hover:underline"
+                    >
+                      {showAllDecisions ? labels.showLess : labels.showMore}
+                      <ChevronDown
+                        aria-hidden="true"
+                        className={cn(
+                          "size-4 transition-transform duration-300",
+                          showAllDecisions && "rotate-180",
+                        )}
+                      />
+                    </button>
+                  ) : null}
                 </motion.section>
               ) : null}
             </div>
@@ -328,18 +366,20 @@ export function ProjectDetail({
                 custom={6}
                 className="flex flex-wrap gap-2"
               >
-                <a
-                  href={`https://github.com/${project.repo}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    buttonVariants({ variant: "primary", size: "sm" }),
-                  )}
-                >
-                  {mainRepoLabel}
-                  <ArrowUpRight aria-hidden="true" />
-                </a>
-                {links?.frontendRepo ? (
+                {showRepoLinks ? (
+                  <a
+                    href={`https://github.com/${project.repo}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "primary", size: "sm" }),
+                    )}
+                  >
+                    {mainRepoLabel}
+                    <ArrowUpRight aria-hidden="true" />
+                  </a>
+                ) : null}
+                {showRepoLinks && links?.frontendRepo ? (
                   <a
                     href={`https://github.com/${links.frontendRepo}`}
                     target="_blank"

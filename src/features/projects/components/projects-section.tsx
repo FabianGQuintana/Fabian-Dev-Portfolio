@@ -46,6 +46,8 @@ export async function ProjectsSection({ locale }: ProjectsSectionProps) {
     tools: t("tools"),
     showMoreTools: t("show_more_tools"),
     showLessTools: t("show_less_tools"),
+    showMore: t("show_more"),
+    showLess: t("show_less"),
     carouselPrev: t("carousel_prev"),
     carouselNext: t("carousel_next"),
     carouselGoTo: t.raw("carousel_go_to") as string,

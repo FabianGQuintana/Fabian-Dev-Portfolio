@@ -55,7 +55,9 @@
     "carousel_prev": "Proyectos anteriores",
     "carousel_next": "Proyectos siguientes",
     "carousel_go_to": "Ir al grupo {n} de {total}",
-    "carousel_region": "Carrusel de proyectos"
+    "carousel_region": "Carrusel de proyectos",
+    "show_more": "Ver más",
+    "show_less": "Ver menos"
   },
   "contact": {
     "title": "Hablemos",

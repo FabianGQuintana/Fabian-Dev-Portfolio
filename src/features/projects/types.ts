@@ -19,6 +19,11 @@ export interface ProjectEntry {
   /** Herramientas usadas en este proyecto (Docker, Postman...). Ver config/toolbox.ts. */
   tools?: string[];
   media?: ProjectMedia;
+  /**
+   * Repo privado: no se consulta la API de GitHub ni se muestran enlaces a
+   * el. El proyecto se presenta con narrativa, stack y capturas (media.gallery).
+   */
+  private?: boolean;
   links?: {
     demo?: string;
     docs?: string;
@@ -81,6 +86,8 @@ export interface ProjectUiLabels {
   tools: string;
   showMoreTools: string;
   showLessTools: string;
+  showMore: string;
+  showLess: string;
   carouselPrev: string;
   carouselNext: string;
   /** Plantilla con {n} y {total}: "Ir al grupo {n} de {total}". */
