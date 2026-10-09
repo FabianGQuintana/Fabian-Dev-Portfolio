@@ -26,3 +26,20 @@ export const techStack: readonly string[] = [
   "PostgreSQL",
   "Tailwind CSS",
 ];
+
+export interface AboutPhoto {
+  /** Ruta bajo public/, p. ej. "/about/fabian.jpg". */
+  readonly src: string;
+  readonly alt: Record<Locale, string>;
+}
+
+/**
+ * Foto del avatar de la seccion Sobre mi.
+ *
+ * Mientras sea `null` se muestra un avatar de placeholder con tus iniciales.
+ * Para poner tu foto: copiala a public/about/ (cuadrada, minimo 800x800) y
+ * reemplaza el null por:
+ *
+ *   { src: "/about/fabian.jpg", alt: { es: "Fabian Quintana", en: "Fabian Quintana" } }
+ */
+export const aboutPhoto: AboutPhoto | null = null;
