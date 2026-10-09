@@ -1,7 +1,12 @@
 import type { Locale } from "@/i18n/routing";
 
+/**
+ * Entrada de un timeline. Se usa para trabajo (`experience`) y para estudios
+ * (`education`): en estudios, `company` es la institucion y `role` el titulo.
+ */
 export interface ExperienceEntry {
   readonly id: string;
+  /** Empresa o institucion. */
   readonly company: string;
   readonly role: Record<Locale, string>;
   readonly description: Record<Locale, string>;
@@ -13,62 +18,47 @@ export interface ExperienceEntry {
 }
 
 /**
- * Timeline laboral / académica.
- *
- * ───────────────────────────────────────────────────────────────────────────
- *  DATOS DE EJEMPLO (placeholders). Reemplazalos por tu trayectoria real:
- *  copiá cada bloque, completalo con tus fechas y roles exactos, y volvé a
- *  guardar. `id` debe ser único (se usa como key de React). El orden del
- *  array es el orden de visualización (más reciente primero, por convención).
- *
- *  Formato de fechas: "YYYY-MM" (ej. "2024-03"). `endDate: null` significa
- *  que el puesto sigue vigente ("Actualidad").
- * ───────────────────────────────────────────────────────────────────────────
+ * Experiencia laboral, de la mas reciente a la mas antigua.
+ * Formato de fechas: "YYYY-MM". `endDate: null` = sigue vigente.
+ * `tech` usa los nombres de src/lib/tech/registry.ts (con icono).
  */
 export const experience: readonly ExperienceEntry[] = [
   {
-    id: "empresa-actual",
-    company: "Nombre de la empresa actual",
+    id: "versori",
+    company: "Versori",
     role: {
-      es: "Fullstack Developer",
-      en: "Fullstack Developer",
+      es: "Tech Lead · Full Stack Developer",
+      en: "Tech Lead · Full Stack Developer",
     },
     description: {
-      es: "Descripción de ejemplo: qué construiste, con qué stack y qué impacto tuvo. Reemplazá este texto por tu descripción real.",
-      en: "Placeholder description: what you built, with which stack, and what impact it had. Replace this with your real description.",
+      es: "Lideré el equipo de desarrollo de una startup: definí la arquitectura, guié y capacité a los integrantes y desarrollé backend y frontend junto a ellos, desde el inicio hasta el final del proyecto.",
+      en: "Led the development team at a startup: defined the architecture, mentored the team and built backend and frontend alongside them, from the start of the project to its delivery.",
     },
-    startDate: "2024-03",
-    endDate: null,
-    tech: ["Next.js", "PostgreSQL", "TypeScript"],
+    startDate: "2026-03",
+    endDate: "2026-08",
+    tech: [], // TODO: stack real de Versori (repos privados)
   },
+];
+
+/**
+ * Formacion academica.
+ *
+ * PLACEHOLDER: completar con la carrera, la institucion y las fechas reales.
+ */
+export const education: readonly ExperienceEntry[] = [
   {
-    id: "empresa-anterior",
-    company: "Nombre de la empresa anterior",
+    id: "carrera",
+    company: "Institución educativa", // TODO
     role: {
-      es: "Desarrollador Web",
-      en: "Web Developer",
+      es: "Título o carrera", // TODO
+      en: "Degree or program", // TODO
     },
     description: {
-      es: "Segundo bloque de ejemplo. Describí el sistema, las decisiones técnicas y el resultado para el negocio.",
-      en: "Second placeholder block. Describe the system, the technical decisions and the outcome for the business.",
+      es: "Descripción breve de la formación: orientación, materias o proyectos relevantes.", // TODO
+      en: "Short description of the studies: focus, relevant subjects or projects.", // TODO
     },
-    startDate: "2022-01",
-    endDate: "2024-02",
-    tech: ["React", "Node.js", "MySQL"],
-  },
-  {
-    id: "formacion",
-    company: "Institución educativa",
-    role: {
-      es: "Estudios",
-      en: "Education",
-    },
-    description: {
-      es: "Tercer bloque de ejemplo: formación académica o cursos relevantes. Eliminalo si no querés mostrarlo.",
-      en: "Third placeholder block: education or relevant courses. Remove it if you don't want to show it.",
-    },
-    startDate: "2020-03",
-    endDate: "2022-12",
+    startDate: "2022-03", // TODO
+    endDate: null, // TODO
     tech: [],
   },
 ];

@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui";
+import { TechIcon } from "@/components/ui";
 import type { ExperienceEntry } from "@/config/experience";
 import type { Locale } from "@/i18n/routing";
 import { formatMonthYear } from "@/lib/utils";
@@ -51,7 +51,7 @@ export function TimelineItem({
         <ul className="mt-4 flex flex-wrap gap-2" aria-label="Stack">
           {entry.tech.map((tech) => (
             <li key={tech}>
-              <Badge>{tech}</Badge>
+              <TechIcon name={tech} withLabel className="h-9" />
             </li>
           ))}
         </ul>
