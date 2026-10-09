@@ -60,7 +60,8 @@
     "show_less": "Ver menos",
     "gallery_title": "Capturas",
     "gallery_prev": "Captura anterior",
-    "gallery_next": "Captura siguiente"
+    "gallery_next": "Captura siguiente",
+    "status_finished": "Terminado"
   },
   "contact": {
     "title": "Hablemos",

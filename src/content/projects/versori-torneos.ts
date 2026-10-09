@@ -7,7 +7,7 @@ export const versoriTorneos: ProjectEntry = {
   private: true,
   featured: false,
   order: 3,
-  status: "wip",
+  status: "finished",
 
   content: {
     es: {
@@ -43,7 +43,19 @@ export const versoriTorneos: ProjectEntry = {
 
   highlightedTech: ["TypeScript", "CSS", "JavaScript", "HTML", "Docker"],
   // TODO: capturas del sistema, rutas en public/projects/ (p. ej. "/projects/ypora-1.png").
-  media: { gallery: [] },
+  media: {
+    cover: "/projects/versori-1.png",
+    gallery: [
+      "/projects/versori-1.png",
+      "/projects/versori-2.png",
+      "/projects/versori-3.png",
+      "/projects/versori-4.png",
+      "/projects/versori-5.png",
+      "/projects/versori-6.png",
+      "/projects/versori-7.png",
+      "/projects/versori-8.png",
+    ],
+  },
   tools: ["Git", "GitHub", "Antigravity", "Stitch", "Lovable"],
   links: {
     demo: undefined,

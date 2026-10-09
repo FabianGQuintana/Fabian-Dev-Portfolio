@@ -60,6 +60,7 @@ export async function ProjectsSection({ locale }: ProjectsSectionProps) {
       active: t("status_active"),
       archived: t("status_archived"),
       wip: t("status_wip"),
+      finished: t("status_finished"),
     },
   };
 

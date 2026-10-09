@@ -60,7 +60,8 @@
     "show_less": "Show less",
     "gallery_title": "Screenshots",
     "gallery_prev": "Previous screenshot",
-    "gallery_next": "Next screenshot"
+    "gallery_next": "Next screenshot",
+    "status_finished": "Finished"
   },
   "contact": {
     "title": "Let's talk",
