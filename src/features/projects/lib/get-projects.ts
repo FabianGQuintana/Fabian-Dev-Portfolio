@@ -18,7 +18,14 @@ import { fetchRepoStats } from "@/lib/github";
  */
 export async function getProjects(): Promise<Project[]> {
   const results = await Promise.allSettled(
-    projectEntries.map((entry) => fetchRepoStats(entry.repo)),
+    projectEntries.map((entry) =>
+      entry.private
+        ? Promise.resolve<ProjectStatsResult>({
+            stats: {},
+            status: "unavailable",
+          })
+        : fetchRepoStats(entry.repo),
+    ),
   );
 
   return projectEntries.map((entry, index) => {

@@ -72,6 +72,10 @@ const BY_NAME: Record<
   "Visual Studio": { monogram: "VS", color: "#8661c5" },
   "VS Code": { monogram: "VS", color: "#0078d4" },
   "pgAdmin 4": { monogram: "pg", color: "#326690" },
+  // Herramientas de IA sin icono en Simple Icons.
+  Antigravity: { monogram: "AG", color: "#4285f4" },
+  Stitch: { monogram: "St", color: "#34a853" },
+  Lovable: { monogram: "Lv", color: "#ff4f8b" },
 };
 
 export function getTech(name: string): TechInfo {
