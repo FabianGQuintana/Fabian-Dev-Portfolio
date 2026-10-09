@@ -57,7 +57,10 @@
     "carousel_go_to": "Ir al grupo {n} de {total}",
     "carousel_region": "Carrusel de proyectos",
     "show_more": "Ver más",
-    "show_less": "Ver menos"
+    "show_less": "Ver menos",
+    "gallery_title": "Capturas",
+    "gallery_prev": "Captura anterior",
+    "gallery_next": "Captura siguiente"
   },
   "contact": {
     "title": "Hablemos",

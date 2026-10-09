@@ -37,6 +37,8 @@ export const ypora: ProjectEntry = {
   },
 
   highlightedTech: ["React", "JavaScript", "Vite", "Tailwind CSS", "Leaflet"],
+  // TODO: capturas del sistema, rutas en public/projects/ (p. ej. "/projects/ypora-1.png").
+  media: { gallery: [] },
   tools: ["Git", "GitHub", "VS Code"],
   links: {
     demo: undefined, // TODO: URL de la demo si existe

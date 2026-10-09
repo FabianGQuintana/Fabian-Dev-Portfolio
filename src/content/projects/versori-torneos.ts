@@ -42,6 +42,8 @@ export const versoriTorneos: ProjectEntry = {
   },
 
   highlightedTech: ["TypeScript", "CSS", "JavaScript", "HTML", "Docker"],
+  // TODO: capturas del sistema, rutas en public/projects/ (p. ej. "/projects/ypora-1.png").
+  media: { gallery: [] },
   tools: ["Git", "GitHub", "Antigravity", "Stitch", "Lovable"],
   links: {
     demo: undefined,

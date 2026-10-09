@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils";
 import { ExpandableText } from "./expandable-text";
 import { LanguageBar } from "./language-bar";
 import { ProjectCover } from "./project-cover";
+import { ProjectGallery } from "./project-gallery";
 import { RepoStats } from "./repo-stats";
 
 interface ProjectDetailProps {
@@ -408,6 +409,18 @@ export function ProjectDetail({
               </motion.div>
             </div>
           </div>
+
+          {project.media?.gallery && project.media.gallery.length > 0 ? (
+            <div className="mx-auto max-w-5xl px-6 pb-16 sm:px-10">
+              <ProjectGallery
+                images={project.media.gallery}
+                title={labels.galleryTitle}
+                prevLabel={labels.galleryPrev}
+                nextLabel={labels.galleryNext}
+                alt={content.title}
+              />
+            </div>
+          ) : null}
         </div>
       </motion.div>
     </div>,

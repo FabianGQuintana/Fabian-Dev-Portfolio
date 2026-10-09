@@ -57,7 +57,10 @@
     "carousel_go_to": "Go to group {n} of {total}",
     "carousel_region": "Projects carousel",
     "show_more": "Show more",
-    "show_less": "Show less"
+    "show_less": "Show less",
+    "gallery_title": "Screenshots",
+    "gallery_prev": "Previous screenshot",
+    "gallery_next": "Next screenshot"
   },
   "contact": {
     "title": "Let's talk",

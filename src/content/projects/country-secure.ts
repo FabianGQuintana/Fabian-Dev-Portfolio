@@ -51,6 +51,8 @@ export const countrySecure: ProjectEntry = {
     "React Hook Form",
     "Zod",
   ],
+  // TODO: capturas del sistema, rutas en public/projects/ (p. ej. "/projects/ypora-1.png").
+  media: { gallery: [] },
   tools: ["Docker", "Postman", "pgAdmin 4", "Git", "GitHub"],
   links: {
     demo: undefined, // TODO: URL de la demo si existe

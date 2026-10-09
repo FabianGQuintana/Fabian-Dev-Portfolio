@@ -88,6 +88,9 @@ export interface ProjectUiLabels {
   showLessTools: string;
   showMore: string;
   showLess: string;
+  galleryTitle: string;
+  galleryPrev: string;
+  galleryNext: string;
   carouselPrev: string;
   carouselNext: string;
   /** Plantilla con {n} y {total}: "Ir al grupo {n} de {total}". */
