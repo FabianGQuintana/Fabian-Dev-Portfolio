@@ -81,6 +81,11 @@ export interface ProjectUiLabels {
   tools: string;
   showMoreTools: string;
   showLessTools: string;
+  carouselPrev: string;
+  carouselNext: string;
+  /** Plantilla con {n} y {total}: "Ir al grupo {n} de {total}". */
+  carouselGoTo: string;
+  carouselRegion: string;
   status: Record<ProjectEntry["status"], string>;
 }
 

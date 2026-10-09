@@ -48,7 +48,11 @@
     "stack": "Stack",
     "tools": "Herramientas",
     "show_more_tools": "Ver más",
-    "show_less_tools": "Ver menos"
+    "show_less_tools": "Ver menos",
+    "carousel_prev": "Proyectos anteriores",
+    "carousel_next": "Proyectos siguientes",
+    "carousel_go_to": "Ir al grupo {n} de {total}",
+    "carousel_region": "Carrusel de proyectos"
   },
   "contact": {
     "title": "Hablemos",
