@@ -6,8 +6,10 @@ interface TechIconProps {
   /** Muestra siempre el nombre al lado del icono. */
   withLabel?: boolean;
   /**
-   * El nombre aparece al hacer hover sobre el ancestro con la clase
-   * `group` (la tarjeta del proyecto). Ignorado si `withLabel`.
+   * El nombre aparece como tooltip flotante al hacer hover o foco sobre el
+   * icono. Flota (absolute) para no mover el layout: si el nombre empujara a
+   * los demas iconos, el bloque de texto de la tarjeta cambiaria de altura.
+   * Ignorado si `withLabel`.
    */
   revealLabel?: boolean;
   className?: string;
@@ -32,7 +34,7 @@ export function TechIcon({
     <span
       title={withLabel || revealLabel ? undefined : tech.name}
       className={cn(
-        "inline-flex h-10 items-center rounded-lg border border-border-subtle bg-bg-surface/80 px-2.5 text-text-primary backdrop-blur-sm",
+        "group/tech relative inline-flex h-10 items-center rounded-lg border border-border-subtle bg-bg-surface/80 px-2.5 text-text-primary backdrop-blur-sm",
         className,
       )}
     >
@@ -58,7 +60,7 @@ export function TechIcon({
       {withLabel ? (
         <span className="ml-2 text-label whitespace-nowrap">{tech.name}</span>
       ) : revealLabel ? (
-        <span className="max-w-0 overflow-hidden text-label whitespace-nowrap opacity-0 transition-all duration-500 ease-out-expo group-hover:ml-2 group-hover:max-w-[12rem] group-hover:opacity-100 group-focus-visible:ml-2 group-focus-visible:max-w-[12rem] group-focus-visible:opacity-100">
+        <span className="pointer-events-none absolute bottom-full left-0 z-20 mb-2 rounded-md border border-white/15 bg-black/85 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 shadow-lg backdrop-blur-sm transition-opacity duration-200 group-hover/tech:opacity-100">
           {tech.name}
         </span>
       ) : (
