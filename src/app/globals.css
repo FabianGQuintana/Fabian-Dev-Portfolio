@@ -157,8 +157,6 @@
   --theme-accent-300: #c69bf5;
   --theme-accent-400: #a463f0;
   --accent-glow: rgba(110, 28, 194, 0.4);
-  /* Resplandor del Spotlight, como canales RGB para componer la alfa. */
-  --spotlight-rgb: 110, 28, 194;
 }
 
 [data-theme="light"] {
@@ -175,7 +173,6 @@
   --theme-accent-300: #8f45e0;
   --theme-accent-400: #6e1cc2;
   --accent-glow: rgba(110, 28, 194, 0.22);
-  --spotlight-rgb: 143, 69, 224;
 }
 
 /* ===========================================================================
@@ -189,6 +186,11 @@
   --duration-slow: 600ms;
 
   --header-height: 4rem;
+
+  /* Cursores "galaxia" (public/cursors/). El numero tras la url es el punto
+     activo (la punta). El fallback tras la coma cubre navegadores sin SVG. */
+  --cursor-default: url("/cursors/arrow.svg") 5 3, auto;
+  --cursor-pointer: url("/cursors/hand.svg") 11 3, pointer;
 }
 
 /* ===========================================================================
@@ -231,9 +233,29 @@
       var(--font-display-family), var(--font-sans-family), sans-serif;
   }
 
+  html {
+    cursor: var(--cursor-default);
+  }
+
+  /* Todo lo clickeable usa la mano. Tailwind deja los <button> con cursor
+     por defecto, asi que se declara explicito. */
+  a[href],
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  select,
+  label[for],
+  input[type="submit"]:not(:disabled),
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: var(--cursor-pointer);
+  }
+
+  /* Seleccion de texto neutra: un velo del color del texto sobre el fondo.
+     Un relleno violeta compite con el acento y tapa el texto. */
   ::selection {
-    background-color: var(--color-accent-500);
-    color: #ffffff;
+    background-color: color-mix(in srgb, var(--theme-fg) 24%, transparent);
+    color: inherit;
   }
 
   /* Focus visible unificado. Nunca `outline: none` sin reemplazo. */

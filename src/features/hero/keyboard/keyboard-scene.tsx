@@ -325,7 +325,7 @@ function SocialIcon({
       onPointerOver={(event) => {
         event.stopPropagation();
         setHovered(true);
-        document.body.style.cursor = "pointer";
+        document.body.style.cursor = "var(--cursor-pointer)";
       }}
       onPointerOut={() => {
         setHovered(false);
