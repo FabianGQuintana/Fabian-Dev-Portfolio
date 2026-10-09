@@ -19,7 +19,6 @@ import {
   GithubIcon,
   Input,
   Label,
-  Spotlight,
   Textarea,
 } from "@/components/ui";
 
@@ -349,20 +348,6 @@ export default function DesignSystemPage() {
                   </p>
                 </Card>
               </RevealOnScroll>
-            </div>
-
-            <div>
-              <p className="font-mono text-label text-fg-subtle">
-                Spotlight — seguí el cursor dentro del recuadro
-              </p>
-              <Spotlight className="mt-3 overflow-hidden rounded-lg border border-line-strong bg-surface">
-                <div className="grid min-h-56 place-items-center p-10 text-center">
-                  <p className="max-w-[46ch] text-sm text-fg-muted">
-                    Las coordenadas viven en MotionValues, no en estado de
-                    React: mover el mouse no dispara un solo re-render.
-                  </p>
-                </div>
-              </Spotlight>
             </div>
           </div>
         </Section>
