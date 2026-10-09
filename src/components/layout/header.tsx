@@ -3,6 +3,7 @@
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { useState } from "react";
 
+import { useActiveSection } from "@/hooks";
 import { cn } from "@/lib/utils";
 
 import { LocaleSwitcher } from "./locale-switcher";
@@ -35,6 +36,11 @@ export function Header({
   themeToDarkLabel,
 }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  // "home" es la seccion del hero: mientras esta a la vista el subrayado va en
+  // Inicio y no en ningun link. Antes de que el observer responda (activeId
+  // null) la pagina esta arriba, asi que tambien cuenta como inicio.
+  const activeId = useActiveSection(["home", ...items.map((item) => item.id)]);
+  const isHome = activeId === null || activeId === "home";
   const { scrollY } = useScroll();
 
   // useMotionValueEvent en vez de un listener de scroll: el estado de React
@@ -57,6 +63,7 @@ export function Header({
       <div className="flex h-full w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         <a
           href="#main"
+          aria-current={isHome ? "location" : undefined}
           className="group flex items-center gap-2.5 font-mono text-sm font-medium text-text-primary transition-colors duration-150 hover:text-accent-400"
         >
           <span
@@ -65,7 +72,16 @@ export function Header({
           >
             {monogram}
           </span>
-          {homeLabel}
+          <span className="relative">
+            {homeLabel}
+            <span
+              aria-hidden="true"
+              className={cn(
+                "absolute inset-x-0 -bottom-1.5 h-px origin-left bg-accent-500 transition-transform duration-300",
+                isHome ? "scale-x-100" : "scale-x-0",
+              )}
+            />
+          </span>
         </a>
 
         <div className="flex items-center gap-2">

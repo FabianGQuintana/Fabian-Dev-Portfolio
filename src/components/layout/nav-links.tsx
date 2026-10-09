@@ -30,7 +30,9 @@ export function NavLinks({
   onNavigate,
   orientation = "horizontal",
 }: NavLinksProps) {
-  const sectionIds = items.map((item) => item.id);
+  // "home" (hero) se observa tambien: asi, al volver arriba, ningun link
+  // queda marcado como activo.
+  const sectionIds = ["home", ...items.map((item) => item.id)];
   const activeId = useActiveSection(sectionIds);
 
   return (
