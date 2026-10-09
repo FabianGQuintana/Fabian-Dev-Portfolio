@@ -12,7 +12,9 @@ const GITHUB_URL = "https://github.com/FabianGQuintana";
 const LINKEDIN_URL = "https://www.linkedin.com/in/fabian-quintana-60a59a325";
 
 export const siteConfig = {
-  name: "Fabián Quintana",
+  name: "Fabian Quintana",
+  /** Iniciales para el logo del header y el avatar de placeholder. */
+  monogram: "FQ",
   role: "Fullstack Developer",
 
   /**

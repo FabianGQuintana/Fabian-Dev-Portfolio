@@ -119,7 +119,8 @@ export default async function LocaleLayout({
 
         <Header
           items={navLinks}
-          brand={siteConfig.name}
+          homeLabel={tNav("home")}
+          monogram={siteConfig.monogram}
           menuOpenLabel={tNav("menu_open")}
           menuCloseLabel={tNav("menu_close")}
           themeToLightLabel={tNav("theme_to_light")}

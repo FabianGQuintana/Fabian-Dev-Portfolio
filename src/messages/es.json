@@ -8,7 +8,8 @@
     "menu_close": "Cerrar menú",
     "skip_to_content": "Saltar al contenido",
     "theme_to_light": "Cambiar a tema claro",
-    "theme_to_dark": "Cambiar a tema oscuro"
+    "theme_to_dark": "Cambiar a tema oscuro",
+    "home": "Inicio"
   },
   "hero": {
     "role": "Fullstack Developer",
@@ -25,7 +26,9 @@
   "experience": {
     "title": "Trayectoria",
     "present": "Actualidad",
-    "empty": "Todavía no hay experiencia cargada acá — vuelvo pronto con la trayectoria completa."
+    "empty": "Todavía no hay experiencia cargada acá — vuelvo pronto con la trayectoria completa.",
+    "work_title": "Experiencia laboral",
+    "education_title": "Formación académica"
   },
   "projects": {
     "title": "Proyectos",

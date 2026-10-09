@@ -190,7 +190,7 @@ export const typeScale: readonly TypeSpec[] = [
     className: "text-display",
     token: "display",
     spec: "clamp(2.75rem, 7vw, 5rem) · 600 · -0.03em",
-    sample: "Fabián Quintana",
+    sample: "Fabian Quintana",
   },
   {
     className: "text-h2",

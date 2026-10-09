@@ -12,7 +12,10 @@ import { ThemeToggle } from "./theme-toggle";
 
 interface HeaderProps {
   items: readonly NavLinkItem[];
-  brand: string;
+  /** Texto junto al monograma; lleva a la parte superior de la pagina. */
+  homeLabel: string;
+  /** Iniciales del monograma. */
+  monogram: string;
   menuOpenLabel: string;
   menuCloseLabel: string;
   themeToLightLabel: string;
@@ -24,7 +27,8 @@ const SCROLL_THRESHOLD = 24;
 
 export function Header({
   items,
-  brand,
+  homeLabel,
+  monogram,
   menuOpenLabel,
   menuCloseLabel,
   themeToLightLabel,
@@ -53,9 +57,15 @@ export function Header({
       <div className="flex h-full w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         <a
           href="#main"
-          className="font-mono font-medium text-base text-text-primary transition-colors duration-150 hover:text-accent-400"
+          className="group flex items-center gap-2.5 font-mono text-sm font-medium text-text-primary transition-colors duration-150 hover:text-accent-400"
         >
-          {brand}
+          <span
+            aria-hidden="true"
+            className="grid size-8 place-items-center rounded-lg bg-accent-500 text-xs font-bold tracking-tight text-white transition-transform duration-300 group-hover:rotate-6"
+          >
+            {monogram}
+          </span>
+          {homeLabel}
         </a>
 
         <div className="flex items-center gap-2">
