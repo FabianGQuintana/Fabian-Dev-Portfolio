@@ -13,20 +13,6 @@ export const aboutContent = {
   } satisfies Record<Locale, string>,
 } as const;
 
-/**
- * Stack técnico mostrado como badges.
- * Hoy refleja las tecnologías confirmadas de este proyecto — sumale las
- * tuyas (backend, base de datos, infraestructura) cuando quieras.
- */
-export const techStack: readonly string[] = [
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "PostgreSQL",
-  "Tailwind CSS",
-];
-
 export interface AboutPhoto {
   /** Ruta bajo public/, p. ej. "/about/fabian.jpg". */
   readonly src: string;
@@ -43,3 +29,18 @@ export interface AboutPhoto {
  *   { src: "/about/fabian.jpg", alt: { es: "Fabian Quintana", en: "Fabian Quintana" } }
  */
 export const aboutPhoto: AboutPhoto | null = null;
+
+/**
+ * Tecnologias del perfil. NO se muestran en la pagina: solo alimentan los
+ * datos estructurados (JSON-LD `knowsAbout`) para buscadores.
+ */
+export const techStack: readonly string[] = [
+  "C#",
+  ".NET",
+  "PostgreSQL",
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Tailwind CSS",
+  "Docker",
+];

@@ -1,13 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
-import {
-  RevealOnScroll,
-  ScrollRevealHeading,
-  StaggerContainer,
-  StaggerItem,
-} from "@/components/motion";
-import { Badge } from "@/components/ui";
-import { aboutContent, aboutPhoto, techStack } from "@/config/about";
+import { RevealOnScroll, ScrollRevealHeading } from "@/components/motion";
+import { aboutContent, aboutPhoto } from "@/config/about";
 import { siteConfig } from "@/config/site";
 import type { Locale } from "@/i18n/routing";
 
@@ -34,14 +28,6 @@ export async function AboutSection({ locale }: AboutSectionProps) {
               {aboutContent.bio[locale]}
             </p>
           </RevealOnScroll>
-
-          <StaggerContainer className="mt-8 flex flex-wrap gap-2">
-            {techStack.map((tech) => (
-              <StaggerItem key={tech}>
-                <Badge>{tech}</Badge>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
         </div>
 
         <RevealOnScroll delay={0.15}>
