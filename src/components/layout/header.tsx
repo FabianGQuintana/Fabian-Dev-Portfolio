@@ -50,7 +50,7 @@ export function Header({
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="container-section flex h-full items-center justify-between">
+      <div className="flex h-full w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         <a
           href="#main"
           className="font-mono font-medium text-base text-text-primary transition-colors duration-150 hover:text-accent-400"
