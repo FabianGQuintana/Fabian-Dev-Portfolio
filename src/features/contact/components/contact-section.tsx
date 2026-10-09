@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 
 import { ScrollRevealHeading } from "@/components/motion";
 
-import { ContactForm } from "./contact-form";
+import { ContactExperience } from "./contact-experience";
 
 import type { ContactUiLabels } from "../types";
 
@@ -43,9 +43,7 @@ export async function ContactSection() {
     >
       <ScrollRevealHeading id="contact-heading" text={t("title")} />
 
-      <div className="mt-12 max-w-2xl">
-        <ContactForm labels={labels} />
-      </div>
+      <ContactExperience labels={labels} />
     </section>
   );
 }

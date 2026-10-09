@@ -20,6 +20,9 @@ export interface ContactFormState {
   fieldErrors?: Partial<Record<ContactField, string>>;
 }
 
+/** Estado de la escena animada: refleja lo que hace el visitante en el form. */
+export type ContactMood = "idle" | "typing" | "sending" | "sent" | "error";
+
 export interface ContactUiLabels {
   name: string;
   email: string;
