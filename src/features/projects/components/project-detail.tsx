@@ -179,7 +179,11 @@ export function ProjectDetail({
             </motion.div>
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-bg-base via-bg-base/40 to-transparent"
+              className="absolute inset-0 bg-bg-base/35"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-bg-base via-bg-base/75 to-bg-base/35"
             />
             <motion.div
               {...reveal}

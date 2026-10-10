@@ -54,6 +54,8 @@ export const versoriTorneos: ProjectEntry = {
       "/projects/versori-6.png",
       "/projects/versori-7.png",
       "/projects/versori-8.png",
+      "/projects/versori-9.png",
+      "/projects/versori-10.png",
     ],
   },
   tools: ["Git", "GitHub", "Antigravity", "Stitch", "Lovable"],
