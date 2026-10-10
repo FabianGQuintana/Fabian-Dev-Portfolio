@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 
@@ -7,7 +8,7 @@ import { ExperienceSection } from "@/features/experience";
 import { HeroSection } from "@/features/hero";
 import { ProjectsSection } from "@/features/projects";
 import { ProjectsSkeleton } from "@/features/projects/components/projects-skeleton";
-import type { Locale } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
 
 /**
  * Composicion de la pagina.
@@ -22,6 +23,11 @@ export default async function HomePage({
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
+
+  if (!routing.locales.includes(locale)) {
+    notFound();
+  }
+
   setRequestLocale(locale);
 
   return (

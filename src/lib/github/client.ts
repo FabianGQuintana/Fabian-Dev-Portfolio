@@ -98,7 +98,15 @@ export async function githubRequest<T>(
 
   // La respuesta de GitHub NO se confia: se valida contra el esquema antes
   // de entrar a la aplicacion. Si el error aparece, es aca, en el borde.
-  const json: unknown = await response.json();
+  let json: unknown;
+  try {
+    const text = await response.text();
+    json = text ? JSON.parse(text) : {};
+  } catch (_error) {
+    console.warn(`[github] JSON invalido en ${path}`);
+    return { ok: false, status: response.status, kind: "invalid_response" };
+  }
+
   const parsed = schema.safeParse(json);
 
   if (!parsed.success) {
