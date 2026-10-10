@@ -14,7 +14,7 @@ export const countrySecure: ProjectEntry = {
   slug: "country-secure",
   repo: "FabianGQuintana/CountrySecure-API",
   featured: true,
-  order: 1,
+  order: 2,
   status: "production",
 
   content: {

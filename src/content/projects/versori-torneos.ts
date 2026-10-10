@@ -6,7 +6,7 @@ export const versoriTorneos: ProjectEntry = {
   repo: "FabianGQuintana/VersoriTournament-Frontend",
   private: true,
   featured: false,
-  order: 3,
+  order: 1,
   status: "finished",
 
   content: {
@@ -41,7 +41,15 @@ export const versoriTorneos: ProjectEntry = {
     },
   },
 
-  highlightedTech: ["TypeScript", "CSS", "JavaScript", "HTML", "Docker"],
+  highlightedTech: [
+    ".NET",
+    "C#",
+    "TypeScript",
+    "CSS",
+    "JavaScript",
+    "HTML",
+    "Docker",
+  ],
   // TODO: capturas del sistema, rutas en public/projects/ (p. ej. "/projects/ypora-1.png").
   media: {
     cover: "/projects/versori-1.png",
@@ -56,6 +64,9 @@ export const versoriTorneos: ProjectEntry = {
       "/projects/versori-8.png",
       "/projects/versori-9.png",
       "/projects/versori-10.png",
+      "/projects/versori-11.png",
+      "/projects/versori-12.png",
+      "/projects/versori-13.png",
     ],
   },
   tools: ["Git", "GitHub", "Antigravity", "Stitch", "Lovable"],

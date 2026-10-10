@@ -76,6 +76,7 @@ const BY_NAME: Record<
   Antigravity: { monogram: "AG", color: "#4285f4" },
   Stitch: { monogram: "St", color: "#34a853" },
   Lovable: { monogram: "Lv", color: "#ff4f8b" },
+  MapLibre: { monogram: "ML", color: "#396cb2" },
 };
 
 export function getTech(name: string): TechInfo {

@@ -1,8 +1,8 @@
 import type { ProjectEntry } from "@/features/projects/types";
 
 import { countrySecure } from "./country-secure";
+import { ibera } from "./ibera";
 import { versoriTorneos } from "./versori-torneos";
-import { ypora } from "./ypora";
 
 /**
  * Registro de proyectos.
@@ -13,9 +13,9 @@ import { ypora } from "./ypora";
  * un import mas.
  */
 export const projectEntries: readonly ProjectEntry[] = [
-  countrySecure,
-  ypora,
   versoriTorneos,
+  countrySecure,
+  ibera,
 ].toSorted((a, b) => a.order - b.order);
 
 export type { ProjectEntry };
