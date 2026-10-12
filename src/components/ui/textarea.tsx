@@ -9,7 +9,7 @@ export function Textarea({
     <textarea
       aria-invalid={ariaInvalid}
       className={cn(
-        "min-h-32 w-full resize-y rounded-md border border-border-interactive bg-bg-surface px-3.5 py-3 text-sm text-text-primary",
+        "min-h-32 w-full resize-y rounded-md border border-border-interactive bg-bg-surface px-3.5 py-3 text-sm text-text-primary shadow-surface",
         "placeholder:text-text-muted",
         "transition-colors duration-150",
         "hover:border-text-muted",

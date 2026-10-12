@@ -15,7 +15,7 @@ export const countrySecure: ProjectEntry = {
   repo: "FabianGQuintana/CountrySecure-API",
   featured: true,
   order: 2,
-  status: "production",
+  status: "finished",
 
   content: {
     es: {

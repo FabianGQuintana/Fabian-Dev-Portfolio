@@ -118,13 +118,16 @@ export function ProjectCard({
           className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/45 to-transparent"
         />
 
-        <div className="p-6 sm:p-8">
+        {/* El color va en el contenedor: tailwind-merge descartaba `text-white`
+            del h3 cuando convivia con `text-h3`, y en el tema claro el titulo
+            heredaba el texto oscuro sobre la portada oscura. */}
+        <div className="p-6 text-white sm:p-8">
           <span className="text-label text-white/70">
             {labels.status[project.status]}
           </span>
           <h3
             className={cn(
-              "mt-1 text-white",
+              "mt-1",
               featured
                 ? "text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight font-semibold tracking-tight"
                 : "text-h3",

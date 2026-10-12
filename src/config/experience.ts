@@ -10,8 +10,8 @@ export interface ExperienceEntry {
   readonly company: string;
   readonly role: Record<Locale, string>;
   readonly description: Record<Locale, string>;
-  /** Formato "YYYY-MM". */
-  readonly startDate: string;
+  /** Formato "YYYY-MM". null = entrada sin fechas (no se muestra la linea). */
+  readonly startDate: string | null;
   /** null = presente. */
   readonly endDate: string | null;
   readonly tech: readonly string[];
@@ -69,11 +69,26 @@ export const education: readonly ExperienceEntry[] = [
       en: "Full Stack Bootcamp (C# & React)",
     },
     description: {
-      es: "Programa intensivo de formación técnica. Desarrollo de aplicaciones utilizando C# y .NET para el backend, junto con React para el frontend, aplicando buenas prácticas y trabajo en equipo. Aplicando como contenido extra Herramientas de Versionado, Tableros y Cloud. Participé en 5 hackatones, trabajando en equipo bajo presión para entregar soluciones funcionales en poco tiempo.",
-      en: "Intensive technical training program. Application development using C# and .NET for the backend, along with React for the frontend, applying best practices and teamwork. Applying as extra content Versioning Tools, Boards and Cloud Computing. Took part in 5 hackathons, working in teams under pressure to deliver working solutions in a short time.",
+      es: "Programa intensivo de formación técnica. Desarrollo de aplicaciones utilizando C# y .NET para el backend, junto con React para el frontend, aplicando buenas prácticas y trabajo en equipo. Aplicando como contenido extra Herramientas de Versionado, Tableros y Cloud.",
+      en: "Intensive technical training program. Application development using C# and .NET for the backend, along with React for the frontend, applying best practices and teamwork. Applying as extra content Versioning Tools, Boards and Cloud Computing.",
     },
     startDate: "2025-09",
     endDate: null,
     tech: ["React", "C#", "AWS", "Git", "GitHub", "Trello", "Jira"],
+  },
+  {
+    id: "hackatones",
+    company: "Facultad · DevLights · Municipalidad y Gobierno de Corrientes",
+    role: {
+      es: "Participación en Hackatones",
+      en: "Hackathon Participation",
+    },
+    description: {
+      es: "Participé en 5 hackatones, trabajando en equipo bajo presión para entregar soluciones funcionales en poco tiempo.",
+      en: "Took part in 5 hackathons, working in teams under pressure to deliver working solutions in a short time.",
+    },
+    startDate: null,
+    endDate: null,
+    tech: [],
   },
 ];

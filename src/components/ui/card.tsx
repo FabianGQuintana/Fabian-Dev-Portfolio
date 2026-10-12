@@ -14,7 +14,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-lg border border-border-default bg-bg-surface",
+        "rounded-lg border border-border-default bg-bg-surface shadow-surface",
         interactive && [
           "transition-colors duration-300 ease-out-quart",
           "hover:border-accent-500/50 hover:bg-bg-surface-raised",
