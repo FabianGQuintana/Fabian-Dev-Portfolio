@@ -28,6 +28,8 @@ const INHERIT_COLOR = new Set<SimpleIconSlug>([
   "github",
   "jsonwebtokens",
   "notion",
+  "vercel",
+  "railway",
 ]);
 
 const BY_NAME: Record<
@@ -49,6 +51,9 @@ const BY_NAME: Record<
   GitHub: "github",
   Postman: "postman",
   Trello: "trello",
+  Cloudflare: "cloudflare",
+  Vercel: "vercel",
+  Railway: "railway",
   Jira: "jira",
   ClickUp: "clickup",
   JWT: "jsonwebtokens",
@@ -69,6 +74,8 @@ const BY_NAME: Record<
   // Sin icono en Simple Icons: monograma con el color de la marca.
   "C#": { monogram: "C#", color: "#9b4f96" },
   Java: { monogram: "Jv", color: "#e76f00" },
+  // AWS salio de Simple Icons por pedido de la marca: monograma naranja.
+  AWS: { monogram: "AWS", color: "#ff9900" },
   "Visual Studio": { monogram: "VS", color: "#8661c5" },
   "VS Code": { monogram: "VS", color: "#0078d4" },
   "pgAdmin 4": { monogram: "pg", color: "#326690" },

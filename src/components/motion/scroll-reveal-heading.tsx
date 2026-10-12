@@ -12,9 +12,13 @@ import { useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface ScrollRevealHeadingProps {
-  id: string;
+  id?: string;
   text: string;
   className?: string;
+  /** Nivel del titulo. Por defecto h2 (titular de seccion). */
+  as?: "h2" | "h3";
+  /** Contenido previo al texto que no se anima (p. ej. un icono). */
+  leading?: React.ReactNode;
 }
 
 /**
@@ -24,11 +28,16 @@ interface ScrollRevealHeadingProps {
  * temporizador): al bajar se ilumina, al subir se apaga. Cada palabra es un
  * span aria-hidden; el h2 lleva el texto completo en aria-label para que el
  * lector de pantalla anuncie una frase limpia.
+ *
+ * Con `as="h3"` sirve tambien para subtitulos (las columnas de Trayectoria):
+ * sin estilos por defecto, los pone quien lo usa.
  */
 export function ScrollRevealHeading({
   id,
   text,
   className,
+  as: Tag = "h2",
+  leading,
 }: ScrollRevealHeadingProps) {
   const ref = useRef<HTMLHeadingElement>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -39,29 +48,41 @@ export function ScrollRevealHeading({
   });
   const words = text.split(" ");
 
+  const content = words.map((word, index) =>
+    shouldReduceMotion ? (
+      <span key={index} aria-hidden="true">
+        {word}{" "}
+      </span>
+    ) : (
+      <Word
+        key={index}
+        progress={scrollYProgress}
+        range={[index / words.length, (index + 1) / words.length]}
+      >
+        {word}
+      </Word>
+    ),
+  );
+
   return (
-    <h2
+    <Tag
       ref={ref}
       id={id}
       aria-label={text}
-      className={cn("max-w-3xl text-h2 text-balance", className)}
-    >
-      {words.map((word, index) =>
-        shouldReduceMotion ? (
-          <span key={index} aria-hidden="true">
-            {word}{" "}
-          </span>
-        ) : (
-          <Word
-            key={index}
-            progress={scrollYProgress}
-            range={[index / words.length, (index + 1) / words.length]}
-          >
-            {word}
-          </Word>
-        ),
+      className={cn(
+        Tag === "h2" && "max-w-3xl text-h2 text-balance",
+        className,
       )}
-    </h2>
+    >
+      {leading ? (
+        <>
+          {leading}
+          <span>{content}</span>
+        </>
+      ) : (
+        content
+      )}
+    </Tag>
   );
 }
 

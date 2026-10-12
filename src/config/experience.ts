@@ -36,7 +36,7 @@ export const experience: readonly ExperienceEntry[] = [
     },
     startDate: "2026-03",
     endDate: "2026-08",
-    tech: ["C#", ".NET", "React"], // TODO: stack real de Versori (repos privados)
+    tech: ["C#", ".NET", "React", "Trello", "Cloudflare", "Vercel", "Railway"], // TODO: confirmar el stack real de Versori (repos privados)
   },
 ];
 
@@ -69,11 +69,11 @@ export const education: readonly ExperienceEntry[] = [
       en: "Full Stack Bootcamp (C# & React)",
     },
     description: {
-      es: "Programa intensivo de formación técnica. Desarrollo de aplicaciones utilizando C# y .NET para el backend, junto con React para el frontend, aplicando buenas prácticas y trabajo en equipo. Aplicando como contenido extra Herramientas de Versionado, Tableros y Cloud",
-      en: "Intensive technical training program. Application development using C# and .NET for the backend, along with React for the frontend, applying best practices and teamwork. Applying as extra content Versioning Tools, Boards and Cloud Computing.",
+      es: "Programa intensivo de formación técnica. Desarrollo de aplicaciones utilizando C# y .NET para el backend, junto con React para el frontend, aplicando buenas prácticas y trabajo en equipo. Aplicando como contenido extra Herramientas de Versionado, Tableros y Cloud. Participé en 5 hackatones, trabajando en equipo bajo presión para entregar soluciones funcionales en poco tiempo.",
+      en: "Intensive technical training program. Application development using C# and .NET for the backend, along with React for the frontend, applying best practices and teamwork. Applying as extra content Versioning Tools, Boards and Cloud Computing. Took part in 5 hackathons, working in teams under pressure to deliver working solutions in a short time.",
     },
     startDate: "2025-09",
     endDate: null,
-    tech: ["React", "C#"],
+    tech: ["React", "C#", "AWS", "Git", "GitHub", "Trello", "Jira"],
   },
 ];

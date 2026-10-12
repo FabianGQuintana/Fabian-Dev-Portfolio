@@ -1,8 +1,9 @@
 import { GeistMono } from "geist/font/mono";
 import { Inter, Sora } from "next/font/google";
 
-import { themeInitScript } from "@/lib/theme";
 import { cn } from "@/lib/utils";
+
+import { ThemeScript } from "./theme-script";
 
 /**
  * Tipografia: Sora para titulares (geometrica, con caracter tecnico) e Inter
@@ -40,12 +41,20 @@ export function HtmlShell({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={lang} data-theme="dark" suppressHydrationWarning>
+    <html
+      lang={lang}
+      data-theme="dark"
+      // globals.css usa scroll-behavior: smooth; esto le avisa a Next que lo
+      // desactive durante las navegaciones (evita el scroll animado al
+      // cambiar de idioma y el warning de desarrollo).
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       {/* App Router: <head> en el root layout es valido; la regla es de pages/. */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
         {/* Fija el tema antes del primer pintado (ver src/lib/theme.ts). */}
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <ThemeScript />
       </head>
       <body
         className={cn(

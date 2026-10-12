@@ -219,6 +219,7 @@ export function ContactScene({ mood, progress, burstKey }: ContactSceneProps) {
                 height={5}
                 rx={2.5}
                 className="fill-accent-500"
+                initial={{ width: 0 }}
                 animate={{ width: width * filled(index) }}
                 transition={{ duration: 0.25 }}
               />

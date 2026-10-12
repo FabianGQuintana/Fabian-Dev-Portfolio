@@ -20,7 +20,9 @@ export function TimelineItem({
   locale,
   presentLabel,
 }: TimelineItemProps) {
-  const start = formatMonthYear(entry.startDate, locale);
+  const start = entry.startDate
+    ? formatMonthYear(entry.startDate, locale)
+    : null;
   const end = entry.endDate
     ? formatMonthYear(entry.endDate, locale)
     : presentLabel;
@@ -32,16 +34,16 @@ export function TimelineItem({
         className="absolute top-1.5 -left-[calc(1.5rem+3px)] size-2.5 rounded-full bg-accent-500 sm:-left-[calc(2rem+3px)]"
       />
 
-      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <h3 className="text-h3 text-text-primary">{entry.role[locale]}</h3>
-        <span className="font-mono text-sm font-medium text-accent-400">
-          {entry.company}
-        </span>
-      </div>
-
-      <p className="mt-1 font-mono text-xs tracking-wide text-text-muted">
-        {start} — {end}
+      <h3 className="text-h3 text-text-primary">{entry.role[locale]}</h3>
+      <p className="mt-1 font-mono text-sm font-medium text-accent-400">
+        {entry.company}
       </p>
+
+      {start ? (
+        <p className="mt-1.5 font-mono text-xs tracking-wide text-text-muted">
+          {start} — {end}
+        </p>
+      ) : null}
 
       <p className="mt-4 max-w-[68ch] text-text-secondary">
         {entry.description[locale]}

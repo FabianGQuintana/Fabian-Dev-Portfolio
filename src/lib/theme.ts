@@ -34,3 +34,27 @@ export function setTheme(theme: Theme): void {
     // Almacenamiento bloqueado: el tema aplica igual, solo no se recuerda.
   }
 }
+
+/**
+ * Misma logica que `themeInitScript`, pero ejecutable desde React.
+ *
+ * Hace falta porque cambiar de idioma (/es <-> /en) cambia el segmento del
+ * root layout y React vuelve a montar <html> con `data-theme="dark"`. En esa
+ * navegacion del lado del cliente el script inline no se ejecuta, asi que
+ * el tema se re-aplica desde un efecto (ver ThemeScript).
+ */
+export function applyStoredTheme(): void {
+  let theme: Theme;
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    theme =
+      stored === "light" || stored === "dark"
+        ? stored
+        : window.matchMedia("(prefers-color-scheme: light)").matches
+          ? "light"
+          : "dark";
+  } catch {
+    theme = "dark";
+  }
+  document.documentElement.dataset.theme = theme;
+}

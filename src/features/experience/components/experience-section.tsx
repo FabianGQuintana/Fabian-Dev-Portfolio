@@ -74,12 +74,19 @@ function TimelineColumn({
 }: TimelineColumnProps) {
   return (
     <div>
-      <h3 className="flex items-center gap-3 text-h3 text-text-primary">
-        <span className="grid size-10 place-items-center rounded-lg bg-accent-500/15 text-accent-400">
-          {icon}
-        </span>
-        {title}
-      </h3>
+      <ScrollRevealHeading
+        as="h3"
+        text={title}
+        className="flex items-center gap-3 text-h3 text-text-primary"
+        leading={
+          <span
+            aria-hidden="true"
+            className="grid size-10 shrink-0 place-items-center rounded-lg bg-accent-500/15 text-accent-400"
+          >
+            {icon}
+          </span>
+        }
+      />
       <div className="mt-8">
         {items.length > 0 ? (
           <Timeline items={items} locale={locale} presentLabel={presentLabel} />

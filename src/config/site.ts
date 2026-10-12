@@ -15,7 +15,7 @@ export const siteConfig = {
   name: "Fabian Quintana",
   /** Iniciales para el logo del header y el avatar de placeholder. */
   monogram: "FQ",
-  role: "Fullstack Developer",
+  role: "AI-Augmented Software Developer",
 
   /**
    * Tagline del Hero (Opcion A del plan).
@@ -23,8 +23,8 @@ export const siteConfig = {
    * del sitio (description por locale), fuera del arbol de traducciones de UI.
    */
   tagline: {
-    es: "Diseño la base de datos, construyo la API y pulo la interfaz. Sistemas completos, con arquitectura limpia.",
-    en: "I design the database, build the API and refine the interface. Complete systems, clean architecture.",
+    es: "Diseño la base de datos, construyo la API y pulo la interfaz. Sistemas completos",
+    en: "I design the database, build the API and refine the interface. Complete systems",
   } satisfies Record<Locale, string>,
 
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",

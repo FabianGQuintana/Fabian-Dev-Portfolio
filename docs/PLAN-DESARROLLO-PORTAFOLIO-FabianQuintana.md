@@ -804,7 +804,7 @@ Dos fuentes distintas, por naturaleza distinta:
 {
   "nav":      { "about": "Sobre mí", "experience": "Experiencia",
                 "projects": "Proyectos", "contact": "Contacto" },
-  "hero":     { "role": "Fullstack Developer",
+  "hero":     { "role": "AI-Augmented Software Developer",
                 "cta_projects": "Ver proyectos", "cta_resume": "Descargar CV" },
   "projects": { "eyebrow": "// PROYECTOS",
                 "updated": "Actualizado hace {time}",
