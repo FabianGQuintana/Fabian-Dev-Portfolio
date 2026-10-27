@@ -61,6 +61,7 @@ export async function ProjectsSection({ locale }: ProjectsSectionProps) {
       archived: t("status_archived"),
       wip: t("status_wip"),
       finished: t("status_finished"),
+      hackathon: t("status_hackathon"),
     },
   };
 

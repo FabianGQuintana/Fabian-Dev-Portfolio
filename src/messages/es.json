@@ -61,7 +61,8 @@
     "gallery_title": "Capturas",
     "gallery_prev": "Captura anterior",
     "gallery_next": "Captura siguiente",
-    "status_finished": "Terminado"
+    "status_finished": "Terminado",
+    "status_hackathon": "Hackathon · Desplegado"
   },
   "contact": {
     "title": "Hablemos",

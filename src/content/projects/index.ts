@@ -1,6 +1,7 @@
 import type { ProjectEntry } from "@/features/projects/types";
 
 import { countrySecure } from "./country-secure";
+import { goberTrack } from "./gobertrack";
 import { ibera } from "./ibera";
 import { versoriTorneos } from "./versori-torneos";
 
@@ -16,6 +17,7 @@ export const projectEntries: readonly ProjectEntry[] = [
   versoriTorneos,
   countrySecure,
   ibera,
+  goberTrack,
 ].toSorted((a, b) => a.order - b.order);
 
 export type { ProjectEntry };

@@ -12,7 +12,8 @@ export interface ProjectEntry {
   repo: `${string}/${string}`;
   featured: boolean;
   order: number;
-  status: "production" | "active" | "archived" | "wip" | "finished";
+  status:
+    "production" | "active" | "archived" | "wip" | "finished" | "hackathon";
   content: Record<Locale, ProjectContent>;
   /** Stack del proyecto: lenguajes, frameworks y librerias. Se muestran como iconos. */
   highlightedTech?: string[];

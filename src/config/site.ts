@@ -57,11 +57,10 @@ export const siteConfig = {
   /**
    * CV.
    * `enabled: false` renderiza el boton en estado deshabilitado con tooltip.
-   * El dia que exista el PDF: copiarlo a public/cv/, poner la ruta en `path`
-   * y cambiar el flag. Ningun componente se toca.
+   * Hoy existe una sola version (en espanol) y se sirve en ambos locales.
    */
   resume: {
-    enabled: false,
+    enabled: true,
     path: "/cv/fabian-quintana-cv.pdf",
   },
 } as const;

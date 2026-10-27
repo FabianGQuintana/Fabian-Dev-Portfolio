@@ -30,6 +30,9 @@ const INHERIT_COLOR = new Set<SimpleIconSlug>([
   "notion",
   "vercel",
   "railway",
+  "rust",
+  "fastify",
+  "sqlite",
 ]);
 
 const BY_NAME: Record<
@@ -71,6 +74,13 @@ const BY_NAME: Record<
   PHP: "php",
   "Spring Boot": "springboot",
   Hibernate: "hibernate",
+  Rust: "rust",
+  Stellar: "stellar",
+  "Stellar CLI": "stellar",
+  Fastify: "fastify",
+  SQLite: "sqlite",
+  Vitest: "vitest",
+  OpenAPI: "openapiinitiative",
   // Sin icono en Simple Icons: monograma con el color de la marca.
   "C#": { monogram: "C#", color: "#9b4f96" },
   Java: { monogram: "Jv", color: "#e76f00" },
@@ -84,6 +94,13 @@ const BY_NAME: Record<
   Stitch: { monogram: "St", color: "#34a853" },
   Lovable: { monogram: "Lv", color: "#ff4f8b" },
   MapLibre: { monogram: "ML", color: "#396cb2" },
+  "NextAuth.js": { monogram: "NA", color: "#8b5cf6" },
+  FluentValidation: { monogram: "FV", color: "#2b7bb9" },
+  xUnit: { monogram: "xU", color: "#5c2d91" },
+  // Blockchain (GoberTrack).
+  Soroban: { monogram: "Sb", color: "#7d00ff" },
+  "Smart Contracts": { monogram: "SC", color: "#7d00ff" },
+  Freighter: { monogram: "Fr", color: "#6f4ff2" },
 };
 
 export function getTech(name: string): TechInfo {

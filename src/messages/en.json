@@ -61,7 +61,8 @@
     "gallery_title": "Screenshots",
     "gallery_prev": "Previous screenshot",
     "gallery_next": "Next screenshot",
-    "status_finished": "Finished"
+    "status_finished": "Finished",
+    "status_hackathon": "Hackathon · Deployed"
   },
   "contact": {
     "title": "Let's talk",
