@@ -13,11 +13,22 @@ interface AvatarPortraitProps {
 }
 
 /**
- * Avatar circular grande de la seccion Sobre mi.
+ * Contorno del marco punteado, en el viewBox 300x400 (ratio 3:4, igual que
+ * la foto). Rectangulo redondeado recorrido en sentido horario; los satelites
+ * siguen este mismo path.
+ */
+const FRAME_PATH =
+  "M45 1H255A44 44 0 0 1 299 45V355A44 44 0 0 1 255 399H45A44 44 0 0 1 1 355V45A44 44 0 0 1 45 1Z";
+
+const ORBIT_SECONDS = 36;
+
+/**
+ * Retrato vertical (3:4) de la seccion Sobre mi.
  *
- * Tres capas: un aro de degradado que gira lento, un aro punteado que gira
- * al reves con dos "satelites", y el circulo con la foto (o el placeholder).
- * Con prefers-reduced-motion todo queda quieto.
+ * Capas: un resplandor de fondo, un borde de degradado que gira, un marco
+ * punteado con dos "satelites" que recorren su contorno, y la foto. La foto
+ * ocupa exactamente un 3:4, asi que una imagen con ese ratio entra completa
+ * sin recortes. Con prefers-reduced-motion todo queda quieto.
  */
 export function AvatarPortrait({
   photo,
@@ -25,22 +36,11 @@ export function AvatarPortrait({
   className,
 }: AvatarPortraitProps) {
   const reduceMotion = useReducedMotion();
-  const spin = (seconds: number, reverse = false) =>
-    reduceMotion
-      ? undefined
-      : {
-          animate: { rotate: reverse ? -360 : 360 },
-          transition: {
-            duration: seconds,
-            ease: "linear" as const,
-            repeat: Infinity,
-          },
-        };
 
   return (
     <motion.div
       className={cn(
-        "relative mx-auto aspect-square w-full max-w-[22rem] sm:max-w-[26rem]",
+        "relative mx-auto aspect-[3/4] w-full max-w-[18rem] sm:max-w-[20rem]",
         className,
       )}
       animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
@@ -49,36 +49,77 @@ export function AvatarPortrait({
       {/* Resplandor de fondo. */}
       <div
         aria-hidden="true"
-        className="absolute inset-[-12%] rounded-full bg-accent-500/25 blur-3xl"
+        className="absolute inset-[-10%] rounded-[3rem] bg-accent-500/25 blur-3xl"
       />
 
-      {/* Aro de degradado. */}
-      <motion.div
+      {/* Borde de degradado: un cuadrado con conic-gradient, mas grande que
+          la diagonal del marco, gira detras de la foto y solo asoma por el
+          borde. */}
+      <div
         aria-hidden="true"
-        className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,var(--color-accent-500),transparent_35%,var(--color-accent-300)_60%,transparent_85%,var(--color-accent-500))]"
-        {...spin(14)}
-      />
-
-      {/* Aro punteado con satelites. */}
-      <motion.div
-        aria-hidden="true"
-        className="absolute inset-[-7%] rounded-full border border-dashed border-accent-500/40"
-        {...spin(36, true)}
+        className="absolute inset-[-7px] flex items-center justify-center overflow-hidden rounded-[calc(2rem+7px)]"
       >
-        <span className="absolute top-[14%] left-[6%] size-2.5 rounded-full bg-accent-400 shadow-glow-sm" />
-        <span className="absolute right-[10%] bottom-[18%] size-2 rounded-full bg-accent-300" />
-      </motion.div>
+        <motion.div
+          className="aspect-square w-[180%] shrink-0 bg-[conic-gradient(from_0deg,var(--color-accent-500),transparent_35%,var(--color-accent-300)_60%,transparent_85%,var(--color-accent-500))]"
+          animate={reduceMotion ? undefined : { rotate: 360 }}
+          transition={{
+            duration: 14,
+            ease: "linear" as const,
+            repeat: Infinity,
+          }}
+        />
+      </div>
 
-      {/* Circulo con la foto. El borde grueso deja ver el aro de degradado. */}
-      <div className="absolute inset-[3%] overflow-hidden rounded-full border-[6px] border-bg-base bg-bg-surface">
+      {/* Marco punteado con satelites que recorren el contorno. */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 300 400"
+        className="absolute inset-[-6%] size-[112%] overflow-visible"
+      >
+        <path
+          d={FRAME_PATH}
+          fill="none"
+          strokeDasharray="4 6"
+          vectorEffect="non-scaling-stroke"
+          className="stroke-accent-500/50"
+        >
+          {!reduceMotion && (
+            <animate
+              attributeName="stroke-dashoffset"
+              from="0"
+              to="-100"
+              dur={`${ORBIT_SECONDS}s`}
+              repeatCount="indefinite"
+            />
+          )}
+        </path>
+        <Satellite
+          r={4.5}
+          className="fill-accent-400 drop-shadow-[0_0_6px_var(--color-accent-500)]"
+          begin={0}
+          animated={!reduceMotion}
+          staticPosition={{ cx: 1, cy: 120 }}
+        />
+        <Satellite
+          r={3.5}
+          className="fill-accent-300"
+          begin={-ORBIT_SECONDS / 2}
+          animated={!reduceMotion}
+          staticPosition={{ cx: 299, cy: 280 }}
+        />
+      </svg>
+
+      {/* Foto. El anillo del color de fondo separa la foto del degradado. */}
+      <div className="absolute inset-0 overflow-hidden rounded-[2rem] bg-bg-surface shadow-[0_0_0_4px_var(--color-bg-base)]">
         {photo ? (
+          // unoptimized: se sirve el archivo original tal cual, sin
+          // recompresion ni cambio de formato.
           <Image
             src={photo.src}
             alt={photo.alt}
             fill
-            sizes="(min-width: 1024px) 26rem, 80vw"
+            unoptimized
             className="object-cover"
-            priority
           />
         ) : (
           <div
@@ -92,5 +133,42 @@ export function AvatarPortrait({
         )}
       </div>
     </motion.div>
+  );
+}
+
+interface SatelliteProps {
+  r: number;
+  className: string;
+  /** Desfase en segundos; negativo = arranca ya avanzado en el recorrido. */
+  begin: number;
+  animated: boolean;
+  /** Posicion fija cuando no hay animacion. */
+  staticPosition: { cx: number; cy: number };
+}
+
+/** Particula que recorre el contorno del marco en sentido antihorario. */
+function Satellite({
+  r,
+  className,
+  begin,
+  animated,
+  staticPosition,
+}: SatelliteProps) {
+  if (!animated) {
+    return <circle r={r} className={className} {...staticPosition} />;
+  }
+
+  return (
+    <circle r={r} className={className}>
+      <animateMotion
+        path={FRAME_PATH}
+        dur={`${ORBIT_SECONDS}s`}
+        begin={`${begin}s`}
+        repeatCount="indefinite"
+        keyPoints="1;0"
+        keyTimes="0;1"
+        calcMode="linear"
+      />
+    </circle>
   );
 }

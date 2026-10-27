@@ -21,7 +21,8 @@
     "contact_label": "Contact"
   },
   "about": {
-    "title": "I build systems, not screens"
+    "title": "I build systems, not screens",
+    "process_title": "How I work"
   },
   "experience": {
     "title": "Background",
@@ -84,7 +85,8 @@
     }
   },
   "footer": {
-    "built_with": "Built with Next.js, Tailwind and Motion.",
+    "tagline": "Transforming ideas into scalable software through AI-driven workflows and solid engineering.",
+    "quick_links": "Quick links",
     "rights": "All rights reserved."
   },
   "status": {

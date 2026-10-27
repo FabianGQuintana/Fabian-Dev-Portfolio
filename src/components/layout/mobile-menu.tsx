@@ -51,7 +51,7 @@ export function MobileMenu({ items, openLabel, closeLabel }: MobileMenuProps) {
         aria-label={openLabel}
         aria-expanded={isOpen}
         aria-controls="mobile-menu-panel"
-        className="grid size-11 place-items-center rounded-md text-text-secondary transition-colors duration-150 hover:bg-bg-surface hover:text-text-primary md:hidden"
+        className="grid size-10 place-items-center rounded-full border border-border-interactive/50 bg-bg-surface/60 text-text-secondary transition-colors duration-150 hover:border-accent-400 hover:text-accent-400 md:hidden"
       >
         <Menu className="size-5" aria-hidden="true" />
       </button>

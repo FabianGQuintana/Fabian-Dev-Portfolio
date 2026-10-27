@@ -36,9 +36,10 @@ export function Header({
   themeToDarkLabel,
 }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  // "home" es la seccion del hero: mientras esta a la vista el subrayado va en
-  // Inicio y no en ningun link. Antes de que el observer responda (activeId
-  // null) la pagina esta arriba, asi que tambien cuenta como inicio.
+  // "home" es la seccion del hero: mientras esta a la vista se resalta la
+  // pastilla de Inicio y no la de ningun link. Antes de que el observer
+  // responda (activeId null) la pagina esta arriba, asi que tambien cuenta
+  // como inicio.
   const activeId = useActiveSection(["home", ...items.map((item) => item.id)]);
   const isHome = activeId === null || activeId === "home";
   const { scrollY } = useScroll();
@@ -64,24 +65,20 @@ export function Header({
         <a
           href="#main"
           aria-current={isHome ? "location" : undefined}
-          className="group flex items-center gap-2.5 font-mono text-sm font-medium text-text-primary transition-colors duration-150 hover:text-accent-400"
+          className={cn(
+            "group flex items-center gap-2.5 rounded-full border py-1 pr-4 pl-1 font-mono text-sm font-medium transition-colors duration-150",
+            isHome
+              ? "border-accent-500 bg-accent-500/15 text-text-primary"
+              : "border-border-interactive/50 bg-bg-surface/60 text-text-primary hover:border-accent-400 hover:text-accent-400",
+          )}
         >
           <span
             aria-hidden="true"
-            className="grid size-8 place-items-center rounded-lg bg-accent-500 text-xs font-bold tracking-tight text-white transition-transform duration-300 group-hover:rotate-6"
+            className="grid size-7 place-items-center rounded-full bg-accent-500 text-[0.65rem] font-bold tracking-tight text-white transition-transform duration-300 group-hover:rotate-6"
           >
             {monogram}
           </span>
-          <span className="relative">
-            {homeLabel}
-            <span
-              aria-hidden="true"
-              className={cn(
-                "absolute inset-x-0 -bottom-1.5 h-px origin-left bg-accent-500 transition-transform duration-300",
-                isHome ? "scale-x-100" : "scale-x-0",
-              )}
-            />
-          </span>
+          {homeLabel}
         </a>
 
         <div className="flex items-center gap-2">

@@ -20,16 +20,43 @@ export async function AboutSection({ locale }: AboutSectionProps) {
       aria-labelledby="about-heading"
       className="relative z-10 container-section py-[clamp(80px,12vh,160px)]"
     >
-      {/* Texto a la izquierda con todo el ancho libre; el avatar va en una
+      {/* Texto a la izquierda con todo el ancho libre; el retrato va en una
           columna de ancho fijo pegada al borde derecho, con un gap amplio
-          para que el texto pueda crecer sin chocar con el aro. */}
-      <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-24 xl:gap-32">
+          para que el texto pueda crecer sin chocar con el marco. */}
+      <div className="grid items-center gap-16 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-20 xl:gap-28">
         <div>
           <ScrollRevealHeading id="about-heading" text={t("title")} />
           <RevealOnScroll>
             <p className="mt-6 max-w-[72ch] text-body-lg text-text-secondary">
               {aboutContent.bio[locale]}
             </p>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={0.1}>
+            <h3 className="mt-10 font-mono text-eyebrow text-text-muted uppercase">
+              {t("process_title")}
+            </h3>
+            <ol className="mt-5 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+              {aboutContent.process.map((step, index) => (
+                <li
+                  key={step.title.en}
+                  className="border-l border-border-subtle pl-4"
+                >
+                  <p className="flex items-baseline gap-3 font-semibold text-text-primary">
+                    <span
+                      aria-hidden="true"
+                      className="font-mono text-label text-accent-400"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    {step.title[locale]}
+                  </p>
+                  <p className="mt-2 text-text-secondary">
+                    {step.description[locale]}
+                  </p>
+                </li>
+              ))}
+            </ol>
           </RevealOnScroll>
         </div>
 
@@ -41,7 +68,7 @@ export async function AboutSection({ locale }: AboutSectionProps) {
                 : null
             }
             initials={siteConfig.monogram}
-            className="lg:mr-0 lg:max-w-[20rem]"
+            className="lg:mr-0"
           />
         </RevealOnScroll>
       </div>

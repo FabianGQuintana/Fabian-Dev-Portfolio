@@ -129,7 +129,15 @@ export default async function LocaleLayout({
 
         {children}
 
-        <Footer builtWith={tFooter("built_with")} rights={tFooter("rights")} />
+        <Footer
+          tagline={tFooter("tagline")}
+          quickLinksLabel={tFooter("quick_links")}
+          links={[
+            { id: "home", href: "#main", label: tNav("home") },
+            ...navLinks,
+          ]}
+          rights={tFooter("rights")}
+        />
       </NextIntlClientProvider>
 
       <Analytics />

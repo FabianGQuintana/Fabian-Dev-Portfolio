@@ -21,7 +21,8 @@
     "contact_label": "Contacto"
   },
   "about": {
-    "title": "Construyo sistemas, no pantallas"
+    "title": "Construyo sistemas, no pantallas",
+    "process_title": "Cómo trabajo"
   },
   "experience": {
     "title": "Trayectoria",
@@ -84,7 +85,8 @@
     }
   },
   "footer": {
-    "built_with": "Construido con Next.js, Tailwind y Motion.",
+    "tagline": "Transformo ideas en software escalable combinando flujos de trabajo con IA e ingeniería sólida.",
+    "quick_links": "Enlaces rápidos",
     "rights": "Todos los derechos reservados."
   },
   "status": {
