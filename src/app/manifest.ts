@@ -13,8 +13,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: siteConfig.tagline.es,
     start_url: "/es",
     display: "standalone",
-    background_color: "#0b0a0f",
-    theme_color: "#0b0a0f",
+    background_color: "#0a0710",
+    theme_color: "#0a0710",
     icons: [
       {
         src: "/icon.svg",

@@ -15,7 +15,7 @@ export function Input({
     <input
       aria-invalid={ariaInvalid}
       className={cn(
-        "h-11 w-full rounded-md border border-border-interactive bg-bg-surface px-3.5 text-sm text-text-primary",
+        "h-11 w-full rounded-md border border-border-interactive bg-bg-surface px-3.5 text-sm text-text-primary shadow-surface",
         "placeholder:text-text-muted",
         "transition-colors duration-150",
         "hover:border-text-muted",

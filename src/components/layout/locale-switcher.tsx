@@ -13,8 +13,10 @@ const LOCALE_NAME: Record<string, string> = { es: "Español", en: "English" };
  * Cambia de idioma conservando la ruta actual.
  *
  * `router.replace` con `{ locale }` es navegacion del lado del cliente sobre
- * la MISMA pagina, asi que no hay recarga completa y la posicion de scroll
- * se conserva — es el criterio de aceptacion de la Fase 3.
+ * la MISMA pagina, asi que no hay recarga completa. `scroll: false` es
+ * necesario: como /es y /en son segmentos distintos del root layout, sin
+ * esa opcion Next vuelve al tope de la pagina. Conservar la posicion de
+ * scroll es el criterio de aceptacion de la Fase 3.
  */
 export function LocaleSwitcher() {
   const currentLocale = useLocale();
@@ -34,7 +36,7 @@ export function LocaleSwitcher() {
           <button
             key={locale}
             type="button"
-            onClick={() => router.replace(pathname, { locale })}
+            onClick={() => router.replace(pathname, { locale, scroll: false })}
             aria-pressed={isActive}
             aria-label={`Cambiar a ${LOCALE_NAME[locale]}`}
             className={cn(

@@ -1,74 +1,94 @@
 import type { Locale } from "@/i18n/routing";
 
+/**
+ * Entrada de un timeline. Se usa para trabajo (`experience`) y para estudios
+ * (`education`): en estudios, `company` es la institucion y `role` el titulo.
+ */
 export interface ExperienceEntry {
   readonly id: string;
+  /** Empresa o institucion. */
   readonly company: string;
   readonly role: Record<Locale, string>;
   readonly description: Record<Locale, string>;
-  /** Formato "YYYY-MM". */
-  readonly startDate: string;
+  /** Formato "YYYY-MM". null = entrada sin fechas (no se muestra la linea). */
+  readonly startDate: string | null;
   /** null = presente. */
   readonly endDate: string | null;
   readonly tech: readonly string[];
 }
 
 /**
- * Timeline laboral / académica.
- *
- * ───────────────────────────────────────────────────────────────────────────
- *  DATOS DE EJEMPLO (placeholders). Reemplazalos por tu trayectoria real:
- *  copiá cada bloque, completalo con tus fechas y roles exactos, y volvé a
- *  guardar. `id` debe ser único (se usa como key de React). El orden del
- *  array es el orden de visualización (más reciente primero, por convención).
- *
- *  Formato de fechas: "YYYY-MM" (ej. "2024-03"). `endDate: null` significa
- *  que el puesto sigue vigente ("Actualidad").
- * ───────────────────────────────────────────────────────────────────────────
+ * Experiencia laboral, de la mas reciente a la mas antigua.
+ * Formato de fechas: "YYYY-MM". `endDate: null` = sigue vigente.
+ * `tech` usa los nombres de src/lib/tech/registry.ts (con icono).
  */
 export const experience: readonly ExperienceEntry[] = [
   {
-    id: "empresa-actual",
-    company: "Nombre de la empresa actual",
+    id: "versori",
+    company: "Versori",
     role: {
-      es: "Fullstack Developer",
-      en: "Fullstack Developer",
+      es: "Tech Lead · Full Stack Developer",
+      en: "Tech Lead · Full Stack Developer",
     },
     description: {
-      es: "Descripción de ejemplo: qué construiste, con qué stack y qué impacto tuvo. Reemplazá este texto por tu descripción real.",
-      en: "Placeholder description: what you built, with which stack, and what impact it had. Replace this with your real description.",
+      es: "Lideré el equipo de desarrollo de una startup: definí la arquitectura, guié y capacité a los integrantes y desarrollé backend y frontend junto a ellos, desde el inicio hasta el final del proyecto.",
+      en: "Led the development team at a startup: defined the architecture, mentored the team and built backend and frontend alongside them, from the start of the project to its delivery.",
     },
-    startDate: "2024-03",
+    startDate: "2026-03",
+    endDate: "2026-08",
+    tech: ["C#", ".NET", "React", "Trello", "Cloudflare", "Vercel", "Railway"], // TODO: confirmar el stack real de Versori (repos privados)
+  },
+];
+
+/**
+ * Formacion academica.
+ *
+ * PLACEHOLDER: completar con la carrera, la institucion y las fechas reales.
+ */
+export const education: readonly ExperienceEntry[] = [
+  {
+    id: "carrera",
+    company: "Universidad Nacional del Nordeste (UNNE)",
+    role: {
+      es: "Licenciatura en Sistemas de Información",
+      en: "Bachelor's in Information Systems",
+    },
+    description: {
+      es: "Actualmente cursando el ciclo superior (4to/5to año). Formación integral con fuerte enfoque en bases de datos, arquitectura de software y diseño de sistemas. Título intermedio obtenido: Analista de Sistemas.",
+      en: "Currently in the advanced cycle (4th/5th year). Comprehensive education with a strong focus on databases, software architecture, and systems design. Earned intermediate degree: Systems Analyst.",
+    },
+    startDate: "2023-03", // Si empezaste antes, podés ajustar este año
     endDate: null,
-    tech: ["Next.js", "PostgreSQL", "TypeScript"],
+    tech: [],
   },
   {
-    id: "empresa-anterior",
-    company: "Nombre de la empresa anterior",
+    id: "bootcamp-devlights",
+    company: "DevLights",
     role: {
-      es: "Desarrollador Web",
-      en: "Web Developer",
+      es: "Bootcamp Full Stack (C# & React)",
+      en: "Full Stack Bootcamp (C# & React)",
     },
     description: {
-      es: "Segundo bloque de ejemplo. Describí el sistema, las decisiones técnicas y el resultado para el negocio.",
-      en: "Second placeholder block. Describe the system, the technical decisions and the outcome for the business.",
+      es: "Programa intensivo de formación técnica. Desarrollo de aplicaciones utilizando C# y .NET para el backend, junto con React para el frontend, aplicando buenas prácticas y trabajo en equipo. Aplicando como contenido extra Herramientas de Versionado, Tableros y Cloud.",
+      en: "Intensive technical training program. Application development using C# and .NET for the backend, along with React for the frontend, applying best practices and teamwork. Applying as extra content Versioning Tools, Boards and Cloud Computing.",
     },
-    startDate: "2022-01",
-    endDate: "2024-02",
-    tech: ["React", "Node.js", "MySQL"],
+    startDate: "2025-09",
+    endDate: null,
+    tech: ["React", "C#", "AWS", "Git", "GitHub", "Trello", "Jira"],
   },
   {
-    id: "formacion",
-    company: "Institución educativa",
+    id: "hackatones",
+    company: "Facultad · DevLights · Municipalidad y Gobierno de Corrientes",
     role: {
-      es: "Estudios",
-      en: "Education",
+      es: "Participación en Hackatones",
+      en: "Hackathon Participation",
     },
     description: {
-      es: "Tercer bloque de ejemplo: formación académica o cursos relevantes. Eliminalo si no querés mostrarlo.",
-      en: "Third placeholder block: education or relevant courses. Remove it if you don't want to show it.",
+      es: "Participé en 5 hackatones, trabajando en equipo bajo presión para entregar soluciones funcionales en poco tiempo.",
+      en: "Took part in 5 hackathons, working in teams under pressure to deliver working solutions in a short time.",
     },
-    startDate: "2020-03",
-    endDate: "2022-12",
+    startDate: null,
+    endDate: null,
     tech: [],
   },
 ];

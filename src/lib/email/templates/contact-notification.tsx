@@ -20,7 +20,7 @@ interface ContactNotificationProps {
 
 const style = {
   container: {
-    backgroundColor: "#0b0a0f",
+    backgroundColor: "#0a0710",
     color: "#f2f0ee",
     fontFamily:
       "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",

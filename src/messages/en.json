@@ -6,34 +6,39 @@
     "contact": "Contact",
     "menu_open": "Open menu",
     "menu_close": "Close menu",
-    "skip_to_content": "Skip to content"
+    "skip_to_content": "Skip to content",
+    "theme_to_light": "Switch to light theme",
+    "theme_to_dark": "Switch to dark theme",
+    "home": "Home"
   },
   "hero": {
-    "role": "Fullstack Developer",
+    "role": "Full Stack Developer · AI-Augmented",
     "tagline": "I design the database, build the API and refine the interface. Complete systems, clean architecture.",
     "cta_projects": "View projects",
     "cta_resume": "Download CV",
-    "resume_pending": "CV in progress"
+    "resume_pending": "CV in progress",
+    "keyboard_hint": "Click the icons to visit them",
+    "contact_label": "Contact"
   },
   "about": {
-    "eyebrow": "About",
-    "title": "I build systems, not screens"
+    "title": "I build systems, not screens",
+    "process_title": "How I work"
   },
   "experience": {
-    "eyebrow": "Experience",
     "title": "Background",
     "present": "Present",
-    "empty": "No experience loaded here yet — full background coming soon."
+    "empty": "No experience loaded here yet — full background coming soon.",
+    "work_title": "Work experience",
+    "education_title": "Education"
   },
   "projects": {
-    "eyebrow": "Projects",
-    "title": "Systems in production",
+    "title": "Projects",
     "updated": "Updated {time}",
     "view_repo": "View repository",
     "view_api": "View API",
     "view_frontend": "View frontend",
     "view_demo": "Live demo",
-    "expand": "View details",
+    "expand": "Explore project",
     "collapse": "Close details",
     "close": "Close",
     "architecture": "Architecture decisions",
@@ -43,10 +48,24 @@
     "status_production": "In production",
     "status_active": "Actively developed",
     "status_archived": "Archived",
-    "status_wip": "Work in progress"
+    "status_wip": "Work in progress",
+    "stack": "Stack",
+    "tools": "Tools",
+    "show_more_tools": "Show more",
+    "show_less_tools": "Show less",
+    "carousel_prev": "Previous projects",
+    "carousel_next": "Next projects",
+    "carousel_go_to": "Go to group {n} of {total}",
+    "carousel_region": "Projects carousel",
+    "show_more": "Show more",
+    "show_less": "Show less",
+    "gallery_title": "Screenshots",
+    "gallery_prev": "Previous screenshot",
+    "gallery_next": "Next screenshot",
+    "status_finished": "Finished",
+    "status_hackathon": "Hackathon · Deployed"
   },
   "contact": {
-    "eyebrow": "Contact",
     "title": "Let's talk",
     "name": "Name",
     "email": "Email",
@@ -66,7 +85,8 @@
     }
   },
   "footer": {
-    "built_with": "Built with Next.js, Tailwind and Motion.",
+    "tagline": "Transforming ideas into scalable software through AI-driven workflows and solid engineering.",
+    "quick_links": "Quick links",
     "rights": "All rights reserved."
   },
   "status": {

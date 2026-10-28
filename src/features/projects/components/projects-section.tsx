@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
-import { RevealOnScroll } from "@/components/motion";
-import { Eyebrow } from "@/components/ui";
+import { ScrollRevealHeading } from "@/components/motion";
+import { toolbox } from "@/config/toolbox";
 import { getProjects } from "@/features/projects";
 import type {
   ProjectCardModel,
@@ -42,11 +42,26 @@ export async function ProjectsSection({ locale }: ProjectsSectionProps) {
     problem: t("problem"),
     solution: t("solution"),
     languages: t("languages"),
+    stack: t("stack"),
+    tools: t("tools"),
+    showMoreTools: t("show_more_tools"),
+    showLessTools: t("show_less_tools"),
+    showMore: t("show_more"),
+    showLess: t("show_less"),
+    galleryTitle: t("gallery_title"),
+    galleryPrev: t("gallery_prev"),
+    galleryNext: t("gallery_next"),
+    carouselPrev: t("carousel_prev"),
+    carouselNext: t("carousel_next"),
+    carouselGoTo: t.raw("carousel_go_to") as string,
+    carouselRegion: t("carousel_region"),
     status: {
       production: t("status_production"),
       active: t("status_active"),
       archived: t("status_archived"),
       wip: t("status_wip"),
+      finished: t("status_finished"),
+      hackathon: t("status_hackathon"),
     },
   };
 
@@ -65,17 +80,14 @@ export async function ProjectsSection({ locale }: ProjectsSectionProps) {
       aria-labelledby="projects-heading"
       className="relative z-10 container-section py-[clamp(80px,12vh,160px)]"
     >
-      <RevealOnScroll>
-        <Eyebrow>{t("eyebrow")}</Eyebrow>
-        <h2
-          id="projects-heading"
-          className="mt-3 max-w-2xl text-h2 text-balance"
-        >
-          {t("title")}
-        </h2>
-      </RevealOnScroll>
+      <ScrollRevealHeading id="projects-heading" text={t("title")} />
 
-      <ProjectGrid projects={models} labels={labels} locale={locale} />
+      <ProjectGrid
+        projects={models}
+        labels={labels}
+        locale={locale}
+        tools={toolbox}
+      />
     </section>
   );
 }

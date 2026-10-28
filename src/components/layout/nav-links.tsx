@@ -19,7 +19,8 @@ interface NavLinksProps {
 }
 
 /**
- * Navegacion por anclas con indicador de seccion activa.
+ * Navegacion por anclas: cada link es una pastilla con contorno visible en
+ * ambos temas, y la seccion activa se resalta con el acento.
  *
  * El indicador es un unico elemento compartido con `layoutId`: Motion lo
  * desliza entre items en vez de hacerlo desaparecer y reaparecer. Un solo
@@ -30,14 +31,16 @@ export function NavLinks({
   onNavigate,
   orientation = "horizontal",
 }: NavLinksProps) {
-  const sectionIds = items.map((item) => item.id);
+  // "home" (hero) se observa tambien: asi, al volver arriba, ningun link
+  // queda marcado como activo.
+  const sectionIds = ["home", ...items.map((item) => item.id)];
   const activeId = useActiveSection(sectionIds);
 
   return (
     <ul
       className={cn(
-        "flex gap-1",
-        orientation === "vertical" && "flex-col items-stretch gap-2",
+        "flex items-center gap-2",
+        orientation === "vertical" && "flex-col items-stretch gap-3",
       )}
     >
       {items.map((item) => {
@@ -52,26 +55,22 @@ export function NavLinks({
               // pantalla. El indicador visual solo no alcanza.
               aria-current={isActive ? "location" : undefined}
               className={cn(
-                "relative block rounded-md px-3 py-2 text-sm transition-colors duration-150",
-                orientation === "vertical" && "px-4 py-3 text-base",
+                "relative z-10 block rounded-full border px-4 py-1.5 text-sm transition-colors duration-150",
+                orientation === "vertical" && "px-6 py-3 text-lg",
                 isActive
-                  ? "text-text-primary"
-                  : "text-text-secondary hover:text-text-primary",
+                  ? "border-transparent text-text-primary"
+                  : "border-border-interactive/50 bg-bg-surface/60 text-text-secondary hover:border-accent-400 hover:text-accent-400",
               )}
             >
               {item.label}
             </a>
 
+            {/* La pastilla activa se desliza entre items gracias a layoutId. */}
             {isActive ? (
               <motion.span
                 layoutId={`nav-indicator-${orientation}`}
                 aria-hidden="true"
-                className={cn(
-                  "absolute bg-accent-500",
-                  orientation === "horizontal"
-                    ? "inset-x-3 -bottom-px h-px"
-                    : "inset-y-2 -left-px w-px",
-                )}
+                className="absolute inset-0 rounded-full border border-accent-500 bg-accent-500/15"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             ) : null}

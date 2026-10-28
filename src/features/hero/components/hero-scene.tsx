@@ -1,135 +1,78 @@
 "use client";
 
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  useReducedMotion,
-} from "motion/react";
-import { useEffect } from "react";
+import { useReducedMotion } from "motion/react";
+import dynamic from "next/dynamic";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-import { spring } from "@/lib/motion-tokens";
+import { siteConfig } from "@/config/site";
+
+import type { KeyboardSocial } from "../keyboard/keyboard-scene";
 
 /**
- * Capas del sistema apiladas en perspectiva isométrica: Frontend, API y
- * Base de Datos. Cada plano flota lentamente y todo el stack se inclina
- * con el puntero, sugiriendo la arquitectura de punta a punta.
+ * Teclado 3D del hero.
  *
- * Rendimiento: las coordenadas viven en MotionValues; el movimiento del
- * mouse no dispara re-renders. Con `prefers-reduced-motion` el stack queda
- * estático en su posición de reposo (sin flotar ni inclinarse).
+ * El canvas (three + R3F) se carga aparte con `ssr: false`: no pesa en el
+ * HTML inicial ni bloquea el texto del hero. Es decorativo para lectores de
+ * pantalla (aria-hidden): los mismos enlaces existen como HTML en el hero.
  */
+const KeyboardScene = dynamic(() => import("../keyboard/keyboard-scene"), {
+  ssr: false,
+});
 
-const LAYERS = [
-  { id: "frontend", label: "Frontend", hint: "React · Next.js", y: 0, z: 80 },
-  { id: "api", label: "API", hint: "Node.js · REST", y: -58, z: 40 },
-  { id: "db", label: "Base de Datos", hint: "PostgreSQL", y: -116, z: 0 },
-] as const;
+const SOCIALS = siteConfig.heroSocials as readonly KeyboardSocial[];
 
-// Tilt base: el stack ya se lee como 3D en reposo, sin mouse.
-const BASE_TILT_X = 12;
-const BASE_TILT_Y = -24;
-
-export function HeroScene() {
-  const shouldReduceMotion = useReducedMotion();
-
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-
-  const rotateY = useSpring(
-    useTransform(pointerX, [-0.5, 0.5], [BASE_TILT_Y + 10, BASE_TILT_Y - 10]),
-    spring.soft,
-  );
-  const rotateX = useSpring(
-    useTransform(pointerY, [-0.5, 0.5], [BASE_TILT_X - 8, BASE_TILT_X + 8]),
-    spring.soft,
-  );
-
-  useEffect(() => {
-    if (shouldReduceMotion) return;
-
-    const handlePointer = (event: PointerEvent) => {
-      pointerX.set(event.clientX / window.innerWidth - 0.5);
-      pointerY.set(event.clientY / window.innerHeight - 0.5);
-    };
-
-    window.addEventListener("pointermove", handlePointer, { passive: true });
-    return () => window.removeEventListener("pointermove", handlePointer);
-  }, [pointerX, pointerY, shouldReduceMotion]);
-
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden lg:block"
-    >
-      <div className="absolute top-1/2 right-[6%] h-[460px] w-[460px] -translate-y-1/2 [perspective:1200px]">
-        <motion.div
-          className="relative h-full w-full will-change-transform [transform-style:preserve-3d]"
-          style={
-            shouldReduceMotion
-              ? { rotateX: BASE_TILT_X, rotateY: BASE_TILT_Y }
-              : { rotateX, rotateY }
-          }
-        >
-          {LAYERS.map((layer, i) => (
-            <motion.div
-              key={layer.id}
-              className="absolute top-1/2 left-1/2 w-[300px]"
-              style={{ x: "-50%", z: layer.z }}
-              animate={
-                shouldReduceMotion
-                  ? { y: layer.y }
-                  : { y: [layer.y, layer.y - 14, layer.y] }
-              }
-              transition={{
-                duration: 5.5 + i,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.45,
-              }}
-            >
-              <LayerCard label={layer.label} hint={layer.hint} index={i} />
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </div>
-  );
+interface HeroSceneProps {
+  hint: string;
 }
 
-function LayerCard({
-  label,
-  hint,
-  index,
-}: {
-  label: string;
-  hint: string;
-  index: number;
-}) {
-  return (
-    <div className="relative overflow-hidden rounded-xl border border-accent-500/60 bg-bg-surface/30 p-5 shadow-[0_0_40px_-12px_rgba(124,58,237,0.45)] backdrop-blur-md">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-400/80 to-transparent" />
+export function HeroScene({ hint }: HeroSceneProps) {
+  const reduceMotion = useReducedMotion() ?? false;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const [typed, setTyped] = useState("");
 
-      <div className="flex items-center gap-2">
-        <span className="size-2 rounded-full bg-accent-400 shadow-[0_0_12px_2px_rgba(167,139,250,0.8)]" />
-        <span className="font-mono text-sm tracking-wider text-text-primary uppercase">
-          {label}
+  // Fuera de pantalla el render se pausa: cero GPU mientras se lee el resto.
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry) setIsVisible(entry.isIntersecting);
+    });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  const handleTextChange = useCallback((text: string) => setTyped(text), []);
+
+  return (
+    <div ref={containerRef} className="relative h-full w-full">
+      {/* Linea de "terminal" con lo que el teclado va escribiendo. */}
+      <div
+        aria-hidden="true"
+        className="absolute top-2 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full border border-border-default bg-bg-surface/80 px-4 py-1.5 font-mono text-sm whitespace-nowrap backdrop-blur-md"
+      >
+        <span className="text-accent-400">~/fabian $</span>
+        <span className="min-w-[9ch] text-text-primary">
+          {reduceMotion ? "" : typed}
+          <span className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 animate-pulse bg-accent-400" />
         </span>
       </div>
 
-      <p className="mt-2 font-mono text-xs text-text-secondary">{hint}</p>
-
-      {/* Filas tipo esquema: refuerzan la idea de "capa de datos". */}
-      <div className="mt-4 space-y-1.5">
-        {[0, 1, 2].map((row) => (
-          <div
-            key={row}
-            className="h-1.5 rounded-full bg-accent-500/15"
-            style={{ width: `${72 - (row + index) * 14}%` }}
-          />
-        ))}
+      <div aria-hidden="true" className="absolute inset-0">
+        <KeyboardScene
+          socials={SOCIALS}
+          animate={!reduceMotion}
+          active={isVisible}
+          onTextChange={handleTextChange}
+        />
       </div>
+
+      <p
+        aria-hidden="true"
+        className="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-xs whitespace-nowrap text-text-muted"
+      >
+        {hint}
+      </p>
     </div>
   );
 }

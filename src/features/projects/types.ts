@@ -12,10 +12,19 @@ export interface ProjectEntry {
   repo: `${string}/${string}`;
   featured: boolean;
   order: number;
-  status: "production" | "active" | "archived" | "wip";
+  status:
+    "production" | "active" | "archived" | "wip" | "finished" | "hackathon";
   content: Record<Locale, ProjectContent>;
+  /** Stack del proyecto: lenguajes, frameworks y librerias. Se muestran como iconos. */
   highlightedTech?: string[];
+  /** Herramientas usadas en este proyecto (Docker, Postman...). Ver config/toolbox.ts. */
+  tools?: string[];
   media?: ProjectMedia;
+  /**
+   * Repo privado: no se consulta la API de GitHub ni se muestran enlaces a
+   * el. El proyecto se presenta con narrativa, stack y capturas (media.gallery).
+   */
+  private?: boolean;
   links?: {
     demo?: string;
     docs?: string;
@@ -74,6 +83,20 @@ export interface ProjectUiLabels {
   problem: string;
   solution: string;
   languages: string;
+  stack: string;
+  tools: string;
+  showMoreTools: string;
+  showLessTools: string;
+  showMore: string;
+  showLess: string;
+  galleryTitle: string;
+  galleryPrev: string;
+  galleryNext: string;
+  carouselPrev: string;
+  carouselNext: string;
+  /** Plantilla con {n} y {total}: "Ir al grupo {n} de {total}". */
+  carouselGoTo: string;
+  carouselRegion: string;
   status: Record<ProjectEntry["status"], string>;
 }
 

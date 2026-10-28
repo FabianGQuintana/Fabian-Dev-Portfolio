@@ -10,7 +10,12 @@ import { cn } from "@/lib/utils";
 import { sendMessage } from "../actions/send-message";
 import { contactSchema } from "../schemas/contact-schema";
 
-import type { ContactField, ContactFormState, ContactUiLabels } from "../types";
+import type {
+  ContactField,
+  ContactFormState,
+  ContactMood,
+  ContactUiLabels,
+} from "../types";
 
 /**
  * Formulario de contacto.
@@ -22,14 +27,22 @@ import type { ContactField, ContactFormState, ContactUiLabels } from "../types";
 
 interface ContactFormProps {
   labels: ContactUiLabels;
+  /**
+   * Avisa a la escena animada de lo que pasa en el form. `progress` (0-1) es
+   * cuanto del mensaje se ha escrito.
+   */
+  onActivity?: (mood: ContactMood, progress?: number) => void;
 }
+
+/** Largo del mensaje con el que la carta de la escena se ve "llena". */
+const FULL_MESSAGE_LENGTH = 160;
 
 const bannerTransition = { duration: duration.base, ease: ease.out } as const;
 
 /** Estado inicial de `useActionState` (contrato del Server Action). */
 const initialState: ContactFormState = { status: "idle" };
 
-export function ContactForm({ labels }: ContactFormProps) {
+export function ContactForm({ labels, onActivity }: ContactFormProps) {
   const [state, formAction, isPending] = useActionState(
     sendMessage,
     initialState,
@@ -54,6 +67,24 @@ export function ContactForm({ labels }: ContactFormProps) {
   useEffect(() => {
     if (state.status === "success") formRef.current?.reset();
   }, [state.status]);
+
+  // Sincroniza la escena animada con el resultado del envio. Depende de
+  // `state` (objeto nuevo en cada respuesta) para reaccionar tambien a dos
+  // errores seguidos.
+  useEffect(() => {
+    if (state.status === "success") onActivity?.("sent", 1);
+    else if (state.status === "error") onActivity?.("error");
+  }, [state, onActivity]);
+
+  useEffect(() => {
+    if (isPending) onActivity?.("sending");
+  }, [isPending, onActivity]);
+
+  function handleInput(event: React.FormEvent<HTMLFormElement>) {
+    const message = new FormData(event.currentTarget).get("message");
+    const length = typeof message === "string" ? message.length : 0;
+    onActivity?.("typing", Math.min(length / FULL_MESSAGE_LENGTH, 1));
+  }
 
   const isError = state.status === "error";
   const bannerMessage = isError
@@ -104,6 +135,7 @@ export function ContactForm({ labels }: ContactFormProps) {
       ref={formRef}
       action={formAction}
       onSubmit={handleSubmit}
+      onInput={handleInput}
       noValidate
       className="grid gap-5 sm:grid-cols-2"
     >

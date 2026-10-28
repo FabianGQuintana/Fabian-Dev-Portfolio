@@ -1,4 +1,4 @@
-# Fabián Quintana — Portafolio
+# Fabian Quintana — Portafolio
 
 Portafolio profesional construido para exhibir sistemas reales, no maquetas.
 La integración con GitHub es **curada**: un repositorio aparece únicamente si

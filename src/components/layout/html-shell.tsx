@@ -1,7 +1,27 @@
 import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
+import { Inter, Sora } from "next/font/google";
 
 import { cn } from "@/lib/utils";
+
+import { ThemeScript } from "./theme-script";
+
+/**
+ * Tipografia: Sora para titulares (geometrica, con caracter tecnico) e Inter
+ * para el texto (la referencia de legibilidad en interfaces). Geist Mono
+ * queda para datos y etiquetas. next/font las descarga en el build y las
+ * sirve desde el propio dominio: cero peticiones a Google en runtime.
+ */
+const display = Sora({
+  subsets: ["latin"],
+  variable: "--font-display-family",
+  display: "swap",
+});
+
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans-family",
+  display: "swap",
+});
 
 /**
  * `<html>`/`<body>` compartidos entre los DOS layouts raiz del sitio.
@@ -21,10 +41,25 @@ export function HtmlShell({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html
+      lang={lang}
+      data-theme="dark"
+      // globals.css usa scroll-behavior: smooth; esto le avisa a Next que lo
+      // desactive durante las navegaciones (evita el scroll animado al
+      // cambiar de idioma y el warning de desarrollo).
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      {/* App Router: <head> en el root layout es valido; la regla es de pages/. */}
+      {/* eslint-disable-next-line @next/next/no-head-element */}
+      <head>
+        {/* Fija el tema antes del primer pintado (ver src/lib/theme.ts). */}
+        <ThemeScript />
+      </head>
       <body
         className={cn(
-          GeistSans.variable,
+          display.variable,
+          sans.variable,
           GeistMono.variable,
           "bg-bg-base font-sans text-text-primary antialiased",
         )}

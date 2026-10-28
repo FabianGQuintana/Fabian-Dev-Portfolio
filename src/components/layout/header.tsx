@@ -3,17 +3,24 @@
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { useState } from "react";
 
+import { useActiveSection } from "@/hooks";
 import { cn } from "@/lib/utils";
 
 import { LocaleSwitcher } from "./locale-switcher";
 import { MobileMenu } from "./mobile-menu";
 import { NavLinks, type NavLinkItem } from "./nav-links";
+import { ThemeToggle } from "./theme-toggle";
 
 interface HeaderProps {
   items: readonly NavLinkItem[];
-  brand: string;
+  /** Texto junto al monograma; lleva a la parte superior de la pagina. */
+  homeLabel: string;
+  /** Iniciales del monograma. */
+  monogram: string;
   menuOpenLabel: string;
   menuCloseLabel: string;
+  themeToLightLabel: string;
+  themeToDarkLabel: string;
 }
 
 /** Desplazamiento en px a partir del cual el header pasa a estado "elevado". */
@@ -21,11 +28,20 @@ const SCROLL_THRESHOLD = 24;
 
 export function Header({
   items,
-  brand,
+  homeLabel,
+  monogram,
   menuOpenLabel,
   menuCloseLabel,
+  themeToLightLabel,
+  themeToDarkLabel,
 }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  // "home" es la seccion del hero: mientras esta a la vista se resalta la
+  // pastilla de Inicio y no la de ningun link. Antes de que el observer
+  // responda (activeId null) la pagina esta arriba, asi que tambien cuenta
+  // como inicio.
+  const activeId = useActiveSection(["home", ...items.map((item) => item.id)]);
+  const isHome = activeId === null || activeId === "home";
   const { scrollY } = useScroll();
 
   // useMotionValueEvent en vez de un listener de scroll: el estado de React
@@ -45,18 +61,35 @@ export function Header({
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="container-section flex h-full items-center justify-between">
+      <div className="flex h-full w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         <a
           href="#main"
-          className="font-mono text-sm font-medium text-text-primary transition-colors duration-150 hover:text-accent-400"
+          aria-current={isHome ? "location" : undefined}
+          className={cn(
+            "group flex items-center gap-2.5 rounded-full border py-1 pr-4 pl-1 font-mono text-sm font-medium transition-colors duration-150",
+            isHome
+              ? "border-accent-500 bg-accent-500/15 text-text-primary"
+              : "border-border-interactive/50 bg-bg-surface/60 text-text-primary hover:border-accent-400 hover:text-accent-400",
+          )}
         >
-          {brand}
+          <span
+            aria-hidden="true"
+            className="grid size-7 place-items-center rounded-full bg-accent-500 text-[0.65rem] font-bold tracking-tight text-white transition-transform duration-300 group-hover:rotate-6"
+          >
+            {monogram}
+          </span>
+          {homeLabel}
         </a>
 
         <div className="flex items-center gap-2">
           <nav aria-label="Principal" className="hidden md:block">
             <NavLinks items={items} />
           </nav>
+
+          <ThemeToggle
+            toLightLabel={themeToLightLabel}
+            toDarkLabel={themeToDarkLabel}
+          />
 
           <LocaleSwitcher />
 

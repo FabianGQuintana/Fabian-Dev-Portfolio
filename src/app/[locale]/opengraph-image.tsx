@@ -42,7 +42,7 @@ export default async function OpengraphImage({
 
   if (!routing.locales.includes(locale)) {
     return new ImageResponse(
-      <div style={{ background: "#0b0a0f", color: "#ededf2" }}>
+      <div style={{ background: "#0a0710", color: "#eeeaf5" }}>
         Invalid locale
       </div>,
       size,
@@ -62,8 +62,8 @@ export default async function OpengraphImage({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        background: "#0b0a0f",
-        color: "#ededf2",
+        background: "#0a0710",
+        color: "#eeeaf5",
         padding: "64px 72px",
       }}
     >

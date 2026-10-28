@@ -1,11 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Encabezado de seccion en monoespaciada: `// PROYECTOS`.
- * Aporta ritmo vertical y refuerza la identidad tecnica sin decoracion.
- *
- * El prefijo `//` es decorativo, asi que se marca aria-hidden para que el
- * lector de pantalla lea "PROYECTOS" y no "barra barra PROYECTOS".
+ * Etiqueta corta en monoespaciada sobre un titular (p. ej. "404").
  */
 export function Eyebrow({
   children,
@@ -20,7 +16,6 @@ export function Eyebrow({
       )}
       {...props}
     >
-      <span aria-hidden="true">{"// "}</span>
       {children}
     </p>
   );

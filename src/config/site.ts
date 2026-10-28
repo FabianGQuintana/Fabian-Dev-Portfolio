@@ -8,9 +8,14 @@ import type { Locale } from "@/i18n/routing";
  * next-intl.
  */
 
+const GITHUB_URL = "https://github.com/FabianGQuintana";
+const LINKEDIN_URL = "https://www.linkedin.com/in/fabian-quintana-60a59a325";
+
 export const siteConfig = {
-  name: "Fabián Quintana",
-  role: "Fullstack Developer",
+  name: "Fabian Quintana",
+  /** Iniciales para el logo del header y el avatar de placeholder. */
+  monogram: "FQ",
+  role: "AI-Augmented Software Developer",
 
   /**
    * Tagline del Hero (Opcion A del plan).
@@ -18,30 +23,44 @@ export const siteConfig = {
    * del sitio (description por locale), fuera del arbol de traducciones de UI.
    */
   tagline: {
-    es: "Diseño la base de datos, construyo la API y pulo la interfaz. Sistemas completos, con arquitectura limpia.",
-    en: "I design the database, build the API and refine the interface. Complete systems, clean architecture.",
+    es: "Diseño la base de datos, construyo la API y pulo la interfaz. Sistemas completos",
+    en: "I design the database, build the API and refine the interface. Complete systems",
   } satisfies Record<Locale, string>,
 
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 
   github: {
     username: "FabianGQuintana",
-    url: "https://github.com/FabianGQuintana",
+    url: GITHUB_URL,
   },
 
   links: {
-    linkedin: "",
-    email: "",
+    linkedin: LINKEDIN_URL,
+    email: "quintanafabiangustavo@gmail.com",
   },
+
+  /**
+   * Secuencia del teclado 3D del hero: cada palabra se teclea y, al pulsar
+   * Enter, emerge su icono clickeable. El orden del array es el orden de
+   * tecleo. Un href que empieza con "#" hace scroll a esa seccion.
+   */
+  heroSocials: [
+    { id: "github", word: "GITHUB", href: GITHUB_URL },
+    {
+      id: "linkedin",
+      word: "LINKEDIN",
+      href: LINKEDIN_URL,
+    },
+    { id: "gmail", word: "GMAIL", href: "#contact" },
+  ],
 
   /**
    * CV.
    * `enabled: false` renderiza el boton en estado deshabilitado con tooltip.
-   * El dia que exista el PDF: copiarlo a public/cv/, poner la ruta en `path`
-   * y cambiar el flag. Ningun componente se toca.
+   * Hoy existe una sola version (en espanol) y se sirve en ambos locales.
    */
   resume: {
-    enabled: false,
+    enabled: true,
     path: "/cv/fabian-quintana-cv.pdf",
   },
 } as const;
