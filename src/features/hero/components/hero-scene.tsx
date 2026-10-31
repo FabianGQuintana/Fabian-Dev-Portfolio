@@ -29,7 +29,22 @@ export function HeroScene({ hint }: HeroSceneProps) {
   const reduceMotion = useReducedMotion() ?? false;
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(true);
+  const [isReady, setIsReady] = useState(false);
   const [typed, setTyped] = useState("");
+
+  // El canvas (three + R3F, el chunk mas pesado del sitio) se monta cuando
+  // el navegador queda libre: en movil el texto y los CTA del hero quedan
+  // interactivos primero y el teclado aparece un instante despues.
+  useEffect(() => {
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(() => setIsReady(true), {
+        timeout: 1500,
+      });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = setTimeout(() => setIsReady(true), 300);
+    return () => clearTimeout(id);
+  }, []);
 
   // Fuera de pantalla el render se pausa: cero GPU mientras se lee el resto.
   useEffect(() => {
@@ -59,12 +74,14 @@ export function HeroScene({ hint }: HeroSceneProps) {
       </div>
 
       <div aria-hidden="true" className="absolute inset-0">
-        <KeyboardScene
-          socials={SOCIALS}
-          animate={!reduceMotion}
-          active={isVisible}
-          onTextChange={handleTextChange}
-        />
+        {isReady ? (
+          <KeyboardScene
+            socials={SOCIALS}
+            animate={!reduceMotion}
+            active={isVisible}
+            onTextChange={handleTextChange}
+          />
+        ) : null}
       </div>
 
       <p

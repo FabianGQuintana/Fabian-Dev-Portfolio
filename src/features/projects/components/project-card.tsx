@@ -87,7 +87,10 @@ export function ProjectCard({
         onClick={onOpen}
         aria-expanded={isExpanded}
         aria-label={`${labels.expand}: ${content.title}`}
-        className="absolute inset-0 flex flex-col justify-end text-left"
+        // En el flujo (no `absolute inset-0`): si el texto no entra en el
+        // alto minimo, la tarjeta crece. Antes el contenido desbordaba por
+        // arriba y en movil el titulo quedaba cortado (p. ej. GoberTrack).
+        className="relative flex size-full min-h-[inherit] flex-col justify-end text-left"
       >
         {/* Portada: parallax con el scroll + zoom en hover. */}
         <motion.div
@@ -121,15 +124,15 @@ export function ProjectCard({
         {/* El color va en el contenedor: tailwind-merge descartaba `text-white`
             del h3 cuando convivia con `text-h3`, y en el tema claro el titulo
             heredaba el texto oscuro sobre la portada oscura. */}
-        <div className="p-6 text-white sm:p-8">
+        <div className="w-full min-w-0 p-5 text-white sm:p-8">
           <span className="text-label text-white/70">
             {labels.status[project.status]}
           </span>
           <h3
             className={cn(
-              "mt-1",
+              "mt-1 text-balance break-words hyphens-auto",
               featured
-                ? "text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight font-semibold tracking-tight"
+                ? "text-[clamp(1.5rem,3.5vw,2.75rem)] leading-tight font-semibold tracking-tight"
                 : "text-h3",
             )}
           >
@@ -138,7 +141,7 @@ export function ProjectCard({
           <p
             className={cn(
               "mt-2 max-w-[52ch] text-sm leading-relaxed text-white/75",
-              !featured && "line-clamp-2",
+              featured ? "line-clamp-3 lg:line-clamp-none" : "line-clamp-2",
             )}
           >
             {content.tagline}

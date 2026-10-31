@@ -26,8 +26,25 @@ export function getTheme(): Theme {
   return document.documentElement.dataset.theme === "light" ? "light" : "dark";
 }
 
+/**
+ * Cambia el tema al instante.
+ *
+ * Los dos temas ya estan en el CSS (solo cambian variables), pero cada
+ * elemento con `transition-colors` animaba su propio cambio de color: en
+ * movil eso eran cientos de transiciones a la vez y el cambio se sentia
+ * lento, como si el tema "cargara". Durante el frame del cambio se apagan
+ * todas las transiciones (clase `theme-switching`, ver globals.css) y se
+ * vuelven a encender en el frame siguiente.
+ */
 export function setTheme(theme: Theme): void {
-  document.documentElement.dataset.theme = theme;
+  const root = document.documentElement;
+  root.classList.add("theme-switching");
+  root.dataset.theme = theme;
+  // Fuerza el recalculo de estilos con las transiciones apagadas.
+  void root.offsetWidth;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => root.classList.remove("theme-switching"));
+  });
   try {
     localStorage.setItem(THEME_STORAGE_KEY, theme);
   } catch {
