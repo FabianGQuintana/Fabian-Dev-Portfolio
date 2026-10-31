@@ -23,7 +23,7 @@ export const siteConfig = {
    * del sitio (description por locale), fuera del arbol de traducciones de UI.
    */
   tagline: {
-    es: "Diseño la base de datos, construyo la API y pulo la interfaz. Sistemas completos",
+    es: "Diseño la base de datos, construyo la API y perfecciono la interfaz. Sistemas completos",
     en: "I design the database, build the API and refine the interface. Complete systems",
   } satisfies Record<Locale, string>,
 

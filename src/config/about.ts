@@ -70,10 +70,12 @@ export interface AboutPhoto {
  * Foto del retrato de la seccion Sobre mi (null = placeholder con iniciales).
  *
  * El marco es vertical 3:4: con una foto de ese ratio entra completa, sin
- * recortes. Se sirve tal cual, sin recompresion.
+ * recortes. Se sirve tal cual, sin recompresion: por eso el archivo ya esta
+ * optimizado (WebP 960x1280, ~145 KB, nitido hasta pantallas 3x) en vez del
+ * PNG original de 2,3 MB, que en movil era la descarga mas pesada del sitio.
  */
 export const aboutPhoto: AboutPhoto | null = {
-  src: "/about/fabian-quintana.png",
+  src: "/about/fabian-quintana.webp",
   alt: {
     es: "Retrato profesional de Fabian Quintana",
     en: "Professional portrait of Fabian Quintana",
