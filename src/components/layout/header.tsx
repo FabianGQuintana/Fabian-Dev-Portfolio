@@ -57,7 +57,10 @@ export function Header({
         "fixed inset-x-0 top-0 z-40 h-(--header-height)",
         "transition-colors duration-300",
         isScrolled
-          ? "border-b border-border-subtle bg-bg-base/70 backdrop-blur-md"
+          ? // En movil, fondo casi opaco y SIN blur: backdrop-filter repinta la
+            // barra en cada frame de scroll y ademas convierte al header en el
+            // bloque contenedor de sus hijos position: fixed (ver MobileMenu).
+            "border-b border-border-subtle bg-bg-base/95 md:bg-bg-base/70 md:backdrop-blur-md"
           : "border-b border-transparent bg-transparent",
       )}
     >

@@ -34,7 +34,7 @@ export function TechIcon({
     <span
       title={withLabel || revealLabel ? undefined : tech.name}
       className={cn(
-        "group/tech relative inline-flex h-10 items-center rounded-lg border border-border-subtle bg-bg-surface/80 px-2.5 text-text-primary backdrop-blur-sm",
+        "group/tech relative inline-flex h-10 items-center rounded-lg border border-border-subtle bg-bg-surface/90 px-2.5 text-text-primary",
         className,
       )}
     >
@@ -60,7 +60,7 @@ export function TechIcon({
       {withLabel ? (
         <span className="ml-2 text-label whitespace-nowrap">{tech.name}</span>
       ) : revealLabel ? (
-        <span className="pointer-events-none absolute bottom-full left-0 z-20 mb-2 rounded-md border border-white/15 bg-black/85 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 shadow-lg backdrop-blur-sm transition-opacity duration-200 group-hover/tech:opacity-100">
+        <span className="pointer-events-none absolute bottom-full left-0 z-20 mb-2 rounded-md border border-white/15 bg-black/85 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover/tech:opacity-100">
           {tech.name}
         </span>
       ) : (

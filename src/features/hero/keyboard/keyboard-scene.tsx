@@ -449,7 +449,9 @@ export default function KeyboardScene({
   return (
     <Canvas
       frameloop={!animate ? "demand" : active ? "always" : "never"}
-      dpr={[1, 1.75]}
+      // Tope de 1.5: en pantallas 3x (la mayoria de los moviles) renderizar
+      // a densidad completa cuadruplica los pixeles sin diferencia visible.
+      dpr={[1, 1.5]}
       camera={{ position: [0, 6.2, 5.2], fov: 32 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
