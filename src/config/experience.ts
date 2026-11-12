@@ -69,12 +69,12 @@ export const education: readonly ExperienceEntry[] = [
       en: "Full Stack Bootcamp (C# & React)",
     },
     description: {
-      es: "Programa intensivo de formación técnica. Desarrollo de aplicaciones utilizando C# y .NET para el backend, junto con React para el frontend, aplicando buenas prácticas y trabajo en equipo. Aplicando como contenido extra Herramientas de Versionado, Tableros y Cloud.",
-      en: "Intensive technical training program. Application development using C# and .NET for the backend, along with React for the frontend, applying best practices and teamwork. Applying as extra content Versioning Tools, Boards and Cloud Computing.",
+      es: "Programa intensivo de formación técnica. Desarrollo de aplicaciones utilizando C# y .NET para el backend, junto con React para el frontend, aplicando buenas prácticas y trabajo en equipo. Aplicando como contenido extra Herramientas de Versionado, Tableros y Cloud. Además, actualmente estoy aprendiendo a desarrollar con Next.js.",
+      en: "Intensive technical training program. Application development using C# and .NET for the backend, along with React for the frontend, applying best practices and teamwork. Applying as extra content Versioning Tools, Boards and Cloud Computing. I am also currently learning to build with Next.js.",
     },
     startDate: "2025-09",
     endDate: null,
-    tech: ["React", "C#", "AWS", "Git", "GitHub", "Trello", "Jira"],
+    tech: ["React", "Next.js", "C#", "AWS", "Git", "GitHub", "Trello", "Jira"],
   },
   {
     id: "hackatones",
