@@ -62,6 +62,21 @@ export const education: readonly ExperienceEntry[] = [
     tech: [],
   },
   {
+    id: "bootcamp-devlights-nextjs",
+    company: "DevLights",
+    role: {
+      es: "Bootcamp Frontend (Next.js, React & Tailwind)",
+      en: "Frontend Bootcamp (Next.js, React & Tailwind)",
+    },
+    description: {
+      es: "Segundo bootcamp, actualmente en curso. Profundizo en el desarrollo frontend moderno con Next.js, React y Tailwind CSS, construyendo aplicaciones web completas con buenas prácticas.",
+      en: "Second bootcamp, currently in progress. Deepening my modern frontend skills with Next.js, React and Tailwind CSS, building complete web applications following best practices.",
+    },
+    startDate: "2026-10",
+    endDate: null,
+    tech: ["Next.js", "React", "Tailwind CSS"],
+  },
+  {
     id: "bootcamp-devlights",
     company: "DevLights",
     role: {
@@ -69,12 +84,12 @@ export const education: readonly ExperienceEntry[] = [
       en: "Full Stack Bootcamp (C# & React)",
     },
     description: {
-      es: "Programa intensivo de formación técnica. Desarrollo de aplicaciones utilizando C# y .NET para el backend, junto con React para el frontend, aplicando buenas prácticas y trabajo en equipo. Aplicando como contenido extra Herramientas de Versionado, Tableros y Cloud. Además, actualmente estoy aprendiendo a desarrollar con Next.js.",
-      en: "Intensive technical training program. Application development using C# and .NET for the backend, along with React for the frontend, applying best practices and teamwork. Applying as extra content Versioning Tools, Boards and Cloud Computing. I am also currently learning to build with Next.js.",
+      es: "Programa intensivo de formación técnica. Desarrollo de aplicaciones utilizando C# y .NET para el backend, junto con React para el frontend, aplicando buenas prácticas y trabajo en equipo. Aplicando como contenido extra Herramientas de Versionado, Tableros y Cloud.",
+      en: "Intensive technical training program. Application development using C# and .NET for the backend, along with React for the frontend, applying best practices and teamwork. Applying as extra content Versioning Tools, Boards and Cloud Computing.",
     },
-    startDate: "2025-09",
-    endDate: null,
-    tech: ["React", "Next.js", "C#", "AWS", "Git", "GitHub", "Trello", "Jira"],
+    startDate: "2025-08",
+    endDate: "2025-12",
+    tech: ["React", "C#", "AWS", "Git", "GitHub", "Trello", "Jira"],
   },
   {
     id: "hackatones",
